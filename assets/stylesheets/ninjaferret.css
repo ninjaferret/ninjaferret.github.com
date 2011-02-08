@@ -1,5 +1,5 @@
 h1 {
-	color: Orange;
+	color: Red;
 	text-align: center;
 	}
 
@@ -9,7 +9,7 @@ body {
    }
    
 #content {
-   width: 740px;
+   width: 80%;
    margin: auto;
    border: 10px;
    color: black;
