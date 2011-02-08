@@ -1,6 +1,6 @@
 #twitter {
 
-	background-color: #66CCFF;
+	
 }
 
 #twitter h1 a {
@@ -21,7 +21,7 @@
 	margin: 0; padding: 0;
 }
 #twitter ul li {
-		margin: 0 padding: 0;
+		margin: 0 padding: 5px;
 }
 #twitter ul li a {
 	font: normal 0.7em Georgia, Times, Serif;
