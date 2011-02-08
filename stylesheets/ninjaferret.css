@@ -2,3 +2,8 @@ body {
    background-color: black;
    color: white;
    }
+   
+#content {
+   width: 740px;
+   margin: auto;
+   }
