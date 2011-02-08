@@ -1,4 +1,4 @@
-#main_content.h1 {
+#main_content h1 {
 	color: Red;
 	text-align: center;
     text-shadow: 4px 4px 4px #000;
@@ -16,14 +16,13 @@ body {
 }
 
 #navigation {font-size:1em}
+
 #side_bar {
 	font-size:1em;
 	width: 20%;
-	position: absolute;
-	top: 0px;
-	right: 0px;
 	border-radius: 10px;
 	background-color: #66CCFF;
+	float: right;
 }
 #footer {font-size:0.9em}
  
@@ -35,9 +34,6 @@ body {
    color: black;
    background-color: white;
    border-radius: 15px;
-   position: absolute;
-   top: 0px;
-   left: 0px;
    }
    
 p.postinfo {

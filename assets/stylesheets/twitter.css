@@ -1,6 +1,5 @@
 #twitter {
-
-	
+	padding: 5px;
 }
 
 #twitter h1 a {
@@ -11,7 +10,7 @@
 	 color: #004080;
 	text-decoration: none;
 	text-shadow: none;
-	text-align: right;
+	text-align: left;
 }
 
 #twitter h1 a:hover { color: #004080; }
@@ -21,7 +20,8 @@
 	margin: 0; padding: 0;
 }
 #twitter ul li {
-		margin: 0 padding: 5px;
+		margin-bottom: 1em ;
+		padding: 0px;
 }
 #twitter ul li a {
 	font: normal 0.7em Georgia, Times, Serif;
