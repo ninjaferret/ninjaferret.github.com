@@ -15,7 +15,7 @@ body {
    background-color: white;
    }
    
-span.postedon {
+div.postinfo {
     font-style: italic;
     font-size: small;
     }
