@@ -23,7 +23,7 @@ p.postinfo {
     }
 div.post {
     margin: 10px;
-    color: silver;
+    background-color: silver;
     padding: 10px;
     border-radius: 10px;
     }
