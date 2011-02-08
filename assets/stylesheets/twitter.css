@@ -1,12 +1,13 @@
 #twitter {
 	width: 100px; 
-	margin: auto 5%;
-	float: left;
+	margin: auto 2%;
+	float: right;
 }
 
 	#twitter h1 a {
 		display: block; margin: 0 0 15px 0;
-		font: 14px Arial, Sans-Serif; color: #004080;
+		font: small Arial, Sans-Serif;
+		 color: #004080;
 		text-decoration: none;
 	}
 		#twitter h1 a:hover { color: #004080; }
