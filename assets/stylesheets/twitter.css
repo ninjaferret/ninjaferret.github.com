@@ -2,6 +2,7 @@
 	width: 150px; 
 	margin-right: 5%;
 	float: right;
+	background-color: #66CCFF;
 }
 
 #twitter h1 a {
@@ -9,6 +10,8 @@
 	font: Arial, Sans-Serif;
 	 color: #004080;
 	text-decoration: none;
+	text-shadow: none;
+	text-align: right;
 }
 
 #twitter h1 a:hover { color: #004080; }
