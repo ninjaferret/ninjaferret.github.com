@@ -10,6 +10,11 @@ body {
    color: white;
    }
 
+#main {
+	width: 90%;
+	margin: auto;
+}
+
 #navigation {font-size:1em}
 #side_bar {
 	font-size:1em;
@@ -25,8 +30,7 @@ body {
 
 #main_content {
    font-size:1.2em;
-   width: 80%;
-   margin-left: 5%;
+   width: 70%;
    padding: 15px;
    color: black;
    background-color: white;
