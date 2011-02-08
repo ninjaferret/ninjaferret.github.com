@@ -1,5 +1,5 @@
 #twitter {
-	width: 150px; 
+	width: 5%; 
 	margin-right: 5%;
 	float: right;
 	background-color: #66CCFF;
@@ -9,7 +9,7 @@
 	display: block; 
 	margin: 0 0 15px 0;
 	font: Arial, Sans-Serif;
-	font-size: 1.3em;
+	font-size: 1em;
 	 color: #004080;
 	text-decoration: none;
 	text-shadow: none;
@@ -26,7 +26,7 @@
 		margin: 0 padding: 0;
 }
 #twitter ul li a {
-	font: normal 0.5em Georgia, Times, Serif;
+	font: normal 0.7em Georgia, Times, Serif;
 	color: #004080;
 }
 #twitter ul li a:hover { color: #CC0000; }
@@ -34,8 +34,9 @@
 #twitter ul li span {
 	font: Helvetica, Arial, Sans-Serif; 
 	color: #004080;
-	font-size: 0.8em;
+	font-size: 1em;
 }
 #twitter ul li span a {
 	font: Helvetica, Arial, Sans-Serif;
+	font-size: 1em;
 }
