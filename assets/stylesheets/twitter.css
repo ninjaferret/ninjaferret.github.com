@@ -1,0 +1,30 @@
+#twitter {
+	width: 500px; margin: 130px auto;
+}
+
+	#twitter h1 a {
+		display: block; margin: 0 0 15px 0;
+		font: 14px Arial, Sans-Serif; color: #004080;
+		text-decoration: none;
+	}
+		#twitter h1 a:hover { color: #004080; }
+
+	#twitter ul {
+		list-style: none; 
+		margin: 0; padding: 0;
+	}
+		#twitter ul li {
+			margin: 0 padding: 0;
+		}
+			#twitter ul li a {
+				font: normal 14px/30px Georgia, Times, Serif;
+				color: #004080;
+			}
+				#twitter ul li a:hover { color: #CC0000; }
+
+		#twitter ul li span {
+			font: 22px/30px Helvetica, Arial, Sans-Serif; color: #004080;
+		}
+			#twitter ul li span a {
+				font: 22px/30px Helvetica, Arial, Sans-Serif;
+			}
