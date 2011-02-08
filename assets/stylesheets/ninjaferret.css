@@ -11,6 +11,7 @@ body {
 #content {
    width: 740px;
    margin: auto;
+   border: 10px;
    color: black;
    background-color: white;
    }
