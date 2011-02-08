@@ -1,4 +1,4 @@
-h1 {
+#main_content.h1 {
 	color: Red;
 	text-align: center;
     text-shadow: 4px 4px 4px #000;
@@ -11,7 +11,13 @@ body {
    }
 
 #navigation {font-size:1em}
-#side_bar {font-size:1em}
+#side_bar {
+	font-size:1em;
+	width: 200px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
 #footer {font-size:0.9em}
  
 
