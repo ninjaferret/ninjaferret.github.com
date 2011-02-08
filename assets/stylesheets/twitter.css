@@ -1,5 +1,7 @@
 #twitter {
-	width: 500px; margin: 130px auto;
+	width: 100px; 
+	margin: auto 5%;
+	float: left;
 }
 
 	#twitter h1 a {
