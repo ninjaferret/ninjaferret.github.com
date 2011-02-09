@@ -8,12 +8,12 @@
 body {
    /*background-color: black;*/
    color: white;
-   background: #606c88; /* old browsers */
-background: -moz-linear-gradient(top, #606c88 0%, #3f4c6b 100%); /* firefox */
+   background: #7d7e7d; /* old browsers */
+background: -moz-linear-gradient(top, #7d7e7d 0%, #0e0e0e 100%); /* firefox */
 
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#606c88), color-stop(100%,#3f4c6b)); /* webkit */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7d7e7d), color-stop(100%,#0e0e0e)); /* webkit */
 
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#606c88', endColorstr='#3f4c6b',GradientType=0 ); /* ie */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* ie */
    }
 
 #main {
