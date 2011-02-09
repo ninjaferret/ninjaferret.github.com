@@ -24,11 +24,11 @@
 	margin: 0; padding: 0;
 }
 #twitter ul li {
-		margin-bottom: 1em ;
+		margin-bottom: 0.8em ;
 		padding: 0px;
 }
 #twitter ul li a {
-	font: normal 0.7em Georgia, Times, Serif;
+	font: normal 0.6em Georgia, Times, Serif;
 	color: #004080;
 }
 #twitter ul li a:hover { color: #CC0000; }
@@ -36,9 +36,9 @@
 #twitter ul li span {
 	font: Helvetica, Arial, Sans-Serif; 
 	color: #004080;
-	font-size: 1em;
+	font-size: 0.8em;
 }
 #twitter ul li span a {
 	font: Helvetica, Arial, Sans-Serif;
-	font-size: 1em;
+	font-size: 0.8em;
 }
