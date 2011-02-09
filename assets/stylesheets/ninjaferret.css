@@ -9,12 +9,10 @@ body {
    /*background-color: black;*/
    color: white;
    background: #7d7e7d; /* old browsers */
-background: -moz-linear-gradient(top, #7d7e7d 0%, #0e0e0e 100%); /* firefox */
-
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7d7e7d), color-stop(100%,#0e0e0e)); /* webkit */
-
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* ie */
-   }
+   background: -moz-linear-gradient(top, #7d7e7d 0%, #0e0e0e 100%); /* firefox */
+   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7d7e7d), color-stop(100%,#0e0e0e)); /* webkit */
+   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* ie */
+}
 
 #main {
 	width: 90%;
@@ -38,8 +36,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', end
    width: 77%;
    padding: 15px;
    color: black;
-   background-color: white;
    border-radius: 15px;
+   background: #eeeeee; /* old browsers */
+   background: -moz-linear-gradient(top, #eeeeee 0%, #eeeeee 100%); /* firefox */
+   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#eeeeee)); /* webkit */
+   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#eeeeee',GradientType=0 ); /* ie */
    }
    
 p.postinfo {
@@ -47,9 +48,12 @@ p.postinfo {
     font-size: small;
     }
 div.post {
-    margin: 10px;
-    background-color: silver;
-    padding: 10px;
-    border-radius: 10px;
-    }
+   margin: 10px;
+   padding: 10px;
+   border-radius: 10px;
+   background: #f2f5f6; /* old browsers */
+   background: -moz-linear-gradient(top, #f2f5f6 0%, #e3eaed 37%, #c8d7dc 100%); /* firefox */
+   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f5f6), color-stop(37%,#e3eaed), color-stop(100%,#c8d7dc)); /* webkit */
+   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', endColorstr='#c8d7dc',GradientType=0 ); /* ie */
+}
     
