@@ -53,10 +53,5 @@ p.postinfo {
 div.post {
    margin: 10px;
    padding: 10px;
-   border-radius: 10px;
-   background: #f2f5f6; /* old browsers */
-   background: -moz-linear-gradient(top, #f2f5f6 0%, #e3eaed 37%, #c8d7dc 100%); /* firefox */
-   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f5f6), color-stop(37%,#e3eaed), color-stop(100%,#c8d7dc)); /* webkit */
-   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', endColorstr='#c8d7dc',GradientType=0 ); /* ie */
-}
+} 
     
