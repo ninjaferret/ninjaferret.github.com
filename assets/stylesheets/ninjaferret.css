@@ -5,6 +5,19 @@
     text-size: 3em;
 	}
 	
+h2 {
+	color: Red;
+	text-align: left;
+	text-shadow: 1px 1px 1px #000;
+	text-size: 2em;
+}
+
+h3 {
+	color: Red;
+	text-align: left;
+	text-size: 1.5em;
+}
+	
 #header a img {
 	margin-left: auto;
 	margin-right: auto;
