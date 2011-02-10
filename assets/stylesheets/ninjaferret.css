@@ -2,14 +2,14 @@
 	color: Red;
 	text-align: center;
     text-shadow: 4px 4px 4px #000;
-    text-size: 4em;
+    font-size: 5em;
 	}
 	
 #main_content h2 {
 	color: Red;
 	text-align: left;
 	text-shadow: 1px 1px 1px #000;
-	text-size: 3em;
+	font-size: 4em;
 }
 
 #main_content h3 {
@@ -19,13 +19,13 @@
 #main_content h3 a{
 	color: Red;
 	text-align: left;
-	text-size: 1em;
+	font-size: 1em;
 }
 
 #main_content h3 a:hover{
 	color: #004080;
 	text-align: left;
-	text-size: 1em;
+	font-size: 1em;
 }
 	
 #header a img {
