@@ -4,6 +4,11 @@
     text-shadow: 4px 4px 4px #000;
     text-size: 3em;
 	}
+	
+#header a img {
+	margin-left: auto;
+	margin-right: auto;
+}
 
 body {
    /*background-color: black;*/
