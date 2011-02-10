@@ -2,14 +2,18 @@
 	color: Red;
 	text-align: center;
     text-shadow: 4px 4px 4px #000;
-    font-size: 5em;
+    font-size: 3em;
+	margin-top: 1em;
+	margin-bottom: 1em;
 	}
 	
 #main_content h2 {
 	color: Red;
 	text-align: left;
 	text-shadow: 1px 1px 1px #000;
-	font-size: 4em;
+	font-size: 2em;
+	margin-top: 0.5em;
+	margin-bottom: 1em;
 }
 
 #main_content h3 {
