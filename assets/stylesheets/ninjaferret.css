@@ -5,18 +5,27 @@
     text-size: 4em;
 	}
 	
-h2 {
+#main_content h2 {
 	color: Red;
 	text-align: left;
 	text-shadow: 1px 1px 1px #000;
 	text-size: 3em;
 }
 
-h3 a {
+#main_content h3 {
+	font-style: italic;
+}
+
+#main_content h3 a{
 	color: Red;
 	text-align: left;
 	text-size: 1em;
-	text-decoration: none;
+}
+
+#main_content h3 a:hover{
+	color: #004080;
+	text-align: left;
+	text-size: 1em;
 }
 	
 #header a img {
