@@ -60,6 +60,7 @@ body {
 	font-size:1em;
 	width: 20%;
 	border-radius: 10px;
+    -moz-border-radius: 10px;
 	float: right;
     background: #eeeeee; /* old browsers */
     background: -moz-linear-gradient(top, #eeeeee 0%, #eeeeee 100%); /* firefox */
@@ -75,6 +76,7 @@ body {
    padding: 15px;
    color: black;
    border-radius: 15px;
+   -moz-border-radius: 15px;
    background: #eeeeee; /* old browsers */
    background: -moz-linear-gradient(top, #eeeeee 0%, #eeeeee 100%); /* firefox */
    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#eeeeee)); /* webkit */
@@ -100,6 +102,13 @@ div.post {
 Navigation
 -------------------------------
 */
+
+#navigation {
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    -moz-border-radius-topleft: 15px;
+    -moz-border-radius-bottomright: 15px;;
+}
 
 #navigation a
 {
