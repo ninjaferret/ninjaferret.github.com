@@ -3,7 +3,7 @@
 	text-align: center;
     text-shadow: 4px 4px 4px #000;
     font-size: 3em;
-	margin-top: 0.1em;
+	margin-top: 0.5em;
 	margin-bottom: 0.3em;
 	}
 	
@@ -96,14 +96,15 @@ Navigation
 #navigation a
 {
 color: #000;
-background: #ffa20c url(left-tab.gif) left top no-repeat;
+background: #cccccc;
 text-decoration: none;
-padding-left: 10px
+padding-left: 10px;
+padding-top: 10px;
+padding-bottom: 10px;
 }
 
 #navigation a span
 {
-background: url(right-tab.gif) right top no-repeat;
 padding-right: 10px
 }
 
@@ -123,13 +124,13 @@ float: none
 #navigation a:hover
 {
 color: #fff;
-background: #781351 url(left-tab-hover.gif) left top no-repeat;
-padding-left: 10px
+background: #135178;
+padding-left: 10px;
+
 }
 
 #navigation a:hover span
-{
-background: url(right-tab-hover.gif) right top no-repeat;
+{;
 padding-right: 10px
 }
 
