@@ -11,13 +11,13 @@ body {
    color: white;
 }
 
+img {
+    border-style: none;
+}
+
 #main {
 	width: 90%;
 	margin: auto;
-}
-
-#img {
-    border-style: none;
 }
 
 /* ----------------------------------------------
