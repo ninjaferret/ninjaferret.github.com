@@ -1,3 +1,81 @@
+html {
+	background: #7d7e7d; /* old browsers */
+   background: -moz-linear-gradient(top, #7d7e7d 0%, #0e0e0e 100%); /* firefox */
+   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7d7e7d), color-stop(100%,#0e0e0e)); /* webkit */
+   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* ie */
+   
+}
+
+body {
+   /*background-color: black;*/
+   color: white;
+}
+
+#main {
+	width: 90%;
+	margin: auto;
+}
+
+#img {
+    border-style: none;
+}
+
+/* ----------------------------------------------
+Header CSS - for main banner
+------------------------------------------------- */	
+#header a img {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+/* ----------------------------------------------
+Navigation CSS - for links to other parts of site
+------------------------------------------------- */
+
+
+#navigation {font-size:1em}
+
+/* ----------------------------------------------
+Side bar CSS - for the contents of the side bar
+------------------------------------------------- */
+
+#side_bar {
+	font-size:1em;
+	width: 20%;
+	border-radius: 10px;
+    -moz-border-radius: 10px;
+	float: right;
+    background: #eeeeee; /* old browsers */
+    background: -moz-linear-gradient(top, #eeeeee 0%, #eeeeee 100%); /* firefox */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#eeeeee)); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#eeeeee',GradientType=0 ); /* ie */
+}
+
+/* ----------------------------------------------
+Footer CSS - for main banner
+------------------------------------------------- */
+
+#footer {font-size:0.9em}
+
+
+/* --------------------------------
+The main content panel
+----------------------------------- */
+
+#main_content {
+   font-size:1.2em;
+   width: 77%;
+   padding: 15px;
+   color: black;
+   border-radius: 15px;
+   -moz-border-radius: 15px;
+   background: #eeeeee; /* old browsers */
+   background: -moz-linear-gradient(top, #eeeeee 0%, #eeeeee 100%); /* firefox */
+   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#eeeeee)); /* webkit */
+   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#eeeeee',GradientType=0 ); /* ie */
+   }
+   
 #main_content h1 {
 	color: Red;
 	text-align: center;
@@ -30,69 +108,20 @@
 	text-align: left;
 	font-size: 1em;
 }
-	
-#header a img {
-	margin-left: auto;
-	margin-right: auto;
-}
-
-html {
-	background: #7d7e7d; /* old browsers */
-   background: -moz-linear-gradient(top, #7d7e7d 0%, #0e0e0e 100%); /* firefox */
-   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7d7e7d), color-stop(100%,#0e0e0e)); /* webkit */
-   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* ie */
-   
-}
-
-body {
-   /*background-color: black;*/
-   color: white;
-}
-
-#main {
-	width: 90%;
-	margin: auto;
-}
-
-#navigation {font-size:1em}
-
-#side_bar {
-	font-size:1em;
-	width: 20%;
-	border-radius: 10px;
-    -moz-border-radius: 10px;
-	float: right;
-    background: #eeeeee; /* old browsers */
-    background: -moz-linear-gradient(top, #eeeeee 0%, #eeeeee 100%); /* firefox */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#eeeeee)); /* webkit */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#eeeeee',GradientType=0 ); /* ie */
-}
-#footer {font-size:0.9em}
  
 
-#main_content {
-   font-size:1.2em;
-   width: 77%;
-   padding: 15px;
-   color: black;
-   border-radius: 15px;
-   -moz-border-radius: 15px;
-   background: #eeeeee; /* old browsers */
-   background: -moz-linear-gradient(top, #eeeeee 0%, #eeeeee 100%); /* firefox */
-   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#eeeeee)); /* webkit */
-   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#eeeeee',GradientType=0 ); /* ie */
-   }
+
    
-span.postinfo {
+#main_content span.postinfo {
     font-style: italic;
     font-size: small;
     }
 
-p.post_title {
+#main_content p.post_title {
 	font-weight: bold;
 }
 
-div.post {
+#main_content div.post {
    margin: 10px;
    padding: 10px;
 } 
@@ -103,11 +132,14 @@ Navigation
 -------------------------------
 */
 
-#navigation {
+#navigation ul li:first-child a{
     border-top-left-radius: 15px;
-    border-bottom-right-radius: 15px;
     -moz-border-radius-topleft: 15px;
-    -moz-border-radius-bottomright: 15px;;
+}
+
+#navigation ul li:last-child a{
+    border-bottom-right-radius: 15px;
+    -moz-border-radius-bottomright: 15px;
 }
 
 #navigation a
