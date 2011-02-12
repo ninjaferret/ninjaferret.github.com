@@ -58,8 +58,18 @@ Side bar CSS - for the contents of the side bar
 }
 
 #side_bar h3 {
+	font-size: 0.8em;
 	color: red;
 	font-style: italic;
+}
+
+#side_bar h3 a {
+	font: normal Georgia, Times, Serif;
+	color: red;
+}
+
+#side_bar h3 a:hover {
+	color: color: #0000CC;
 }
 
 #tags {
