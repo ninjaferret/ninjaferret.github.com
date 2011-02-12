@@ -56,7 +56,10 @@ Side bar CSS - for the contents of the side bar
 Footer CSS - for main banner
 ------------------------------------------------- */
 
-#footer {font-size:0.9em}
+#footer {
+	font-size:0.7em;
+	color: silver;
+}
 
 
 /* --------------------------------
