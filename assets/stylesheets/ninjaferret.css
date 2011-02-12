@@ -63,6 +63,7 @@ Side bar CSS - for the contents of the side bar
 }
 
 #tags {
+	margin-top: none;
 	color: #000;
 	font-size: 0.8em;
 	border-bottom-left-radius: 15px;
