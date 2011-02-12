@@ -165,6 +165,10 @@ The main content panel
 	font-style: italic;
 }
 
+#main_content h3 a {
+	color: red;
+}
+
 #main_content h3 a:hover{
 	color: #004080;
 	text-align: left;

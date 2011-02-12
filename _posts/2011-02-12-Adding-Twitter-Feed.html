@@ -1,0 +1,35 @@
+---
+layout: default
+title: Adding A Twitter Feed
+summary: In this post I will add a twitter feed to my blog
+categories:
+- blogging
+- github
+- twitter
+---
+<p>
+In my post <a href="/2011/02/12/blogging-with-github-pages.html">blogging with github pages</a> I focussed on the initial steps of creating a new blog using <a href="http://pages.github.com">GitHub Pages</a> but there is more to a blog than simply a series of HTML pages. One of the things that I was looking for was to be able to display some of my more recent tweets to the outside world.
+</p>
+<p>
+I decided that I would maintain the tweets in a side-bar and then I added in the references to the twitter api into my default layout:
+</p>
+
+<code><pre class="brush: xml">&lt;html&gt;
+	...
+	&lt;body&gt;
+	   	...
+	   	&lt;div id="twitter"&gt;
+			&lt;h3&gt;Twitter: (&lt;a href="http://twitter.com/ijohnson_tnf"&gt;@IJohnson_TNF&lt;/a&gt;)&lt;/h3&gt;
+ 			&lt;ul id="twitter_update_list"&gt;&lt;/ul&gt;
+		&lt;/div&gt;
+		...
+	&lt;/body&gt;
+	&lt;script src="http://twitter.com/javascripts/blogger.js" type="text/javascript"&gt;&lt;/script&gt;
+	&lt;script src="http://twitter.com/statuses/user_timeline/ijohnson_tnf.json?callback=twitterCallback2&count=5" type="text/javascript"&gt;&lt;/script&gt;
+&lt;/html&gt;</pre></code>
+
+<p>This uses the browser to render a list of tweets limited by the number specified in the scripts (currently 5) which means that you don't have to generate that list server-side.</p>
+
+<p>There is something that I did not like about the contents of the twitter javascript file (<a href="http://twitter.com/javascripts/blogger.js">blogger.js</a>) which was that there was specific formatting embedded in the generated HTML that was overriding my javascript, namely the size of certain links was set at 85%. In general, I would recommend that you take a look at using this file as a template for your own tweet rendering javascript file because then you are in control of how your tweets look. This is my <a href="https://github.com/ninjaferret/ninjaferret.github.com/blob/master/assets/scripts/rendertweets.js">javascript code for rendering tweets</p>.  
+
+<p>It's as easy as that, in no time at all you have a twitter feed on your blog.</p>
