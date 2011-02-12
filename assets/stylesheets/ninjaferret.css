@@ -49,14 +49,42 @@ Side bar CSS - for the contents of the side bar
 #side_bar {
 	font-size:1em;
 	width: 20%;
-	border-radius: 10px;
-    -moz-border-radius: 10px;
+	border-top-right-radius: 15px;
+    -moz-border-radius-topright: 15px;
+	border-bottom-left-radius: 15px;
+    -moz-border-radius-bottomleft: 15px;
 	float: right;
     background: #eeeeee; /* old browsers */
     background: -moz-linear-gradient(top, #eeeeee 0%, #eeeeee 100%); /* firefox */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#eeeeee)); /* webkit */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#eeeeee',GradientType=0 ); /* ie */
 }
+
+#tags {
+	color: #000;
+	font-size: 0.8em;
+	border-bottom-right-radius: 15px;
+    -moz-border-radius-bottomleft: 15px;
+    background: #f2f5f6; /* old browsers */
+    background: -moz-linear-gradient(top, #f2f5f6 0%, #e3eaed 37%, #c8d7dc 100%); /* firefox */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f5f6), color-stop(37%,#e3eaed), color-stop(100%,#c8d7dc)); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', endColorstr='#c8d7dc',GradientType=0 ); /* ie */
+}
+
+#tags ul {
+	list-style: none;	
+}
+
+#tags ul li {
+	padding-bottom: 0.5em;
+}
+
+#tags ul li a {
+	font: normal Georgia, Times, Serif;
+	color: #004080;
+}
+#tags ul li a:hover { color: #CC0000; }
+
 
 /* ----------------------------------------------
 Footer CSS - for main banner
