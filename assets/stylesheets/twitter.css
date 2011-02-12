@@ -8,19 +8,6 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', endColorstr='#c8d7dc',GradientType=0 ); /* ie */
 }
 
-#twitter h1 a {
-	display: block; 
-	margin: 0 0 15px 0;
-	font: Arial, Sans-Serif;
-	font-size: x-large;
-	color: Red;
-	text-decoration: none;
-	text-shadow: 2px 2px 2px #000;
-	text-align: left;
-}
-
-#twitter h1 a:hover { color: #004080; }
-
 #twitter ul {
 	list-style: none; 
 	margin: 0; padding: 0;
@@ -30,17 +17,15 @@
 		padding: 0px;
 }
 #twitter ul li a {
-	font: normal 0.7em Georgia, Times, Serif;
+	font: 0.7em;
 	color: #004080;
 }
 #twitter ul li a:hover { color: #CC0000; }
 
 #twitter ul li span {
-	font: Helvetica, Arial, Sans-Serif; 
 	color: #004080;
 	font-size: 0.8em;
 }
 #twitter ul li span a {
-	font: Helvetica, Arial, Sans-Serif;
 	font-size: 0.8em;
 }
