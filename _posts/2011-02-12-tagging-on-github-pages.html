@@ -1,0 +1,84 @@
+---
+layout: default
+title: Tagging on GitHub Pages
+summary: In this post I will add a twitter feed to my blog
+categories:
+- blogging
+- github
+- tags
+---
+
+<p>I now have my blog on <a href="http://pages.github.com">GitHub Pages</a> but there are certain features that I would kind of like that I was unsure that I would be able to do with a static file and one of these was tagging or categories.</p>
+
+<p>The <a href="https://github.com/mojombo/jekyll">Jekyll</a> static site generator is blog aware and they weren't going to miss out on blog tags/categories feature.</p>
+
+<h2>Adding Categories to Your Blog Posts</h2>
+
+<p>The categories are defined by in the meta data that you place at the top of your files, just add them as a yaml list:</p>
+
+<code><pre class="brush: plain">---
+layout: default
+title: Tagging on GitHub Pages
+categories:
+- blogging
+- github
+- tags
+---</pre></code>
+
+<h2>Create a Tags Page</h2>
+
+<p>We have our pages now with a list of categories and the next thing to do is to produce a list of tags and every page that has that tag. The way I approached this was to create a new page called <strong>tags.html</strong>:</p>
+
+<code><pre class="brush: xml">---
+layout: default
+title: Tags
+---
+&lt;ul&gt;
+&#123;% for category in site.categories %&#125;
+  &lt;li&gt;&lt;a href="#&#123;&#123; category | first &#125;&#125;"&gt;&#123;&#123; category | first &#125;&#125;&lt;/a&gt;&lt;/li&gt;
+&#123;% endfor %&#125;
+&lt;/ul&gt;
+
+&lt;h2&gt;Articles by tag&lt;/h2&gt;
+
+&lt;ul&gt;
+&#123;% for category in site.categories %&#125;
+  &lt;li&gt;&lt;a name="&#123;&#123; category | first &#125;&#125;"&gt;&#123;&#123; category | first &#125;&#125;&lt;/a&gt;
+    &lt;ul&gt;
+    &#123;% for posts in category offset: 1 %&#125;
+      &#123;% for post in posts %&#125;
+        &lt;li&gt;&lt;a href="&#123;&#123; post.url &#125;&#125;"&gt;&#123;&#123; post.title &#125;&#125;&lt;/a&gt;&lt;/li&gt;
+      &#123;% endfor %&#125;
+    &#123;% endfor %&#125;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&#123;% endfor %&#125;
+&lt;/ul&gt;</pre></code>
+
+<p>At the moment it is not the prettiest thing but it does the job. This is built using the <a href="http://www.liquidmarkup.org/">Liquid Templating language</a> and there were a number of things to be aware of:</p>
+
+<p>All of the categories in all of the pages are contained in the <strong>site.categories</strong> and each element is an array that contains all of the posts for that category but there is a problem... The first element of the array is actually the category name and the subsequent elements are the posts, therefore to get the name we can use <strong>&#123;&#123; category | first &#125;&#125;</strong> which is a special filter that gets the first element.</p>
+
+<p>So, there is a problem with the displaying of the pages if we have to ignore the first element, therefore we have to skip the first element using the offset filter <strong>&#123;% for posts in category offset: 1 %&#125;</strong> which skips the first element of the category array.</p>
+
+<h2>Creating a basic tag list</h2>
+
+<p>I also want to get the list of tags for the site into my side-bar along with the twitter feed, so people can jump to other interesting articles. The tag list will link right back to the tags page I made earlier to get the list of related posts.</p>
+
+<p>The mechanism that I used to get the list was extremely similar to the way I generated the tags page but I make use of the <strong>&#123;&#123; category | size &#125;&#125;</strong> filter to get the size of the array, but remember the first element is just the name, not a post, therefore there is an extra filter that I added on to subtract 1 from the size of the array <strong>&#123;&#123; category | size | minus: 1 &#125;&#125;</strong>:</p>
+
+<code><pre class="brush: xml">&lt;html&gt;
+...
+&lt;div id="tags"&gt;
+	&lt;h3&gt;Tags&lt;/h3&gt;
+	&lt;ul&gt;
+	&#123;% for category in site.categories %&#125;
+	  	&lt;li&gt;&lt;a href="/tags.html#&#123;&#123;category | first&#125;&#125;"&gt;&#123;&#123;category | first&#125;&#125;&lt;/a&gt; (&#123;&#123;category | size | minus:1&#125;&#125;)&lt;/li&gt;
+	&#123;% endfor %&#125;
+&lt;/div&gt;
+...
+&lt;html&gt;</pre></code>
+
+<h2>Summary</h2>
+
+<p>This gives me now a starting point to start making a tag cloud for my blog, this is the simple implementation that I can think of but it didn't take me too long. I hope you find this useful if you are thinking of creating your own GitHub Pages blog.</p>
