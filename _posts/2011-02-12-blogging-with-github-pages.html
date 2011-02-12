@@ -1,0 +1,148 @@
+---
+layout: default
+title: Blogging with GitHub Pages
+summary: In this post I will start talking about how I started using github pages to build a new blog
+categories:
+- blogging
+- git
+- github
+- jekyll
+---
+
+<p>
+	For a while I have been using WordPress to host my blog but recently I have just become a bit 
+	disappointed with the way in which I felt I had less control over the page than I would like. I
+	know that there is a lot of flexibility and power within WordPress but it was just something
+	else that I had to learn just to maintain a blog. So, I decided that I would look at
+	<a href="http://pages.github.com">GitHub Pages</a> which will give me the ability to have more 
+	control and also improve my web design skills.
+</p>
+
+<p>
+	One of the advantages that I see about using github is that you then have your content in source control rather than just in a database on another server and I always have copies on my computers so there are multiple copies produced to keep the data safe.
+</p>
+
+<h2>Create your github repository</h2>
+
+<p>
+	If you don't have an account already then you need to do that first. After that simply create a repository in the format <strong><em>yourusername</em>.github.com</strong> which tells github that you want to use this as a github pages repository. 
+</p>
+
+<h2>Generate some content</h2>
+
+
+<p>So on my computer I should really clone the git repository:</p>
+
+<code>
+	<pre class="brush: plain">
+		$ cd github
+		$ git clone git@github.com:yourusername/yourusername.github.com.git
+	</pre>
+</code>
+
+<p>Let's add some content - so the first thing is to create an <em>index.html</em> file:</p>
+
+<code>
+	<pre class="brush: xml">
+&lt;html&gt;
+  &lt;body&gt;
+  &lt;p&gt;Hello world!&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+	</pre>
+</code> 
+
+<p>And now let's push that file to the server:</p>
+
+<code>
+	<pre class="brush: plain">
+		$ git add index.html
+		$ git commit -m 'First commit - creating index.html'
+		$ git push origin master
+	</pre>
+</code>
+
+<p>
+	In my experience the first commit takes a little while for it to appear (~10 mins) so be patient and then go to <strong>http://<em>yourusername</em>.github.com</strong>. There you go, you have your first page ready to go.
+</p>
+
+<h2>Building your first template</h2>
+
+<p>
+	"Is that all there is?" I hear you say, "just uploading static HTML pages to github?"
+</p>
+
+<p>
+	Well that is not all there is because GitHub generate your site using <a href="https://github.com/mojombo/jekyll">Jekyll</a> (at the time of writing this is version <strong>0.10.0</strong>). Jekyll allows you to use a templating mechanism for standardising the format and layout of your site so let's take a look at our first template.
+</p>
+
+<p>Create a new folder in your repository called <strong>_layouts</strong> and create a new file within there called <strong>default.html</strong>:</p>
+
+<code>
+	<pre class="brush: xml">
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;{{page.title}}&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;h1&gt;{{page.title}}&lt;/h1&gt;
+  {{page.content}}
+  &lt;/body&gt;
+&lt;/html&gt;
+	</pre>
+</code>
+
+<p>We can now go back to our <strong>index.html</strong> file and modify it to use the template:</p>
+
+<code>
+	<pre class="brush: xml">
+---
+layout: default
+title: Hello World!
+---
+&lt;Welcome to my new blog, this will be the best blog ever!&gt;
+	</pre>
+</code>
+
+<p>All that is left is to push the changes back up to GitHub for the files to re-compile.</p>
+
+<code>
+	<pre class="brush: plain">
+		$ git add index.html
+		$ git add _layouts/default.html
+		$ git commit -m 'Adding in layout support'
+		$ git push origin master
+	</pre>
+</code>
+
+<h2>What about posts?</h2>
+
+<p>
+	<a href="https://github.com/mojombo/jekyll">Jekyll</a> is a blog aware rendering engine therefore does have post support. All you need to do is to create a new directory called <strong>_posts</strong>. By default then create a post with the name <strong><em>year</em>-<em>month</em>-<em>day</em>-<em>title</em>.html</strong> (e.g. for this very page <strong>2011-02-12-blogging-with-github-pages.html</strong>):
+</p>
+
+<code>
+	<pre class="brush: xml">
+---
+layout: default
+title: My First Blog Post
+---
+&lt;This is my first blog post, isn't it amazing?&gt;
+	</pre>
+</code>
+
+<p>Push the new page onto the server and wait for it to recompile:</p>
+
+<code>
+	<pre class="brush: plain">
+		$ git add _posts/2011-02-12-My-First-Blog-Post.html
+		$ git commit -m 'Adding in layout support'
+		$ git push origin master
+	</pre>
+</code>
+
+<h2>Summary</h2>
+
+<p>
+	So there it is, you are now set up to build your blog, there is a lot more to play with but the basics are there. I will be taking this further in a number of posts to come but this is enough to show you how simple the basics are and how easy things are to get going.
+</p>
