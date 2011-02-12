@@ -34,32 +34,26 @@ categories:
 <p>So on my computer I should really clone the git repository:</p>
 
 <code>
-	<pre class="brush: plain">
-		$ cd github
-		$ git clone git@github.com:yourusername/yourusername.github.com.git
-	</pre>
+	<pre class="brush: plain">$ cd github
+		$ git clone git@github.com:yourusername/yourusername.github.com.git	</pre>
 </code>
 
 <p>Let's add some content - so the first thing is to create an <em>index.html</em> file:</p>
 
 <code>
-	<pre class="brush: xml">
-&lt;html&gt;
+	<pre class="brush: xml">&lt;html&gt;
   &lt;body&gt;
   &lt;p&gt;Hello world!&lt;/p&gt;
   &lt;/body&gt;
-&lt;/html&gt;
-	</pre>
+&lt;/html&gt;</pre>
 </code> 
 
 <p>And now let's push that file to the server:</p>
 
 <code>
-	<pre class="brush: plain">
-		$ git add index.html
+	<pre class="brush: plain">$ git add index.html
 		$ git commit -m 'First commit - creating index.html'
-		$ git push origin master
-	</pre>
+		$ git push origin master</pre>
 </code>
 
 <p>
@@ -79,8 +73,7 @@ categories:
 <p>Create a new folder in your repository called <strong>_layouts</strong> and create a new file within there called <strong>default.html</strong>:</p>
 
 <code>
-	<pre class="brush: xml">
-&lt;html&gt;
+	<pre class="brush: xml">&lt;html&gt;
   &lt;head&gt;
     &lt;title&gt;{{page.title}}&lt;/title&gt;
   &lt;/head&gt;
@@ -88,31 +81,26 @@ categories:
   &lt;h1&gt;{{page.title}}&lt;/h1&gt;
   {{page.content}}
   &lt;/body&gt;
-&lt;/html&gt;
-	</pre>
+&lt;/html&gt;</pre>
 </code>
 
 <p>We can now go back to our <strong>index.html</strong> file and modify it to use the template:</p>
 
 <code>
-	<pre class="brush: xml">
----
+	<pre class="brush: xml">---
 layout: default
 title: Hello World!
 ---
-&lt;Welcome to my new blog, this will be the best blog ever!&gt;
-	</pre>
+&lt;Welcome to my new blog, this will be the best blog ever!&gt;</pre>
 </code>
 
 <p>All that is left is to push the changes back up to GitHub for the files to re-compile.</p>
 
 <code>
-	<pre class="brush: plain">
-		$ git add index.html
+	<pre class="brush: plain">$ git add index.html
 		$ git add _layouts/default.html
 		$ git commit -m 'Adding in layout support'
-		$ git push origin master
-	</pre>
+		$ git push origin master</pre>
 </code>
 
 <h2>What about posts?</h2>
@@ -122,23 +110,19 @@ title: Hello World!
 </p>
 
 <code>
-	<pre class="brush: xml">
----
+	<pre class="brush: xml">---
 layout: default
 title: My First Blog Post
 ---
-&lt;This is my first blog post, isn't it amazing?&gt;
-	</pre>
+&lt;This is my first blog post, isn't it amazing?&gt;</pre>
 </code>
 
 <p>Push the new page onto the server and wait for it to recompile:</p>
 
 <code>
-	<pre class="brush: plain">
-		$ git add _posts/2011-02-12-My-First-Blog-Post.html
+	<pre class="brush: plain">$ git add _posts/2011-02-12-My-First-Blog-Post.html
 		$ git commit -m 'Adding in layout support'
-		$ git push origin master
-	</pre>
+		$ git push origin master</pre>
 </code>
 
 <h2>Summary</h2>
