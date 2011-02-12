@@ -65,7 +65,7 @@ title: Tags
 
 <p>I also want to get the list of tags for the site into my side-bar along with the twitter feed, so people can jump to other interesting articles. The tag list will link right back to the tags page I made earlier to get the list of related posts.</p>
 
-<p>The mechanism that I used to get the list was extremely similar to the way I generated the tags page but I make use of the <strong>&#123;&#123; category | size &#125;&#125;</strong> filter to get the size of the array, but remember the first element is just the name, not a post, therefore there is an extra filter that I added on to subtract 1 from the size of the array <strong>&#123;&#123; category | size | minus: 1 &#125;&#125;</strong>:</p>
+<p>The mechanism that I used to get the list was extremely similar to the way I generated the tags page but I make use of the <strong>&#123;&#123; category | size &#125;&#125;</strong> filter to get the size of the array, but remember the first element is just the name, not a post, therefore there is an extra filter that I added on get the last element of the array which is the list of posts <strong>&#123;&#123; category | last | size &#125;&#125;</strong>:</p>
 
 <code><pre class="brush: xml">&lt;html&gt;
 ...
@@ -73,7 +73,9 @@ title: Tags
 	&lt;h3&gt;Tags&lt;/h3&gt;
 	&lt;ul&gt;
 	&#123;% for category in site.categories %&#125;
-	  	&lt;li&gt;&lt;a href="/tags.html#&#123;&#123;category | first&#125;&#125;"&gt;&#123;&#123;category | first&#125;&#125;&lt;/a&gt; (&#123;&#123;category | size | minus:1&#125;&#125;)&lt;/li&gt;
+	  	&lt;li&gt;&lt;a href="/tags.html#&#123;&#123;category | first&#125;&#125;"&gt;
+	    &#123;&#123;category | first&#125;&#125;&lt;/a&gt; 
+	    (&#123;&#123;category | last | size&#125;&#125;)&lt;/li&gt;
 	&#123;% endfor %&#125;
 &lt;/div&gt;
 ...
