@@ -51,6 +51,8 @@ Side bar CSS - for the contents of the side bar
     -moz-border-radius-topright: 15px;
 	border-bottom-left-radius: 15px;
     -moz-border-radius-bottomleft: 15px;
+	border-bottom-right-radius: 15px;
+    -moz-border-radius-bottomright: 15px;
 	float: right;
     background: #f2f5f6; /* old browsers */
     background: -moz-linear-gradient(top, #f2f5f6 0%, #e3eaed 37%, #c8d7dc 100%); /* firefox */
