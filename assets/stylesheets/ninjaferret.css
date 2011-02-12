@@ -17,7 +17,13 @@ img {
 
 #main {
 	width: 90%;
-	margin: auto;
+	margin: auto; 
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	background: #eeeeee; /* old browsers */
+	background: -moz-linear-gradient(top, #eeeeee 0%, #eeeeee 100%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#eeeeee)); /* webkit */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#eeeeee',GradientType=0 ); /* ie */	
 }
 
 /* ----------------------------------------------
@@ -57,7 +63,7 @@ Footer CSS - for main banner
 ------------------------------------------------- */
 
 #footer {
-	font-size:0.5em;
+	font-size:0.7em;
 	color: silver;
 	text-align: center;
 }
