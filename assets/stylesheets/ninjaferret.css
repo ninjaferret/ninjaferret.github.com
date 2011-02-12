@@ -28,19 +28,19 @@ img {
 
 /* ----------------------------------------------
 Header CSS - for main banner
-------------------------------------------------- */	
+------------------------------------------------- */
+#header {
+	text-align: center;
+	width: 100%;
+}	
+
 #header a img {
 	margin-left: auto;
 	margin-right: auto;
 }
 
 
-/* ----------------------------------------------
-Navigation CSS - for links to other parts of site
-------------------------------------------------- */
 
-
-#navigation {font-size:1em}
 
 /* ----------------------------------------------
 Side bar CSS - for the contents of the side bar
@@ -141,10 +141,12 @@ The main content panel
 Navigation
 -------------------------------
 */
+#navigation {font-size:1em}
 
 #navigation ul li:first-child a{
     border-top-left-radius: 15px;
     -moz-border-radius-topleft: 15px;
+	box-shadow: 1px 1px 1px #000;
 }
 
 #navigation ul li:last-child a{
