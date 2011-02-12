@@ -41,7 +41,7 @@ $ git clone git@github.com:yourusername/yourusername.github.com.git	</pre>
 <p>Let's add some content - so the first thing is to create an <em>index.html</em> file:</p>
 
 <code>
-	<pre class="brush: plain">&lt;html&gt;
+	<pre class="brush: xml">&lt;html&gt;
   &lt;body&gt;
   &lt;p&gt;Hello world!&lt;/p&gt;
   &lt;/body&gt;
@@ -73,7 +73,7 @@ $ git push origin master</pre>
 <p>Create a new folder in your repository called <strong>_layouts</strong> and create a new file within there called <strong>default.html</strong>:</p>
 
 <code>
-	<pre class="brush: xml">&lt;html&gt;
+	<!--<pre class="brush: xml">-->&lt;html&gt;
   &lt;head&gt;
     &lt;title&gt;{{page.title}}&lt;/title&gt;
   &lt;/head&gt;
@@ -81,7 +81,7 @@ $ git push origin master</pre>
   &lt;h1&gt;{{page.title}}&lt;/h1&gt;
   {{page.content}}
   &lt;/body&gt;
-&lt;/html&gt;</pre>
+&lt;/html&gt;<!--</pre>-->
 </code>
 
 <p>We can now go back to our <strong>index.html</strong> file and modify it to use the template:</p>
