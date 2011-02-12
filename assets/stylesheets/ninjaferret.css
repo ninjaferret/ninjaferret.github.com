@@ -99,16 +99,20 @@ Side bar CSS - for the contents of the side bar
 }
 #tags ul li a:hover { color: #CC0000; }
 
+#atom {
+	color: #000;
+}
+
 #atom a {
-	font-color: red;
+	color: red;
 }
 
 #atom a:hover {
-	font-color: #0000CC;
+	color: #0000CC;
 }
 
 #atom a:visited {
-	font-color: red;
+	color: red;
 }
 
 /* ----------------------------------------------
