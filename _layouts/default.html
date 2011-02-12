@@ -22,10 +22,9 @@
 		</ul>
 	</div>
 	<div id="side_bar">
-  		<div id="twitter">
-			<h3>Twitter: (<a href="http://twitter.com/ijohnson_tnf">@IJohnson_TNF</a>)</h3>
- 			<ul id="twitter_update_list"></ul>
-  		</div>
+		<div id="atom">
+			Subscribe to my <a href="/atom.xml">atom feed</a>.
+		</div>
 		<div id="tags">
 			<h3>Tags</h3>
 			<ul>
@@ -33,6 +32,11 @@
 			  	<li><a href="/tags.html#{{category | first}}">{{category | first}}</a> ({{category | size | minus:1}})</li>
 			{% endfor %}
 		</div>
+  		<div id="twitter">
+			<h3>Twitter: (<a href="http://twitter.com/ijohnson_tnf">@IJohnson_TNF</a>)</h3>
+ 			<ul id="twitter_update_list"></ul>
+  		</div>
+		
 	</div>
 	<div id="main_content">
 		<h1>{{ page.title }}</h1>

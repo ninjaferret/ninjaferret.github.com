@@ -100,6 +100,17 @@ Side bar CSS - for the contents of the side bar
 }
 #tags ul li a:hover { color: #CC0000; }
 
+#atom a {
+	font-color: red;
+}
+
+#atom a:hover {
+	font-color: #0000CC;
+}
+
+#atom a:visited {
+	font-color: red;
+}
 
 /* ----------------------------------------------
 Footer CSS - for main banner
