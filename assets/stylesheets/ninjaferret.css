@@ -57,8 +57,9 @@ Footer CSS - for main banner
 ------------------------------------------------- */
 
 #footer {
-	font-size:0.7em;
+	font-size:0.5em;
 	color: silver;
+	text-align: center;
 }
 
 
