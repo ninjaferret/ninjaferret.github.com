@@ -63,11 +63,13 @@ Side bar CSS - for the contents of the side bar
 }
 
 #tags {
-	margin-top: none;
+	padding: 5px;
 	color: #000;
 	font-size: 0.8em;
 	border-bottom-left-radius: 15px;
     -moz-border-radius-bottomleft: 15px;
+	border-bottom-right-radius: 15px;
+    -moz-border-radius-bottomright: 15px;
     background: #f2f5f6; /* old browsers */
     background: -moz-linear-gradient(top, #f2f5f6 0%, #e3eaed 37%, #c8d7dc 100%); /* firefox */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f5f6), color-stop(37%,#e3eaed), color-stop(100%,#c8d7dc)); /* webkit */
