@@ -11,19 +11,17 @@
 	margin: 0; padding: 0;
 }
 #twitter ul li {
-		margin-bottom: 0.8em ;
-		padding: 0px;
+	margin-bottom: 0.8em ;
+	padding: 0px;
 }
 #twitter ul li a {
-	font: 0.7em;
 	color: #004080;
 }
 #twitter ul li a:hover { color: #CC0000; }
 
 #twitter ul li span {
 	color: #004080;
-	font-size: 0.8em;
 }
 #twitter ul li span a {
-	font-size: 0.8em;
+	font-size: 0.7em;
 }
