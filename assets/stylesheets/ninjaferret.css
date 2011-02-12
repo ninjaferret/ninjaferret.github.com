@@ -77,7 +77,6 @@ Side bar CSS - for the contents of the side bar
 #tags {
 	padding: 5px;
 	color: #000;
-	font-size: 0.8em;
 }
 
 #tags ul {
@@ -94,6 +93,7 @@ Side bar CSS - for the contents of the side bar
 #tags ul li a:hover { color: #CC0000; }
 
 #atom {
+	padding: 5px;
 	color: #000;
 }
 
