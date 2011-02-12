@@ -26,6 +26,13 @@
 			<h1><a href="http://twitter.com/ijohnson_tnf">@IJohnson_TNF</a></h1>
  			<ul id="twitter_update_list"></ul>
   		</div>
+		<div id="tags">
+			<h3>Tags</h3>
+			<ul>
+			{% for category in site.categories %}
+			  	<li><a href="tags.html#{{category | first}}">{{category | first}}</a> ({{category | size | minus:1}})</li>
+			{% endfor %}
+		</div>
 	</div>
 	<div id="main_content">
 		<h1>{{ page.title }}</h1>

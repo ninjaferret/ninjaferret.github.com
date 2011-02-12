@@ -1,7 +1,9 @@
 #twitter {
 	padding: 5px;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
+    border-top-right-radius: 15px;
+    -moz-border-radius-topright: 15px;
+	border-bottom-left-radius: 15px;
+    -moz-border-radius-bottomleft: 15px;
     background: #f2f5f6; /* old browsers */
     background: -moz-linear-gradient(top, #f2f5f6 0%, #e3eaed 37%, #c8d7dc 100%); /* firefox */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f5f6), color-stop(37%,#e3eaed), color-stop(100%,#c8d7dc)); /* webkit */
@@ -30,7 +32,7 @@
 		padding: 0px;
 }
 #twitter ul li a {
-	font: normal 0.5em Georgia, Times, Serif;
+	font: normal 0.7em Georgia, Times, Serif;
 	color: #004080;
 }
 #twitter ul li a:hover { color: #CC0000; }
