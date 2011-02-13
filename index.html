@@ -1,17 +1,18 @@
 ---
 layout: default
-title: Welcome!
+title: A developer's blog
 ---
 
 <h2>Recent Posts</h2>
 
+<p><a href="/archive.html">Archive of posts</a></p>
+
 {% for post in site.posts limit:5 %}
-
-<h3><a class="post_title" href="{{ post.url }}">{{ post.title }}</a></h3>
-<p>{{post.summary}} - <span class="postinfo">Posted on {{ post.date | date_to_long_string }}.</span> </p>
-
+<div class="post">
+   <h3><a class="post_title" href="{{ post.url }}">{{ post.title }}</a></h3>
+   <p>{{post.summary}} - <span class="postinfo">Posted on {{ post.date | date_to_long_string }}.</span> </p>
+</div>
 {% endfor %}
 
-<h2>Pages</h2>
 
-<a href="newpage.html">a new page</a>
+<h2>Pages</h2>
