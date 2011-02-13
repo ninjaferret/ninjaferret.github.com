@@ -4,7 +4,7 @@ layout: nil
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Ninja Ferret</title>
-  <link href="http://ninjaferret.github.com/atom.xml" rel="self"/>
+  <link href="http://ninjaferret.github.com/feed.atom" rel="self"/>
   <link href="http://ninjaferret.github.com/"/>
   <updated>{{ site.time | date_to_xmlschema }}</updated>
   <id>http://ninjaferret.github.com</id>

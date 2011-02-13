@@ -1,0 +1,39 @@
+---
+layout: default
+title: Creating an Atom Feed on GitHub Pages
+summary: In this post I will add an atom feed to my blog
+categories:
+- blogging
+- github
+---
+
+<p>Like any good blog I need an feed so that the many people who are addicted to my random ramblings can follow me using their news readers. So, how would I do that?</p>
+
+<p>The atom feed is simply an XML document and the Liquid Templating engine can generate anything that you want so I searched on-line and found some atom samples and used them to generate this <a href="/feed.atom">Atom feed</a> file:</p>
+
+<code><pre>---
+layout: null
+---
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;feed xmlns="http://www.w3.org/2005/Atom"&gt;
+  &lt;title&gt;Ninja Ferret&lt;/title&gt;
+  &lt;link href="http://ninjaferret.github.com/feed.atom" rel="self"/&gt;
+  &lt;link href="http://ninjaferret.github.com/"/&gt;
+  &lt;updated&gt;&#123;&#123; site.time | date_to_xmlschema &#125;&#125;&lt;/updated&gt;
+  &lt;id&gt;http://ninjaferret.github.com&lt;/id&gt;
+  &lt;author&gt;
+    &lt;name&gt;Ian Johnson&lt;/name&gt;
+    &lt;email&gt;ij2030+blog@gmail.com&lt;/email&gt;
+  &lt;/author&gt;
+  &#123;% for post in site.posts %&#125;
+    &lt;entry&gt;
+      &lt;title&gt;&#123;&#123; post.title &#125;&#125;&lt;/title&gt;
+      &lt;link href="http://ninjaferret.github.com&#123;&#123; post.url &#125;&#125;"/&gt;
+      &lt;updated&gt;&#123;&#123; post.date | date_to_xmlschema &#125;&#125;&lt;/updated&gt;
+      &lt;id&gt;http://ninjaferret.github.com&#123;&#123; post.id &#125;&#125;&lt;/id&gt;
+      &lt;content type="html"&gt;&#123;&#123; post.content | xml_escape &#125;&#125;&lt;/content&gt;
+    &lt;/entry&gt;
+  &#123;% endfor %&#125;
+&lt;/feed&gt;</pre></code>
+
+<p>And there is it, it's a simple file to create that will build an atom feed for your site.</p>
