@@ -1,8 +1,5 @@
 html {
-	background: #efffff; /* old browsers */
-   background: -moz-linear-gradient(top, #fff 0%, #efffff 100%); /* firefox */
-   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff), color-stop(100%,#efffff)); /* webkit */
-   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff', endColorstr='#efffff',GradientType=0 ); /* ie */
+
 }
 
 body {
@@ -13,6 +10,10 @@ body {
 
 h1 {
 	color: red;
+	background: #ffaaaa; /* old browsers */
+	background: -moz-linear-gradient(top, #fff 0%, #ffaaaa 100%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff), color-stop(100%,#ffaaaa)); /* webkit */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff', endColorstr='#ffaaaa',GradientType=0 ); /* ie */
 }
 
 h2 {
