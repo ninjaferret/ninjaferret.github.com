@@ -155,7 +155,7 @@ The main content panel
 ----------------------------------- */
 
 #main_content {
-   font-size:1.2em;
+   font-size:1em;
    width: 75%;
    padding: 15px;
    color: black;
@@ -163,7 +163,6 @@ The main content panel
    -moz-border-radius-bottomleft: 15px;
 	border-top-left-radius: 15px;
    -moz-border-radius-topleft: 15px;
-	border-right: 3px #999999 solid;  
 }
    
 #main_content h1 {
@@ -172,13 +171,14 @@ The main content panel
     font-size: 3em;
 	margin-top: 1em;
 	margin-bottom: 0.3em;
-	}
+}
 	
 #main_content h2 {
 	text-shadow: 1px 1px 1px #000;
 	font-size: 2em;
-	margin-top: 0.2em;
+	margin-top: 1.2em;
 	margin-bottom: 0.3em;
+	border-bottom: 3px #a60000 solid;
 }
 
 #main_content h2 a{
@@ -186,10 +186,12 @@ The main content panel
 }
 
 #main_content h3 {
-	font-style: italic;
+	font-size: 1.1em;
 }
 
 #main_content h3 a {
+	color: #a60000;
+	text-decoration: underline;
 }
 
 #main_content h3 a:hover{
@@ -203,6 +205,10 @@ The main content panel
 	font-size: 0.7em;
 }
 
+#main_content div.post {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
    
 #main_content span.postinfo {
     font-style: italic;
@@ -212,11 +218,6 @@ The main content panel
 #main_content p.post_title {
 	font-weight: bold;
 }
-
-#main_content div.post {
-   margin: 10px;
-   padding: 10px;
-} 
 
 /*
 -------------------------------

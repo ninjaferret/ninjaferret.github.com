@@ -5,7 +5,7 @@
     <link href="http://alexgorbatchev.com/pub/sh/current/styles/shCore.css" type="text/css" rel="stylesheet"/>
     <link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
 	<link href="/assets/stylesheets/twitter.css" type="text/css" rel="stylesheet"/>
-    <title>Ninja Ferret: {{ page.title }}</title>
+    <title>Ninja Ferret {% if page.title %}: {{ page.title }} {% endif %}</title>
 </head>
 
 <body>
@@ -40,7 +40,9 @@
 		
 	</div>
 	<div id="main_content">
+		{% if page.title %}
 		<h1>{{ page.title }}</h1>
+		{% endif %}
 		{% if page.categories %}
 		<p class="post_categories"> Tags: 
 			{% for category in page.categories %}
