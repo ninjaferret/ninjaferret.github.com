@@ -3,7 +3,6 @@ html {
    background: -moz-linear-gradient(top, #7d7e7d 0%, #0e0e0e 100%); /* firefox */
    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7d7e7d), color-stop(100%,#0e0e0e)); /* webkit */
    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* ie */
-   
 }
 
 body {
@@ -14,6 +13,18 @@ body {
 
 img {
     border-style: none;
+}
+
+a {
+	color: red;
+}
+
+a:hover {
+	color: blue;
+}
+
+a:visited {
+	color: maroon;
 }
 
 #main {
@@ -46,11 +57,10 @@ Side bar CSS - for the contents of the side bar
 
 #side_bar {
 	font-size:0.8em;
+	height: inherit;
 	width: 20%;
 	border-top-right-radius: 15px;
     -moz-border-radius-topright: 15px;
-	border-bottom-left-radius: 15px;
-    -moz-border-radius-bottomleft: 15px;
 	border-bottom-right-radius: 15px;
     -moz-border-radius-bottomright: 15px;
 	float: right;
@@ -117,6 +127,7 @@ Footer CSS - for main banner
 	font-size:0.7em;
 	color: silver;
 	text-align: center;
+	margin: 0.75em;
 }
 
 
@@ -126,7 +137,7 @@ The main content panel
 
 #main_content {
    font-size:1.2em;
-   width: 77%;
+ 
    padding: 15px;
    color: black;
    border-radius: 15px;
