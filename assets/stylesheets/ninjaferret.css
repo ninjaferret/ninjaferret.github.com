@@ -49,10 +49,7 @@ a:visited {
 	margin: auto; 
 	border-radius: 15px;
 	-moz-border-radius: 15px;
-	background: #eeeeee; /* old browsers */
-	background: -moz-linear-gradient(top, #ffffff 0%, #cccccc 100%); /* firefox */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#cccccc)); /* webkit */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cccccc',GradientType=0 ); /* ie */	
+	border: 3px #006363 solid;
 }
 
 /* ----------------------------------------------
