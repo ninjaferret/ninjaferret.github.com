@@ -164,7 +164,8 @@ The main content panel
 #main_content h2 {
 	text-shadow: 1px 1px 1px #000;
 	font-size: 2em;
-	margin-top: 1.2em;
+	padding-top: 0.7em;
+	margin-top: 0.7em;
 	margin-bottom: 0.3em;
 	border-bottom: 3px #a60000 solid;
 }
