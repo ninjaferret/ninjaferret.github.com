@@ -186,7 +186,10 @@ The main content panel
 	font-size: 1em;
 }
  
-
+#main_content p.post_categories {
+	text-align: centre;
+	font-size: 0.8 em;
+}
 
    
 #main_content span.postinfo {
