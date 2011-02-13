@@ -36,9 +36,3 @@ function relative_time(time_value) {
     return (parseInt(delta / 86400)).toString() + ' days ago';
   }
 }
-
-function resize(){ 
-var main = document.getElementById("main"); 
-var sideBar = document.getElementById("side_bar");
-sideBar.style.height = main.offsetHeight + "px";
-}
