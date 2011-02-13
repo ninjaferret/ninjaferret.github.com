@@ -1,8 +1,8 @@
 html {
-	background: #beeeee; /* old browsers */
-   background: -moz-linear-gradient(top, #fff 0%, #beeeee 100%); /* firefox */
-   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff), color-stop(100%,#beeeee)); /* webkit */
-   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff', endColorstr='#beeeee',GradientType=0 ); /* ie */
+	background: #cfffff; /* old browsers */
+   background: -moz-linear-gradient(top, #fff 0%, #cfffff 100%); /* firefox */
+   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff), color-stop(100%,#cfffff)); /* webkit */
+   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff', endColorstr='#cfffff',GradientType=0 ); /* ie */
 }
 
 body {
@@ -160,7 +160,7 @@ The main content panel
    -moz-border-radius-bottomleft: 15px;
 	border-top-left-radius: 15px;
    -moz-border-radius-topleft: 15px;
-   border-right: 2px #006363 solid;
+   border-right: 2px #a60000 solid;
 }
    
 #main_content h1 {
