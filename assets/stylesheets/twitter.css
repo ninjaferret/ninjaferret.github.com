@@ -1,5 +1,6 @@
 #twitter {
-	padding: 5px;
+	padding-left: 0px;
+	padding-right: 20px;
 	border-bottom-left-radius: 15px;
     -moz-border-radius-bottomleft: 15px;
 	border-bottom-right-radius: 15px;
@@ -11,18 +12,17 @@
 	margin: 0; padding: 0;
 }
 #twitter ul li {
-	margin-bottom: 0.8em ;
+	margin-bottom: 0.7em ;
 	padding: 0px;
 }
 #twitter ul li a {
-	color: #004080;
-	font-size: 0.7em;
+	font-size: 0.8em;
 }
-#twitter ul li a:hover { color: #CC0000; }
 
 #twitter ul li span {
-	color: #004080;
+	color: #000;
 }
+
 #twitter ul li span a {
 	font-size: 1em;
 }
