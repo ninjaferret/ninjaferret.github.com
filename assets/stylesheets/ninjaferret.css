@@ -136,7 +136,7 @@ Footer CSS - for main banner
 
 #footer {
 	font-size:0.7em;
-	color: silver;
+	color: #777777;
 	text-align: center;
 	margin: 0.75em;
 }
@@ -220,9 +220,7 @@ Navigation
 	border-radius: 10px;
 	background: #a90329;
 	background: -moz-linear-gradient(top, #a90329 0%, #6d0019 100%); /* firefox */
-
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a90329), color-stop(100%,#6d0019)); /* webkit */
-
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 ); /* ie */
 }
 
