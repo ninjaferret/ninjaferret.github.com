@@ -137,7 +137,7 @@ The main content panel
 
 #main_content {
    font-size:1.2em;
- 
+   width: 75%;
    padding: 15px;
    color: black;
    border-radius: 15px;
