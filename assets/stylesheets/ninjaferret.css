@@ -244,13 +244,9 @@ color: #fff;
 background: #a60000;
 text-decoration: underline;
 padding-left: 15px;
+padding-right: 15px;
 padding-top: 10px;
 padding-bottom: 10px;
-}
-
-#navigation a span
-{
-padding-right: 15px
 }
 
 #navigation a, #navigation a span
