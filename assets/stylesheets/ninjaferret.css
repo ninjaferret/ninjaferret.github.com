@@ -157,6 +157,7 @@ The main content panel
 	text-align: center;
     text-shadow: 2px 2px 2px #000;
     font-size: 3em;
+	padding-top: 0.5em;
 	margin-top: 1em;
 	margin-bottom: 0.3em;
 }
@@ -164,8 +165,8 @@ The main content panel
 #main_content h2 {
 	text-shadow: 1px 1px 1px #000;
 	font-size: 2em;
-	padding-top: 0.7em;
-	margin-top: 0.7em;
+	padding-top: 0.8em;
+	margin-top: 0.8em;
 	margin-bottom: 0.3em;
 	border-bottom: 3px #a60000 solid;
 }
