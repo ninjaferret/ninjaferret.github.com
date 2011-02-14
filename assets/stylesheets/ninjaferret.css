@@ -5,22 +5,22 @@ html {
 body {
    /*background-color: black;*/
    	font-family: Verdana, sans-serif;
-   	color: white;
-}
-
-h1 {
-	color: red;
+   	color: black;
 }
 
 h2 {
-	color: red;
+	color: #A60000;
 }
 
 h3 {
-	color: red;
+	color: #A60000;
 }
 
-h3 a {
+h4 {
+	color: #A60000;
+}
+
+h4 a {
 	text-decoration: none;
 }
 
@@ -29,16 +29,18 @@ img {
 }
 
 a {
-	color: red;
+	color: #A60000;
 }
 
 a:hover {
-	color: blue;
+	color: #006363;
 }
 
 a:visited {
 	color: maroon;
 }
+
+
 
 #main {
 	color: #000;
@@ -52,7 +54,22 @@ Header CSS - for main banner
 #header {
 	text-align: center;
 	width: 100%;	
+	font-size: 1.5em;
+	font-weight: bold;
+	font-style: italic;
+	color: #000;
+	padding-bottom: 1em;
+}
+
+#header h1 {
+	margin-top: 0em;
+	margin-bottom: 0em;
 }	
+
+#header p {
+	margin-top: 0.0em;
+	margin-bottom: 0em;
+}
 
 #header a img {
 	margin-left: auto;
@@ -127,7 +144,7 @@ Side bar CSS - for the contents of the side bar
 }
 
 #atom a:visited {
-	color: red;
+	color: #A60000;
 }
 
 /* ----------------------------------------------
@@ -152,20 +169,11 @@ The main content panel
    color: black;
 	padding-left: 15px;
 }
-   
-#main_content h1 {
-	text-align: center;
-    text-shadow: 2px 2px 2px #000;
-    font-size: 3em;
-	padding-top: 0.5em;
-	margin-top: 1em;
-	margin-bottom: 0.3em;
-}
 	
 #main_content h2 {
 	text-shadow: 1px 1px 1px #000;
 	font-size: 2em;
-	padding-top: 0.8em;
+	
 	margin-top: 0.8em;
 	margin-bottom: 0.3em;
 	border-bottom: 3px #a60000 solid;
@@ -191,7 +199,7 @@ The main content panel
 }
  
 #main_content p.post_categories {
-	text-align: center;
+	text-align: left;
 	font-size: 0.7em;
 }
 
@@ -209,6 +217,11 @@ The main content panel
 	font-weight: bold;
 }
 
+a.archive_link {
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
 /*
 -------------------------------
 Navigation
@@ -219,6 +232,7 @@ Navigation
 	float: left;
 	font-size: 1em;
 	padding-left: 5%;
+	margin-bottom: 1.5em;
 	border-radius: 10px;
 	background: #a90329;
 	background: -moz-linear-gradient(top, #a90329 0%, #6d0019 100%); /* firefox */

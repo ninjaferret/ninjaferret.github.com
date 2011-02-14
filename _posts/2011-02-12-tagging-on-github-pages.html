@@ -12,7 +12,7 @@ categories:
 
 <p>The <a href="https://github.com/mojombo/jekyll">Jekyll</a> static site generator is blog aware and they weren't going to miss out on blog tags/categories feature.</p>
 
-<h2>Adding Categories to Your Blog Posts</h2>
+<h3>Adding Categories to Your Blog Posts</h3>
 
 <p>The categories are defined by in the meta data that you place at the top of your files, just add them as a yaml list:</p>
 
@@ -25,7 +25,7 @@ categories:
 - tags
 ---</pre></code>
 
-<h2>Create a Tags Page</h2>
+<h3>Create a Tags Page</h3>
 
 <p>We have our pages now with a list of categories and the next thing to do is to produce a list of tags and every page that has that tag. The way I approached this was to create a new page called <strong>tags.html</strong>:</p>
 
@@ -61,7 +61,7 @@ title: Tags
 
 <p>So, there is a problem with the displaying of the pages if we have to ignore the first element, therefore we have to skip the first element using the offset filter <strong>&#123;% for posts in category offset: 1 %&#125;</strong> which skips the first element of the category array.</p>
 
-<h2>Creating a basic tag list</h2>
+<h3>Creating a basic tag list</h3>
 
 <p>I also want to get the list of tags for the site into my side-bar along with the twitter feed, so people can jump to other interesting articles. The tag list will link right back to the tags page I made earlier to get the list of related posts.</p>
 
@@ -81,6 +81,6 @@ title: Tags
 ...
 &lt;html&gt;</pre></code>
 
-<h2>Summary</h2>
+<h3>Summary</h3>
 
 <p>This gives me now a starting point to start making a tag cloud for my blog, this is the simple implementation that I can think of but it didn't take me too long. I hope you find this useful if you are thinking of creating your own GitHub Pages blog.</p>
