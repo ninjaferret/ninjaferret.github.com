@@ -11,10 +11,10 @@ So for completeness I thought that I would introduce you to basic loops, althoug
 
 The source code for this can be found in my <a href="http://code.assembla.com/NinjaFerretDemos/subversion/nodes/Reflection/ForLoop">subversion repository</a>.
 
-<h3>Implementing Multiply</h3>
+<h4>Implementing Multiply</h4>
 I can create a loop that will make use of the <strong>Add()</strong> method to calculate the multiplication:
 
-[sourcecode language="csharp" gutter="true"]
+<code><pre class="brush: csharp">
 public int Multiply(int a, int b)
 {
 	int result = 0;
@@ -24,11 +24,11 @@ public int Multiply(int a, int b)
 	}
 	return result;
 }
-[/sourcecode]
+</pre></code>
 
 So taking a look at ILDASM:
 
-<code>
+<code><pre class="brush: plain">
 .method public hidebysig newslot virtual final
         instance int32  Multiply(int32 a,
                                  int32 b) cil managed
@@ -69,7 +69,7 @@ So taking a look at ILDASM:
   IL_0022:  ldloc.2
   IL_0023:  ret
 } // end of method CalculatorImplementation::Multiply
-</code>
+</pre></code>
 
 The first thing is that we now have 4 local variables:
 <ul>
@@ -87,7 +87,7 @@ When the <em>loop condition</em> is false, the <em>result variable</em> is store
 
 So putting this into code:
 
-[sourcecode language="csharp" gutter="true"]
+<code><pre class="brush: csharp">
 private static void DefineMultiplyMethod(TypeBuilder typeBuilder, Type interfaceType)
 {
 	var interfaceMethod = interfaceType.GetMethod(&quot;Multiply&quot;);
@@ -150,7 +150,7 @@ private static void DefineMultiplyMethod(TypeBuilder typeBuilder, Type interface
 	il.Emit(OpCodes.Ret);
 	typeBuilder.DefineMethodOverride(methodBuilder, interfaceMethod);
 }
-[/sourcecode]
+</pre></code>
 
 I now have a fully functional and fully working calculator class that implements the <strong>Calculator</strong> interface and has been generated dynamically at runtime.
 

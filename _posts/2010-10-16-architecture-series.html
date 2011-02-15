@@ -6,14 +6,14 @@ categories:
 - Architecture
 - Software Architecture
 ---
-<h2>Overview</h2>
+<h3>Overview</h3>
 Architecture of software systems is vitally important in the development of robust and scalable solutions but also architecture can be expensive and time consuming. However, over the last few decades software developers have been identifying <a href="http://en.wikipedia.org/wiki/Design_pattern_(computer_science)">Design Patterns</a> for the structure of their code to help them develop robust software that is easy to maintain there are a number of patterns and principles that can be applied to the wider architecture of your system. 
 
 In the last decade the nature of the software we are developing has radically changed, in the 90s the desktop ruled the world and people installed applications on their own desktops and the data was stored on their desktops and the web was only beginning it's journey into a truly interactive medium. Within organisations there was some infrastructure but over the last decade on-line systems started to rule the world, services and web sites started playing a major part of people's lives and this places a completely new set of demands on how we approach software. Our on-line presence is important now and applications on the internet can suddenly become hugely successful (twitter and facebook are two prime examples) so there is a need to become scalable and robust, there is little scope for bringing down your site every evening to perform maintenance if you are reaching a global audience.
 
 What I want to do in this series of posts is explore some of the concepts that are exciting me in software architecture, explore some of the myths that surround the architectures and eventually start bringing them together for developing greenfield applications and also looking at migration patterns for existing systems. I think that it is important to understand when you need to apply a certain architectural model, not everything needs to be applied to every solution, not every pattern or methodology works for every scenario and as architects and engineers we do have a tendency to "over-engineer" a solution, sometimes it is better to do the simple thing first and get to market quicker.
 
-<h3>A sample application...</h3>
+<h4>A sample application...</h4>
 
 Perhaps one of the hardest things that I can think of when writing a blog post is whether I should write examples, what examples will they be, how to keep the examples simple and yet informative enough for people to take something valuable away. Within the series of posts I will try to keep a standard example and apply the patterns and principles to that example domain. I think that I am going to start with a simple shop model and focus on different parts of the architecture that will allow the system to function properly.
 
@@ -25,10 +25,10 @@ To give you a brief idea of the areas of the shop that I am thinking of:
   <li>Staff management - the shop is going to require something for the staff to schedule shifts, track hours worked for payment, track sick time and holidays</li>
 </ul>
 
-<h2>Current Architecture posts</h2>
+<h3>Current Architecture posts</h3>
 
 Over time I will be writing these posts and adding a brief summary below:
 
-<h3>CQRS</h3>
+<h4>CQRS</h4>
 
 <strong>CQRS</strong> <em>(Command Query Responsibility Segregation)</em> is an increasingly popular topic among the software development community (wel, at least in the .NET community that I am mostly involved in). It applies a simple rule <em>"separate your commands from your queries"</em> and this post explores the benefits of this extremely simple pattern.

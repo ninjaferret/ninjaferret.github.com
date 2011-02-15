@@ -8,7 +8,7 @@ categories:
 - CQRS
 - Software Architecture
 ---
-<h2>Architecture Series Overview</h2>
+<h3>Architecture Series Overview</h3>
 
 I have recently become increasingly interested in how we, as developers and architects, structure the systems that we are creating. The demands on on-line systems are significantly different to the demands on desktop only software. Scalability, robustness, performance, resilience are all important factors when thinking about on-line services and there has been a lot of debate within the software world about how we should architect these systems. These posts are my views of interesting architectural patterns and practices that I have been looking at:
 
@@ -17,7 +17,7 @@ I have recently become increasingly interested in how we, as developers and arch
   <li><a href="http://blog.ninjaferret.co.uk/?p=221">Domain Events</a></li>
 </ol>
 
-<h2>CQRS</h2>
+<h3>CQRS</h3>
 
 Command Query Responsibility Segregation, or CQRS from now on, is an architectural pattern developed by Greg Young and Udi Dahan. My aim is to take you through a very brief introduction to the simplicity of CQRS and also show you how it can be used to handle a number of different problems that we face within the software world such as separation of concerns, security and scalability.
 
@@ -34,7 +34,7 @@ In many respects that is all that CQRS says and it seems quite boring which is w
 
 I would advise that anyone attempting to do CQRS also look at <em>Domain Driven Design</em> (I will create a blog post on this later) to identify your domains and create the boundaries and interfaces between them.
 
-<h3>Separation of Concerns</h3>
+<h4>Separation of Concerns</h4>
 
 Well, the brief summary above says it all really, doesn't it? How does this really provide any benefit?
 
@@ -44,7 +44,7 @@ As a store manager I need the ability to be able to add/remove items from the st
 
 Traditionally, as a developer I would have a product service that gave us this entire functionality:
 
-[sourcecode language="csharp" gutter="false"]
+<code><pre class="brush: csharp">
 public interface ProductService
 {
     ProductList GetAllProducts();
@@ -56,14 +56,14 @@ public interface ProductService
     Product     SetPrice(Price price);
     Product     AddOffer(Offer offer);
 }
-[/sourcecode]
+</pre></code>
 
 I host this service on a PC in the store and I'm quite happy with what I have. However, what models am I using to represent this? Do I have to submit an entire product model just to change the price for that product? Technically not though keeping everything in a single interface does push the developer towards re-using models throughout the interface. Traditionally the add would return the new product including any internally generated identifier that will be uniquely used to identify the product etc.
 
 So what would I produce in a CQRS design?
 
 
-[sourcecode language="csharp" gutter="false"]
+<code><pre class="brush: csharp">
 public interface ProductQueryService
 {
     ProductList GetAllProducts();
@@ -88,7 +88,7 @@ public interface ProductCommandProcessor
     void SetPrice(SetPriceCommand command);
     void AddOffer(CreateOfferCommand command);
 }
-[/sourcecode]
+</pre></code>
 
 So, we now have two interfaces which looks like it increases complexity but it has now separated out the two different concerns of our system. Our queries are using different models than the commands and conceptually thinking about a command will allow you to focus in on the exact details that are needed to process that command.
 
@@ -96,7 +96,7 @@ When we are developing the product <strong>Domain</strong> we are focussed on th
 
 In the traditional model if I wished to add in one extra piece of data to the Product model, perhaps the date that the price was set (which was already being stored) then I would have to re-compile all of my source code including the parts that solely are issuing commands to the system. In CQRS only the items that query need to be re-compiled.
 
-<h3>Security</h3>
+<h4>Security</h4>
 
 Given the two models above I want to now create an on-line presence as well as having a number of tills within the shop. I want to host the site within the DMZ and maintain my actual data inside the store for one reason, I don't want hackers to be able to update the details of any of my products. The immediate solution is to clone the primary database inside the LAN and ensure it is kept up to date and... 
 
@@ -107,7 +107,7 @@ Given the two models above I want to now create an on-line presence as well as h
 
 In my opinion it is better to only expose the Query Service to systems that only need to be able to query, you can secure down that interface/endpoint much more easily than you can in a traditional service-based approach. 
 
-<h3>Scalability</h3>
+<h4>Scalability</h4>
 
 The website is now taking off, I am getting way more visitors than I was expecting but they are now hitting my servers very hard? What do I do?
 
@@ -129,7 +129,7 @@ I want to off-line the processing of the commands, all I need to do is to create
 
 There may not be too much difference in how we scale the querying side (bar the configuration issue and the tight coupling between the command and the query) but the command side scales much more efficiently.
 
-<h3>Summary</h3>
+<h4>Summary</h4>
 
 In summary, I am really excited about CQRS because it seems to answer a lot of the challenges that we are facing in the software world. It is applying some of the core principles of software development, the separation of concerns and that just by looking at the interface you know whether a method has an impact on the system or whether it is just querying the system. Just one word of warning, I have shown how CQRS <em>can</em> be used to solve some of these problems but you only need to solve them when you encounter the problem.
 

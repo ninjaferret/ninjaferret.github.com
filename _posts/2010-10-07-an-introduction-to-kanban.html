@@ -14,16 +14,16 @@ My team was faced with the question <em>how much time are we going to commit to 
 
 Kanban came to the rescue. 
 
-<h2>What is Kanban?</h2>
+<h3>What is Kanban?</h3>
 
 Kanban originated in the 1940's and 50's from Toyota where they were developing the <em>lean</em> processes. They devised a process where each process in the chain was the consumer of the earlier processes, in the system there should be enough parts in the stores to allow the current process to take only what it needs and then a <em>signal</em> (usually in the form of a card - or <strong>Kanban</strong> as they are called in Japanese) is sent to the previous process to produce more of the consumed items.
 
 The delivery of the final product to the consumer determines the rate of flow, if demand is low then production slows down (by removing Kanban from the system) and if demand increases more Kanban are pushed into the system to meet demand.  
 
-<h2>Applying Kanban...</h2>
+<h3>Applying Kanban...</h3>
 Kanban does not always have to be applied to the manufacturing industry where it was first conceived, it can be used as a means of managing workflow in a number of different environments and be applied to many processes.
 
-<h3>Value stream</h3>
+<h4>Value stream</h4>
 
 The first thing that you really need to do is to start looking at the <em>Value Stream</em> that you are applying Kanban to, personally I would start with the most basic flow:
 
@@ -43,7 +43,7 @@ In a complicated process then it is necessary to actually break down the "Doing"
 
 We may say that something is only truly done when it is deployed to the production environment.
 
-<h3>Introduce a pull-based signalling mechanism...</h3>
+<h4>Introduce a pull-based signalling mechanism...</h4>
 
 So, having mapped our value stream we need to think about a system where the new features are pulled through the system rather than being pushed through. Continuing with the development environment and assuming that we are aiming to deliver features into a system:
 
@@ -55,7 +55,7 @@ So, having mapped our value stream we need to think about a system where the new
 
 Therefore the flow has changed from people saying "you will deliver this" to simply focussing on delivering at the speed of the slowest component.
 
-<h3>Visualisation</h3>
+<h4>Visualisation</h4>
 
 When applying Kanban to software processes people tend to create a <strong>Kanban board</strong>. At the moment I am using a whiteboard:
 
@@ -82,7 +82,7 @@ This board represents our view of the world, it was not our first attempt and I'
 
 We have also been experimenting with recording the dates on which the features move from one state to the next, as we record these facts we can build metrics of how long different sized features take to pass through each stage in the system.
 
-<h3>Limiting Work in Progress</h3>
+<h4>Limiting Work in Progress</h4>
 
 We use our Kanban board to help us limit the amount of work in progress that our team is doing. With a team of 5 people we limit ourselves to no more than 8 features in progress at once, 4 things in analysis and design with a further 4 things in build. At the moment we do not constrain the work of the Test Team because we deliver work to them in a waterfall manner.
 
@@ -91,7 +91,7 @@ Why do we limit the work in progress? If we do not limit our work in progress th
 Limiting the total work in progress for the team to less than double the team's number ensures that no one person can be working on more than two things at once, if one task is blocked then they can work on the other. However, it encourages people to help the other members of the team, if I complete something in <em>build</em> but nothing is ready for analysis I should help someone finish their analysis, or do some work to aid the test team.
 
 
-<h3>Identifying inefficient processes</h3>
+<h4>Identifying inefficient processes</h4>
 
 So far I have talked about mapping your value streams, visualising your progress with a Kanban board and limiting your work in progress. The Kanban board is flowing and it becomes quickly obvious where the most inefficient processes are:
 
@@ -102,10 +102,10 @@ So far I have talked about mapping your value streams, visualising your progress
 
 These are things that we already "know" but it helps us to quantify and visualise the nature of the problem. We know now that there are features waiting for almost 5 months from when we finished the development and have not yet gone into testing. We know that testing is swamped and we can see just how much work they have to do. Will this help us make changes? I hope so.
 
-<h3>Experiment</h3>
+<h4>Experiment</h4>
 
 The Kanban board has to be built for your specific team, they have to mean something to your team because unless you get buy-in from everyone then it is not going to work. Apply the <em>Inspect and Adapt</em> principle, try something for a while, review it and then decide whether it was a success or not.
 
-<h2>Summary</h2>
+<h3>Summary</h3>
 
 Kanban is a simple system, it is a signalling system that works with your current processes, gives you the ability to constrain your work to make you more efficient and allows you to visualise the inefficiencies in your system. Please try out Kanban and experiment with it.

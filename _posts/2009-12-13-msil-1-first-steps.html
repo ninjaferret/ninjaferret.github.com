@@ -11,16 +11,16 @@ In my first blog on this process I want to start simple, creating a basic calcul
 
 All of the source code for this blog can be found at <a href="http://code.assembla.com/NinjaFerretDemos/subversion/nodes/Reflection/FirstSteps">here</a>.
 
-<h3>What does IL look like?</h3>
+<h4>What does IL look like?</h4>
 Not knowing IL I decided that the first thing to do was to write the class in C# properly, compile it then use ILDASM to take a look at the resulting IL.
 
-[sourcecode language="csharp" gutter="false"]
+<code><pre class="brush: csharp">
 public class Calculator
 {
    public int Add(int a, int b) { return a + b; }
    public int Subtract(int a, int b) { return a - b; }
 }
-[/sourcecode]
+</pre></code>
 
 Just looking a the Add method for now:
 
@@ -56,7 +56,7 @@ What does this all mean?
 	<li><strong>IL_0007:  ldloc.0</strong> loads the value from the local variable and pushes it onto the stack</li>
 	<li><strong>IL_0008:  ret</strong> returns the value on the stack back to the caller</li>
 </ul>
-<h3>Generating this at runtime...</h3>
+<h4>Generating this at runtime...</h4>
 
 I am now ready to begin auto-generating the above IL and I will be using the following basic pattern:
 <ol>
@@ -71,13 +71,13 @@ I am now ready to begin auto-generating the above IL and I will be using the fol
 
 Before starting to generate types I have to first create an assembly and module in which to hold them:
 
-[sourcecode language="csharp" gutter="false"]
+<code><pre class="brush: csharp">
 var assemblyName = new AssemblyName {Name = &quot;Calculator&quot;};
 var assemblyBuilder = Thread.GetDomain().DefineDynamicAssembly(assemblyName,
                             AssemblyBuilderAccess.RunAndSave);
 var modBuild = assemblyBuilder.DefineDynamicModule(&quot;CalculatorModule&quot;,
                     string.Format(&quot;{0}.dll&quot;, assemblyName.Name)
-[/sourcecode]
+</pre></code>
 
 This simply defines a new dynamic assembly the <strong>AssemblyBuilderAccess.RunAndSave</strong> allows the code to be both executed and saved as an assembly to the file system. It does not automatically save the assembly, I will come to that later, but the ability to save can come in very handy when debugging the generated code. An alternative is to use <strong>AssemblyBuilderAccess.Run</strong> which will simply allow the assembly to be executed in memory.
 
@@ -87,14 +87,14 @@ This simply defines a new dynamic assembly the <strong>AssemblyBuilderAccess.Run
 
 The <strong>ModuleBuilder.DefineType()</strong> method is used to create the type builder:
 
-[sourcecode language="csharp" gutter="false"]
+<code><pre class="brush: csharp">
 var typeBuilder = modBuild.DefineType(&quot;Calculator&quot;,
                           TypeAttributes.Public |
                           TypeAttributes.Class |
                           TypeAttributes.AutoLayout |
                           TypeAttributes.AnsiClass |
                           TypeAttributes.BeforeFieldInit);
-[/sourcecode]
+</pre></code>
 
 The <strong>TypeAttributes</strong> were simply taken from what ILDASM was showing me from my compiled implementation of this code. We can see that this is now a public class but there are a few interesting attributes here that I had not seen before:
 
@@ -108,7 +108,7 @@ The <strong>TypeAttributes</strong> were simply taken from what ILDASM was showi
 
 Methods are created using the <strong>TypeBuilder.DefineMethod()</strong> method to create a <strong>MethodBuilder</strong> and then using the <strong>MethodBuilder.GetILGenerator()</strong> method to retrieve the object that we will use to generate the code:
 
-[sourcecode language="csharp" gutter="true" highlight="5,8,14,15"]
+<code><pre class="brush: csharp">
 var methodBuilder = typeBuilder.DefineMethod(&quot;Add&quot;,
                     MethodAttributes.Public | MethodAttributes.Final);
 methodBuilder.SetReturnType(typeof(int));
@@ -126,7 +126,7 @@ il.Emit(OpCodes.Br_S, label);
 il.MarkLabel(label);
 il.Emit(OpCodes.Ldloc_0);
 il.Emit(OpCodes.Ret);
-[/sourcecode]
+</pre></code>
 
 Hopefully, the first few lines are self-explanatory, define the method with the set attributes (I'll explore method attributes in more detail in a later post) then set the parameters and return type.
 
@@ -141,7 +141,7 @@ Now that the Add method has been defined I repeat almost the same IL for the sub
 <h4>4. Produce the type</h4>
 So all that is left to do is to create the type and test it:
 
-[sourcecode language="csharp" gutter="false"]
+<code><pre class="brush: csharp">
 var calculatorType = typeBuilder.CreateType();
 
 var obj = Activator.CreateInstance(calculatorType);
@@ -151,7 +151,7 @@ Console.WriteLine(&quot;1 + 2 = {0}&quot;, addMethod.Invoke(obj, new object[] {1
 
 var subtractMethod = calculatorType.GetMethod(&quot;Subtract&quot;, new[] { typeof(int), typeof(int) });
 Console.WriteLine(&quot;10 + 7 = {0}&quot;, subtractMethod.Invoke(obj, new object[] { 10, 7 }));
-[/sourcecode]
+</pre></code>
 
 I simply call <strong>typeBuilder.CreateType()</strong> once everything is defined to create the type and begin to use it.
 
@@ -159,7 +159,7 @@ However, the remaining code is very ugly simply because at the time the applicat
 
 What would be nicer is if we could have a known interface and automatically generate the implementation using <strong>Reflection.Emit</strong> and that will be the topic of my next post.
 
-<h3>Finally...</h3>
+<h4>Finally...</h4>
 If you take anything away from this blog post is that you should not be scared of <strong>Reflection.Emit</strong>, by creating a real class that is close to the implementation that you want you can identify what operations you need to do the job.
 
 Over the coming blog posts things will get more complicated and more useful, hopefully, as I move towards a real-world use of runtime-class generation.

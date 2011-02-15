@@ -9,11 +9,11 @@ categories:
 ---
 I talked <a href="http://ninjaferret.co.uk/blog/?p=98">last time</a> about how I approached building a WCF service and how using "Add Service Reference" was causing me some problems. The next part of my journey into WCF was to look at other ways of managing the client and I came across <strong>IChannelFactory&lt;T&gt;</strong>.
 
-<h2>Creating a proxy client IChannelFactory&lt;T&gt;...</h2>
+<h3>Creating a proxy client IChannelFactory&lt;T&gt;...</h3>
 
 So, to recap, last time I started by defining the following service:
 
-[sourcecode language="csharp" gutter="false"]
+<code><pre class="brush: csharp">
 [ServiceContract]
 public interface AccountService
 {
@@ -29,11 +29,11 @@ public interface AccountService
     [FaultContract(typeof(InvalidCustomerNameFault))]
     void Create(string customerName, AccountType accountType);
 }
-[/sourcecode]
+</pre></code>
 
 The next thing is to look at the original client code within an ASP.NET MVC controller:
 
-[sourcecode language="csharp" gutter="false"]
+<code><pre class="brush: csharp">
 public ActionResult AddNewAccount(NewAccountCommand newAccountCommand)
 {
     // Validate the command
@@ -48,22 +48,22 @@ public ActionResult AddNewAccount(NewAccountCommand newAccountCommand)
         // Handle the error
     }
 }
-[/sourcecode]
+</pre></code>
 
 How do we get to using the channel factory? As my client is already referencing the service assemblies and using the channel factory we can implement the interface:
 
-[sourcecode language="csharp" gutter="false"]
+<code><pre class="brush: csharp">
 var channelFactory = new ChannelFactory&lt;AccountService&gt;();
 var proxy = channelFactory.CreateChannel();
-[/sourcecode]
+</pre></code>
 
 The proxy that is generated can be passed into the ASP.NET MVC controller as the service.
 
-<h2>So where is the problem?</h2>
+<h3>So where is the problem?</h3>
 
 The client code above will work... well, it will work in the case where the exceptions are not thrown. When an exception is thrown it will be translated into a <strong>FaultException</strong> therefore the original exception will not be caught. To fix this we could try:
 
-[sourcecode language="csharp" gutter="false"]
+<code><pre class="brush: csharp">
 public ActionResult AddNewAccount(NewAccountCommand newAccountCommand)
 {
     // Validate the command
@@ -82,7 +82,7 @@ public ActionResult AddNewAccount(NewAccountCommand newAccountCommand)
         // Handle the error
     }
 }
-[/sourcecode]
+</pre></code>
 
 But now the code is less clean, for each error I want to handle I would have to now catch either just the equivalent <strong>FaultException</strong> or both the normal exception or the <strong>FaultException</strong>.
 
@@ -92,7 +92,7 @@ While searching around this problem I came across the <a href="http://old.iservi
 
 The pattern that was recommended by the blog article was that we can wrap most of the error handling within a generic method:
 
-[sourcecode language="csharp" gutter="false"]
+<code><pre class="brush: csharp">
 public static class Service&lt;T&gt;
 {
     public static ChannelFactory&lt;T&gt; _channelFactory = new ChannelFactory&lt;T&gt;(&quot;&quot;); 
@@ -116,11 +116,11 @@ public static class Service&lt;T&gt;
         }
     }
 }
-[/sourcecode]
+</pre></code>
 
 But that means that rather than making a standard call to the service we now have to change the client code to:
 
-[sourcecode language="csharp" gutter="false"]
+<code><pre class="brush: csharp">
 public ActionResult AddNewAccount(NewAccountCommand newAccountCommand)
 {
     // Validate the command
@@ -139,15 +139,15 @@ public ActionResult AddNewAccount(NewAccountCommand newAccountCommand)
         // Handle the error
     }
 }
-[/sourcecode]
+</pre></code>
 
 This makes me a little worried because the changes have just made the system untestable, by calling into this static class I have now bound the controller to requiring a WCF service to test.
 
-<h2>Crafting my own proxy...</h2>
+<h3>Crafting my own proxy...</h3>
 
 In order to keep my code testable I used the above pattern within my own hand-crafted proxies:
 
-[sourcecode language="csharp" gutter="false"]
+<code><pre class="brush: csharp">
 public class AccountServiceProxy : IAccountService
 {
     public void Create(string customerName, AccountType accountType)
@@ -176,10 +176,10 @@ public class AccountServiceProxy : IAccountService
         }
     } 
 }
-[/sourcecode]
+</pre></code>
 
 This keeps the client code in tact, it only needs to handle the standard exceptions that it always handled rather than adding anything more because of the faults. A much cleaner solution, in my mind.
 
-<h2>So is there still a problem?</h2>
+<h3>So is there still a problem?</h3>
 
 I think that there is still a problem, I am now having to manually do all of the work that I was hoping that someone else would do for me and this led me to think that I now had a pattern that I was manually applying to all services therefore it should be possible to automate the generation of these proxies; this leads me on nicely to my next post...

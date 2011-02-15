@@ -11,11 +11,11 @@ For my third post in the MSIL series I want to focus on a simple if statement, h
 
 The source code for this can be found in my <a href="http://code.assembla.com/NinjaFerretDemos/subversion/nodes/Reflection/If">subversion repository</a>.
 
-<h3>Implementing division</h3>
+<h4>Implementing division</h4>
 
 I want to take a look at the <strong>Divide()</strong> method of the Calculator class:
 
-[sourcecode language="csharp" gutter="true"]
+<code><pre class="brush: csharp">
 public int Divide(int numerator, int denominator)
 {
 	if (denominator != 0)
@@ -25,11 +25,11 @@ public int Divide(int numerator, int denominator)
 	}
 	return numerator/denominator;
 }
-[/sourcecode]
+</pre></code>
 
 This gives me the opportunity to show the implementation of conditional statements and the throwing of exceptions. What would this implementation generate in IL terms for handling the equality?
 
-<code>
+<code><pre class="brush: plain">
 .method public hidebysig newslot virtual final
         instance int32  Divide(int32 numerator,
                                int32 denominator) cil managed
@@ -61,7 +61,7 @@ This gives me the opportunity to show the implementation of conditional statemen
   IL_0023:  ldloc.0
   IL_0024:  ret
 } // end of method CalculatorImplementation::Divide
-</code>
+</pre></code>
 
 The <strong>if</strong> statement is executed between <strong>IL_0001</strong> and <strong>IL000a</strong>. The first thing is to push onto the stack the demoninator (<strong>ldarg.2</strong>) and the constant integer zero (<strong>ldc.i4.0</strong>) then compare them using the equals comparison operator (<strong>ceq</strong>), which pushes either a <strong>1</strong> onto the stack if it is true and <strong>0</strong> if it is false. As I am doing a <strong>not equals</strong> comparison we then compare the result of the first comparison with <strong>0</strong> to find out if the two items do not match, the result of this equality is placed back onto the stack.
 
@@ -70,7 +70,7 @@ What do we know now? <strong>brtrue.s   IL_001d</strong> tells the compiler that
 
 The resulting IL looks like:
 
-[sourcecode language="csharp" gutter="true"]
+<code><pre class="brush: csharp">
 private static void DefineDivideMethod(TypeBuilder typeBuilder, Type interfaceType)
 {
 	var interfaceSubtractMethod = interfaceType.GetMethod(&quot;Divide&quot;);
@@ -118,6 +118,6 @@ private static void DefineDivideMethod(TypeBuilder typeBuilder, Type interfaceTy
 	il.Emit(OpCodes.Ret);
 	typeBuilder.DefineMethodOverride(methodBuilder, interfaceSubtractMethod);
 }
-[/sourcecode]
+</pre></code>
 
 So there it is, a simple if statement. The IL is starting to look increasingly complicated and it is becoming very clear that trying to dynamically generate code for anything but simple methods is increasingly difficult. What I will go onto in the very next post is how to do a simple loop to complete the fundamentals of programming.
