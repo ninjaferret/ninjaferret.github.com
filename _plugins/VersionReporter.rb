@@ -1,4 +1,4 @@
-#module Jekyll
+module Jekyll
 #  class Site
 #    alias original_site_payload site_payload 
 #    def site_payload
@@ -13,25 +13,24 @@
 #      ordered = categories.sort { |a, b| b[1].length <=> a[1].length }
 #    end
 #  end
-#  
-#  class VersionReporter < Generator
-#    safe true
-#    priority :low#
-#
-#    def generate(site)
-#      fileName = File.join(site.dest, 'version.html')
-#
-#      File.open('version.html', 'w') do |f|
-#        f.write(generate_report(site))
-#      end
-#    end
-#
-#    private
-#
-#    def generate_report(site)
-#      "Site generated with Jekyll version: #{Jekyll::VERSION}"
-#    end
-#
-#  end
-#  
-#end
+  
+  class VersionReporter < Generator
+    safe true
+    priority :low#
+
+    def generate(site)
+      fileName = File.join(site.dest, 'version.html')
+
+      File.open('version.html', 'w') do |f|
+        f.write(generate_report(site))
+      end
+    end
+
+   private
+
+    def generate_report(site)
+      "Site generated with Jekyll version: #{Jekyll::VERSION}"
+    end
+
+  end
+end
