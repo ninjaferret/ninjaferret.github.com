@@ -4,7 +4,7 @@ title: Tags
 ---
 
 <ul class="tag_list">
-{% for category in site.categories %}
+{% for category in site.categories %} 
   <li><a href="#{{ category | first }}">{{ category | first }}</a> ({{category | last| size}})</li>
 {% endfor %}
 </ul>

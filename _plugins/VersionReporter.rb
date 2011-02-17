@@ -16,12 +16,14 @@ module Jekyll
   
   class VersionReporter < Generator
     safe true
-    priority :low#
-
+    priority :low
+    
     def generate(site)
+      site_folder = site.config['destination']
       fileName = File.join(site.dest, 'version.html')
-
-      File.open('version.html', 'w') do |f|
+      puts fileName   
+      puts site.dest
+      File.open(File.join(site_folder, 'version.html'), 'w') do |f|
         f.write(generate_report(site))
       end
       site.static_files << Jekyll::StaticFile.new(site, site.dest, '/', 'version.html')
