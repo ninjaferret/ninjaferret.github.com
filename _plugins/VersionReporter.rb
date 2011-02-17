@@ -24,6 +24,7 @@ module Jekyll
       File.open('version.html', 'w') do |f|
         f.write(generate_report(site))
       end
+      site.static_files << Jekyll::StaticFile.new(site, site.dest, '/', 'version.html')
     end
 
    private
