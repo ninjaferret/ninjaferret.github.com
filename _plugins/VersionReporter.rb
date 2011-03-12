@@ -26,7 +26,7 @@ module Jekyll
       File.open(File.join(site_folder, 'version.html'), 'w') do |f|
         f.write(generate_report(site))
       end
-      site.static_files << Jekyll::StaticFile.new(site, site.dest, '/', 'version.html')
+      #site.static_files << Jekyll::StaticFile.new(site, site.dest, '/', 'version.html')
     end
 
    private
