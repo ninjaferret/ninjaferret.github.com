@@ -35,4 +35,5 @@ The standard way I approach this is that we have a <strong>teamcity-master.proj<
 
 As you can see, the master project file is solely there for orchestrating the builds, providing the standard targets for different teamcity builds to run depending on their job, e.g. you may have a simple build and unit test project to run after every check-in but nightly run a full build that builds, runs unit tests, packages, deploys and runs the integration tests (or it may be an on demand project). Details are kept away from the master file allowing each independent section to be controlled in finer detail.
 
+<h3>Build (teamcity-build.proj)</h3>
 

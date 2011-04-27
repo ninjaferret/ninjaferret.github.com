@@ -235,6 +235,25 @@ a.archive_link {
 	font-size: 0.8em;
 }
 
+#main_content dl {
+	margin: 1em;
+}
+
+#main_content dl dt {
+	margin: 0;
+	margin-top: 1em;
+	font-weight: bold;
+	color: #A60000;
+	font-size: 1.2em;
+	
+}
+
+#main_content dl dd {
+	margin-left: 1em;
+	margin-right: 1em;
+	padding-left: 1em;
+	padding-right: 1em;
+}
 /*
 -------------------------------
 Navigation
