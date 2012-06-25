@@ -19,9 +19,9 @@ categories:
 	are only functions? I think that there are still a few issues that Greg has not fully answered in this but I'm hoping to play with the ideas
 	in the future to really understand my own doubts
 </p>
-<h2>
+<h3>
 	Refactoring the Domain
-</h2>
+</h3>
 <p>
 	So, assuming that we have an domain around eCommerce we may well have the concept of a <strong>InventoryItem</strong>
 	which is something you can sell. Assume someone wants to deactivate the item:
@@ -63,9 +63,9 @@ categories:
 	}
 	</pre>
 </code>
-<h2>
+<h3>
 	Making it Event Sourced
-</h2>
+</h3>
 <p>
 	It is easy to make things <em>Event Sourced</em>  from this position, we refactor further to extract out the parameters
 	of the method into a class that represents the state change:
@@ -112,9 +112,9 @@ categories:
 	Also, we are now independent of any logic that may be imposed, any calculations. We are simply involved in state change
 	but what that state change means can vary over time.
 </p>
-<h2>
+<h3>
 	Event Sourcing is Functional
-</h2>
+</h3>
 <p>
 	Greg argues that when you have made your model <em>Event Sourced</em> then the <em>Events</em> are 
 	representations of method calls, they are the serialized function calls of the <strong>DoXXX</strong> methods that change state
@@ -186,9 +186,9 @@ categories:
 	currentState = Apply(Apply(Apply(Apply(inventoryItemCreated), inventoryItemPriceUpdated), inventoryItemDeactivated), evt)
 	</pre>
 </code>
-<h2>
+<h3>
 	Conclusion
-</h2>
+</h3>
 <p>
 	Greg has a habit of killing my illusions, and I don't think that it is just me who takes a look at his work and thinks "hey, is it
 	really that simple?" but I think he just looks at the problems from a different perspective. There are things that I have yet to
