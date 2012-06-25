@@ -155,7 +155,10 @@ categories:
 </p>
 <code>
 	<pre class="brush: csharp">
-	new InventoryItem().Created(inventoryItemCreated).PriceUpdated(inventoryItemPriceUpdated).Deactivated(inventoryItemDeactivated);
+	new InventoryItem()
+		.Created(inventoryItemCreated)
+		.PriceUpdated(inventoryItemPriceUpdated)
+		.Deactivated(inventoryItemDeactivated);
 	</pre>
 </code>
 <p>
@@ -164,7 +167,10 @@ categories:
 </p>
 <code>
 	<pre class="brush: csharp">
-	new InventoryItem().Apply(inventoryItemCreated).Apply(inventoryItemPriceUpdated).Apply(inventoryItemDeactivated)
+	new InventoryItem()
+		.Apply(inventoryItemCreated)
+		.Apply(inventoryItemPriceUpdated)
+		.Apply(inventoryItemDeactivated)
 	</pre>
 </code>
 <p>
@@ -173,7 +179,11 @@ categories:
 </p>
 <code>
 	<pre class="brush: csharp">
-	Apply(Apply(Apply(inventoryItemCreated), inventoryItemPriceUpdated), inventoryItemDeactivated);
+	Apply(
+		Apply(
+			Apply(inventoryItemCreated),
+			,inventoryItemPriceUpdated),
+		inventoryItemDeactivated);
 	</pre>
 </code>
 <p>
@@ -182,8 +192,19 @@ categories:
 </p>
 <code>
 	<pre class="brush: csharp">
-	evt = Reactivate(Apply(Apply(Apply(inventoryItemCreated), inventoryItemPriceUpdated), inventoryItemDeactivated))
-	currentState = Apply(Apply(Apply(Apply(inventoryItemCreated), inventoryItemPriceUpdated), inventoryItemDeactivated), evt)
+	evt = Reactivate(
+			Apply(
+				Apply(
+					Apply(inventoryItemCreated), 
+					inventoryItemPriceUpdated), 
+				inventoryItemDeactivated))
+	currentState = Apply(
+				Apply(
+					Apply(
+						Apply(inventoryItemCreated), 
+						inventoryItemPriceUpdated), 
+					inventoryItemDeactivated), 
+				evt)
 	</pre>
 </code>
 <h3>
