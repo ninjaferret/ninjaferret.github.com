@@ -1,0 +1,151 @@
+---
+layout: default
+title: DDD eXchange - Restful Objects - Dan Haywood
+summary: I went to DDDX at Skillsmatter and here's Dan Haywood's talk on RESTful Objects
+categories:
+- Conferences
+- DDDX
+- 2012
+---
+
+<p>
+	The second talk at <a href="http://skillsmatter.com">Skillsmatter's</a> DDD Exchange was Dan Haywood 
+	<a href="http://skillsmatter.com/podcast/design-architecture/restful-objects">talking about RESTful objects</a> and
+	there was a lot to consider in this talk.
+</p>
+
+<h3>
+	A Brief Guide to RESTful Objects
+</h3>
+
+<p>
+	The <a href="http://restfulobjects.org/">RESTful Objects</a> specification comes out of the <a href="http://www.nakedobjects.org/">Naked Objects</a> movement. It is a specification that
+	allows you to create a domain model and expose it through a RESTful API using the <em>Hypermedia As The Engine Of Application State</em> or <em>HATEOAS</em> 
+	for short.
+</p>
+
+<p>
+	As you would expect for the <em>REST</em> based system the domain models are exposed as resources and 
+	client applications interact with these through their <em>URI</em>, the standard <em>HTTP Verbs</em> and also
+	the use of both standard and custom <em>HTTP Headers</em>.
+</p>
+
+<p>
+	It is possible to expose:
+</p>
+
+<ul>
+	<li>The <em>Domain Object</em> as a resource at the <em>URI</em></li>
+	<li>The properties of  the <em>Domain Object</em> as their own child resource</li>
+	<li>The actions/commands that can be performed on the <em>Domain Object</em> as their own child resource</li>
+</ul>
+
+<p>
+	For each of the <em>Resource</em>, which can be any of the above, the specification allows you to define how the API should interact
+	with that resource:
+</p>
+
+<ul>
+	<li>
+		Just to retrieve the <em>Resource</em> you can perform a <strong>GET</strong> this will be an idempotent operation that
+		will not change the state of the object
+	</li>
+	<li>
+		To change the state of a <em>Resource</em> you can perform a <strong>PUT</strong> and pass through the new representation
+		of that <em>Resource</em>. Again, this is an idempotent operations as you can put the same data as many times as you like and it
+		will retain the same details.
+	</li>
+	<li>
+		To delete the <em>Resource</em> you can perform a <strong>DELETE</strong>.
+	</li>
+	<li>
+		If we have a collection as a <em>Resource</em> and you want to add something to that collection then it is a standard approach is 
+		to <strong>POST</strong> the new item to the root of the collection and you will be given back the address at which you can find
+		the new <em>Resource</em> as a <strong>201 Created</strong>. This is not an idempotent operation as repeated <strong>POSTS</strong>
+		may generate multiple new objects.
+	</li>
+</ul>
+
+<p>
+	There is currently both a Java and .NET implementation of the <em>RESTful Objects</em> specification.
+</p>
+
+<h3>
+	Why do I have a problem with it?
+</h3>
+
+<p>
+	I have many concerns about using frameworks like this to expose my domain model to the outside world, at the moment I find 
+	developers tend to rush towards a framework that "solves" their problems without first understanding the nature of the problem
+	they are trying to solve or understand the constraints that the framework will place upon them in the future. 
+</p>
+
+<h4>
+	1. My Domain Model is Private
+</h4>
+
+<p>
+	The <em>Domain Model</em> is the value of the functionality that we are providing, it reflects the ubiquitous language that we use to communicate
+	internally about the domain and I do not feel that we should be exposing that for the outside world to consume. In <em>Domain Driven Design</em>
+	Eric Evans talks about the <em>Bounded Contexts</em> and also the techniques that we use to ensure that the domain is protected from the 
+	outside world, like the use of <em>Anti-Corruption Layers</em>. I think that we need to design our <em>APIs</em> as the 
+	<em>Anti-corruption layer</em> for our domain and not build our <em>API</em> out of the domain. 
+</p>
+
+<h4>
+	2. My Domain Model Changes
+</h4>
+
+<p>
+	As we work on a project, as we discuss the <em>Domain</em>, we are constantly getting a deeper understanding of the <em>Domain</em>
+	and we are changing our <em>Ubiquitous Language</em> (and hence the <em>Domain Model</em> to reflect those changes). However,
+	when we have exposed our <em>Domain Model</em> to the outside world we have built in <strong>rigidity</strong> into our systems, if
+	we change the nature of the domain too much we can no longer expose the same objects over the old <em>API</em> and the existing clients break.
+</p>
+
+<h4>
+	3. Domain Modelling != Service Design
+</h4>
+
+<p>
+	I think that it is important to make the distinction between <em>Domain Driven Design</em> and the <em>Service Design/Architecture</em>
+	because the two are not exactly the same thing. They are related concepts, without knowing what operations you need to expose on your domain
+	you cannot know how to build your service, or if you don't understand what operations you need to expose to the clients then you don't know 
+	what impact this will have on the domain. However, I think that the domain, in many cases, is richer than the nature of the services that you
+	expose to the world, there may be internal features that you need to have access to in the background that you do not wish to expose over services
+	and you want to keep your service definitions isolated from the domain changes. 
+</p>
+
+<p>
+	I think that when looking at service design we are looking for what we need to expose to the clients and how we are going to expose it, what
+	language we use is important as often the deep understanding that we have of our domain has led to a more abstract <em>Ubiquitous
+	Language</em> and the concepts will make no sense. 
+</p>
+
+<h4>
+	4. Exposing Properties...
+</h4>
+
+<p>
+	Part of the specification allows the properties of the domain to be exposed to the client including the ability to change the values. This
+	does not sit well for me in a <em>DDD</em> context as we are constantly talking about the design that is reflecting the actions that
+	people take, it feels like there is an element of just exposing a POCO or POJO object as an RPC endpoint rather than exposing something
+	the actions and the intentions of the client. If we have this freedom, it will be misused.
+</p>
+
+<h3>
+	Conclusion
+</h3>
+
+<p>
+	I think that the specification is very thorough and has a number of points that I need to dig into in much more detail about how they are
+	structuring their URLs for actions and commands but I think that there are some fundamental flaws in using this approach to marry together
+	the buzzwords of <em>REST</em> and <em>DDD</em>. 
+</p>
+
+<p>
+	This specification may be useful to us in the case where you control both the client and the server, and you can deploy everything in
+	one big go (but this is creating a rigid structure). Paraphrasing what Jeff Bezos told people at Amazon "you will write APIs as
+	if they are going to be made public" because he knew that if they did that they would be able to make them public if there was a 
+	commercial need for them and look how successful that has been.
+</p>
