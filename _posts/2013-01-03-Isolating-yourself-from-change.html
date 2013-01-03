@@ -1,0 +1,119 @@
+---
+layout: default
+title: Isolating yourself from change
+summary: At last month's Cambridge Software Craftsmanship round table meeting we had a very interesting discussion on how we should isolate ourselves from change, we went from choosing the right technology to seeing this more as an architectural problem that allows you to embrace change.
+categories:
+- Software Craftsmanship
+- Architecture
+- Change
+---
+
+<p>
+	One of the guys at the round table discussion proposed the question (can't remember exactly) <em>What technology should I 	choose to ensure that my system doesn't have to change for the next 10 years?</em> Our initial response was to ask a bit	more about his application, it was a line of business application that was currently running on the windows desktop	that did not have to process high loads and did not have a high volume of users. 
+</p>
+<p>
+	Our discussions went from trying to answer the original question to delving deeper into why he needed the change. We discussed what advice we would give for choosing a technology since "Microsoft is dead" (according to some) but then we were looking more towards designing and architecting your system to cope with change better.
+</p>
+
+<h3>
+	Choosing the right technology (1)
+</h3>
+
+<p>
+	It depends! Well that was easy enough, wasn't it, there aren't many questions around technology that can't be answered by that. Well, to be a little bit more specific then it depends on the nature of the solution that you are planning. For	example, if you are still focussed on building desktop applications on windows then you are going to have to consider .NET alongside Java or maybe native, if you are going for the new Windows Store applications then you have the choice of C++, .NET, HTML and CSS. If you are going web-based then you can choose from Java, Ruby, Scala, .NET, PHP, Python and many more than I cannot possibly name here. 
+</p>
+<p>
+	Does the application that you are writing need to work on multiple different environmnets? Does it need to be distributed	so that multiple people are accessing the same system at the same time from different environments? Then we are probably	talking either web stack or a cross platform tool.
+</p>
+<p>
+	Are we talking moving into mobile applications? Then actually the .NET runtime may be possibility as thanks to the Mono for Android	and MonoTouch allows us to write most of the logic once and then just create a new UI per platform. 
+</p>
+<p>
+	So which tech? If you are wanting stability for the next ten years that I do not think that you would want to go bleeding	edge, there is a lot of risk that this technology will not take off and get the adoption required, it is likely to change	a lot during the early days and case you some serious problems. However, conversely, you do not want to be using something	that is dying, though the technology is well understood it will get increasingly hard to find people who know the	technology to maintain your product. We are aiming therefore for something fairly popular with a large enough base of 	developers to ensure that in the next ten years there will be enough people who understand it, also there is a sufficient 	community who have already encountered and solved many of your problems. 
+</p>
+<p>
+	<em>What about coolness?</em> Developers like the shiny new languages and frameworks, we like to see the new cool things	and as technologies die we are less tempted to take a job that uses these technologies. There is the concept of the  <a href="http://en.wikipedia.org/wiki/Hype_cycle">Gartner Hype Cycle</a> which shows how technologies are adopted and  their level of maturity. I think we should be looking for a technology on the <em>slope of productivity</em>. It is still fairly new and cool but people are being more realistic about what the technology can do. 
+</p>
+<p>
+	Another suggestion about choosing the right technology was to look at the <a href="http://www.thoughtworks.com/radar">Thoughtworks Tech Radar</a>. This is an opinion blog from Thoughtworks but it shows their current thinking about which technologies should be adopted and trialed but it is a fair representation of what is happening in the world. 
+</p>
+<h3>
+	Change happens 
+</h3>
+<p>
+	To quote Robert Burns' poem <em>To a Mouse</em>:
+</p>
+<blockquote>
+	...<br>
+	But little Mouse, you are not alone,<br>
+	In proving foresight may be vain:<br>
+	The best laid schemes of mice and men<br>
+	Go often awry,<br>
+	And leave us nothing but grief and pain,<br>
+	For promised joy!<br>
+	...
+</blockquote>
+<p>
+	We think, we plan, we forge ahead with our plans because they are our best guess as to what will be useful to us in the future but we do not have the gift of foresight, we cannot guarantee that our choices will be the right ones. Life changes around use all of the time.
+</p>
+<p>
+	If you believe in <em>Agile Development</em> then we are told that change will happen. The focus tends to be on change as a consequence of the business changing their minds, by the world changing and the business needing to change what they require from the system. However, we rarely think of this as the platform, language and frameworks that we are using changing from underneath us. How can we isolate ourselves from these changes?
+</p>
+<h3>
+	Architecting for change
+</h3>
+<p>
+	A typical situation that we could find ourselves in is that our entire system is built as one massive project, with highly coupled components and has very brief encounters with other languages. This means that any change to the platform is going to cost us severely. We have to change everything. So what can we do?
+</p>
+<h4>
+	1. Build a system of loosely coupled components
+</h4>
+<p>
+	We need to think of our system as a set of loosely coupled components that interact through well defined interfaces. This allows any change to the platform that may impact only a single component to be isolated within that component. It does not mean that we are safe from the change but it reduces the cost of fixing that component.
+</p>
+<h4>
+	2. Define clear APIs
+</h4>
+<p>
+	If we are to achieve loose coupling then we are going to have to create the interfaces that I spoke of above. These interfaces form an API around the component, they are the only ways that anyone else can interact with the component. Each API should have a clear design and each call should have a clear purpose. Our APIs should not really expose the inner workings of the component, they should be an abstraction layer (a <em>anti-corruption layer</em> in <em>Doman Driven Design</em> terms) on top of our component's logic. 
+</p>
+<p>
+	These APIs could be in the form of a RESTful or SOAP based web service if we are developing a distributed application, or a framework library that only publicly exposes the API to the rest of the world. It does not matter how we do it but the client should only depend on the API (and maybe even then build it's own abstraction layer around the API).
+</p>
+<p>
+	One way to ensure that people do not "do the wrong thing" and dig into the internal structure of the component is to develop the component in isolation from everythying else. The component is developed and published in an independent work space/solution to the consuming components.
+</p>
+<h4>
+	3. Test your APIs
+</h4>
+<p>
+	A key principle that is being widely adopted is that we should test our systems. A lot of developers are now seeing the advantage of unit testing and people in the <em>Agile Testing</em> world have been pushing <em>Specification by Example</em>, <em>Executable Specifications</em> and <em>Behaviour Driven Development</em> to focus is more on testing our systems to ensure that they meet the functional demands. If we have an API, we should test it thoroughly to ensure that the behaviour, that way we already have the tests should we need to change a component.
+</p>
+<p>
+	By testing, I do mean that we need to test at the unit level but also more importantly testing the APIs in a <em>live like</em> environment, it is no use just testing the code, we need to be able to test the actual implentation, exactly what the clients would talk to.
+</p>
+<p>
+	As an example, assume we have a RESTful API for managing a shopping basket. We write an automated test suite for the API that runs against a web server, let's say for the moment that we developed it in C# and it was running on IIS. If we wanted to move to a Java service then the tests are already there, we can re-implement it safely because we know the behaviour it is supposed to implement. We implement the API in Java and then we switch from the original implementation to the new one. We do so safe in the knowledge that the consumer does not know anything about the underlying implementation and that the new implementation mirrors exactly the original yet we are now free from the original platform.
+</p>
+<h4>
+	4. Version your APIs
+</h4>
+<p>
+	Versioning the APIs is a key part of being able to loosely couple your components. If you do not version these components the systems become highly coupled through the API when it comes to deployment time. You cannot deploy either the client or the component without the client breaking. With a versioned API you publish the server first and then the clients can make changes as time goes by. Usually the older versions are adapters that change the older message formats into the current versions and the newer results into the older version.
+</p>
+<p>
+	Once again, this does not isolate us from change directly but again reduces the impact of any one specific change. 
+</p> 
+<h4>
+	5. Automate
+</h4>
+<p>
+	I mentioned testing the APIs in a "realistic environment" above. Yet, if we are left to do this manually then we will ignore it when we are busy or we will leave it for weeks and do a lot of testing in one go. This not only leaves us open to "human" errors and mistakes passing incorrect functionality, or simply not having time and not testing everything but it also increases our feedback time. If I am updating an API and I break an earlier version, then I need to know as soon as possible so I am more able to find the breaking change. 
+</p>
+<p>
+	Each component should be able to be deployed automatically, each component should be deployed quickly to a test environment that is similar to the real one and it should be able to run the suite of tests that we have against it. If we have been conscientious and written the tests (or at least at the time of writing) so we know we have a comprehensive suite of tests a nightly build will let me know if I have broken anything.
+</p>
+<p>
+	Althought this does not directly isolate us from change it enables us to automatically verify that our systems work, and even integrate with each other. If we are wanting to develop and test a new implementation of a component then we should learn how to deploy it, we front-load the risk of learning how to deploy a new technology, we grow our understanding before we are there, on the "go-live" date panicking that we have not worked out how to correctly deploy our application, we have already automated everything.
+</p>
+
