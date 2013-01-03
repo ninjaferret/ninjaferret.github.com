@@ -117,3 +117,25 @@ categories:
 	Althought this does not directly isolate us from change it enables us to automatically verify that our systems work, and even integrate with each other. If we are wanting to develop and test a new implementation of a component then we should learn how to deploy it, we front-load the risk of learning how to deploy a new technology, we grow our understanding before we are there, on the "go-live" date panicking that we have not worked out how to correctly deploy our application, we have already automated everything.
 </p>
 
+<h3>
+	Choosing the right technology (2)
+</h3>
+<p>
+	Given what I have said above I would now ask you the question...
+</p>
+<blockquote>Is there a single "right technology" for your application?</blockquote>
+<p>
+	I think my answer would probably be <em>no</em>. There are several possible technologies that could implement each component and I have to then say that we have to look at a <em>good</em> technology in which to implement each component. We do not have to have a single technology stack any more.
+</p>
+<p>
+	We are moving towards having a polyglot of languages, frameworks and paradigms in our systems but each one suited to the individual component(s) that it supports. Does this mean that it will be harder to find developers? Perhaps, but good developers can understand multiple languages and may even be more interested in working in a variety of languages.
+</p>
+<p>
+	Loosely coupled, well tested components, give us the freedom the choose a good technology for each component. It allows us to migrate a component without significantly disturbing any of its clients with reduced effort. Should a platform that several of our components depend upon change it is rarely a sudden and immediate change, we have time to move to a new platform but with this system we can change one component at a time, learning about our new platform as we go.
+</p>
+<h3>
+	Final thoughts
+</h3>
+<p>
+	These are my thoughts about what we discussed in the meeting but I think they portray what we discussed but probably in a little more detail concerning the techniques. I think the discussion was interesting it cemented my views around designing a system around a set of APIs. This gives us the time to play, to try out new languages, new platforms, new frameworks and minimise the risk to our system, it is a technique we can use for prototyping with new technologies and evolving our system as technology moves on.
+</p>
