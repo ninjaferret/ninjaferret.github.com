@@ -1,0 +1,234 @@
+---
+layout: default
+title: DDD eXchange - Functional DDD - Greg Young
+summary: I went to DDDX at Skillsmatter and here's Greg Young's talk on Event Sourcing being a functional concept
+categories:
+- Conferences
+- DDDX
+- 2012
+---
+
+<p>
+	Greg Young was the first speaker at <a href="http://skillsmatter.com">Skillsmatter's</a> DDD eXchange and was talking to 
+	us about how functional programming and <em>Domain Driven Design</em> can work together peacefully.
+</p>
+<p>
+	The origins of <em>DDD</em> lay firmly in the Object Oriented world. The <em>Domain Models</em> in our code are linked
+	directly to the <em>Ubiquitous Language</em>, the code and the language we use to describe the domain are as one. Therefore
+	in the object world the objects are the nouns and the methods are the verbs. So how does this work in a functional context where there
+	are only functions? I think that there are still a few issues that Greg has not fully answered in this but I'm hoping to play with the ideas
+	in the future to really understand my own doubts
+</p>
+<h3>
+	Refactoring the Domain
+</h3>
+<p>
+	So, assuming that we have an domain around eCommerce we may well have the concept of a <strong>InventoryItem</strong>
+	which is something you can sell. Assume someone wants to deactivate the item:
+</p>
+<code>
+	<pre class="brush: csharp">
+	public class InventoryItem
+	{
+		...
+		public void Deactivate(string reason)
+		{
+			if (!_active) throw new AlreadyDeactivatedException(_id);
+			_active = false;
+		}
+		...
+	}
+	</pre>
+</code>
+<p>
+	At the moment that this is not even <em>event sourced</em>, but we also want to think about splitting apart the logic that decides whether
+	the state change can occur from the actual state change.
+</p>
+<code>
+	<pre class="brush: csharp">
+	public class InventoryItem
+	{
+		...
+		public void Deactivate(string reason)
+		{
+			if (!_active) throw new AlreadyDeactivatedException(_id);
+			DoDeactivate(reason);
+		}
+		
+		private void DoDeactivate(string reason)
+		{
+			_active = false;
+		}
+		...
+	}
+	</pre>
+</code>
+<h3>
+	Making it Event Sourced
+</h3>
+<p>
+	It is easy to make things <em>Event Sourced</em>  from this position, we refactor further to extract out the parameters
+	of the method into a class that represents the state change:
+</p>
+<code>
+	<pre class="brush: csharp">
+	public class InventoryItem
+	{
+		...
+		public void Deactivate(string reason)
+		{
+			if (!_active) throw new AlreadyDeactivatedException(_id);
+			DoDeactivate(new InventoryItemDeactivated(_id, reason));
+		}
+		
+		private void DoDeactivate(InventoryItemDeactivated event)
+		{
+			_active = false;
+		}
+		...
+	}
+	
+	public class InventoryItemDeactivated : Event
+	{
+		public InventoryItemDeactivated(string reason)
+		{
+			...
+		}
+	}
+	</pre>
+</code>
+<p>
+	When we have separated the code out in this  manner we can re-build the state of the object by applying methods in sequence:
+<p>
+<code>
+	<pre class="brush: csharp">
+	var item = new InventoryItem();
+	item.Created(...);
+	item.PriceUpdated(...);
+	item.Deactivated(...);
+	</pre>
+</code>
+<p>
+	Also, we are now independent of any logic that may be imposed, any calculations. We are simply involved in state change
+	but what that state change means can vary over time.
+</p>
+<h3>
+	Event Sourcing is Functional
+</h3>
+<p>
+	Greg argues that when you have made your model <em>Event Sourced</em> then the <em>Events</em> are 
+	representations of method calls, they are the serialized function calls of the <strong>DoXXX</strong> methods that change state
+	not the public methods that decide whether or not to allow the state the change. 
+</p>
+<p>
+	Let's make another change or two, assume that the <strong>InventoryItem</strong> is an immutable...
+</p>
+<code>
+	<pre class="brush: csharp">
+	public class InventoryItem
+	{
+		...
+		public void Deactivate(string reason)
+		{
+			if (!_active) throw new AlreadyDeactivatedException(_id);
+			DoDeactivate(new InventoryItemDeactivated(_id, reason));
+		}
+		
+		public InventoryItem DoDeactivate(InventoryItemDeactivated event)
+		{
+			return new InventoryItem(this, false);
+		}
+		...
+	}
+	
+	public class InventoryItemDeactivated : Event
+	{
+		public InventoryItemDeactivated(string reason)
+		{
+			...
+		}
+	}
+	</pre>
+</code>
+<p>
+	One advantage of this is that now we can re-build the state of the object at any time by chaining together method calls...
+</p>
+<code>
+	<pre class="brush: csharp">
+	new InventoryItem()
+		.Created(inventoryItemCreated)
+		.PriceUpdated(inventoryItemPriceUpdated)
+		.Deactivated(inventoryItemDeactivated);
+	</pre>
+</code>
+<p>
+	I would apply a simple refactoring here and given that the context of the method call is given in the event then we can call the methods 
+	<strong>Apply</strong>:
+</p>
+<code>
+	<pre class="brush: csharp">
+	new InventoryItem()
+		.Apply(inventoryItemCreated)
+		.Apply(inventoryItemPriceUpdated)
+		.Apply(inventoryItemDeactivated)
+	</pre>
+</code>
+<p>
+	So, what if we each function returns a current state of the <strong>InventoryItem</strong> then we can remove the need
+	for the objects and we can, in a functional language, simply chain calls together to get to the current state of the item:
+</p>
+<code>
+	<pre class="brush: csharp">
+	Apply(
+		Apply(
+			Apply(inventoryItemCreated),
+			,inventoryItemPriceUpdated),
+		inventoryItemDeactivated);
+	</pre>
+</code>
+<p>
+	So, I've be focussed on re-hydration of the current state from <strong>Events</strong> but now what happens when 
+	we issue a command? Greg explained that these methods would return the event to represent the state change...
+</p>
+<code>
+	<pre class="brush: csharp">
+	evt = Reactivate(
+			Apply(
+				Apply(
+					Apply(inventoryItemCreated), 
+					inventoryItemPriceUpdated), 
+				inventoryItemDeactivated))
+	currentState = Apply(
+				Apply(
+					Apply(
+						Apply(inventoryItemCreated), 
+						inventoryItemPriceUpdated), 
+					inventoryItemDeactivated), 
+				evt)
+	</pre>
+</code>
+<h3>
+	Conclusion
+</h3>
+<p>
+	Greg has a habit of killing my illusions, and I don't think that it is just me who takes a look at his work and thinks "hey, is it
+	really that simple?" but I think he just looks at the problems from a different perspective. There are things that I have yet to
+	be convinced about in terms of functional <em>DDD</em>:
+</p>
+<ul>
+	<li>
+		Cohesion: one thing the object model gives you is strong cohesion of the functions, even if we are doing the 
+		<em>immutable</em> domain object then all of the state change methods are bound together in the object
+		and can be hidden inside the object from the outside world, I could envisage a 
+		<strong>BuildFromHistory(IEnumerable&lt;Event&gt; history)</strong> method on the object that will
+		return it's immutable state.
+	</li>
+	<li>
+		Where is the model that we are working on? Where is the <em>ubiquitous language</em>?
+		I can see that we can still model the verbs as methods, as event representations, but where do the nouns fit
+		into this? Do we lose the nouns now?
+	</li>
+</ul>
+	
+	
+	
