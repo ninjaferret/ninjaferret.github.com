@@ -1,0 +1,175 @@
+---
+layout: default
+title: WCF Clients Part 3 - Runtime Generated Proxies
+summary: WCF Clients Part 3 - Runtime Generated Proxies
+categories:
+- .NET
+- C#
+- WCF
+---
+In <a href="http://ninjaferret.co.uk/blog/?p=98">Part 1</a> and <a href="http://blog.ninjaferret.co.uk/?p=109">Part 2</a> of my WCF Client series I have described the problems that I have encountered while building clients for WCF services and how I went about solving those problems by hand-crafting my own code. Having identified a standard pattern that I was using for creating a proxy client for a WCF service as seen in <a href="http://blog.ninjaferret.co.uk/?p=109">Part 2</a>.
+
+My earlier posts were focussed around understanding IL and how to use IL to generate classes at runtime to implement an interface with the aim of generating proxy clients to implement the service interfaces. 
+
+I have created a framework that will automatically generate a proxy client for the service interface at runtime. The <a href="http://github.com/downloads/ninjaferret/NinjaFerret.Wcf/NinjaFerret.Wcf.Client.zip">assemblies can be downloaded here</a> and the source code can be found <a href="http://github.com/ninjaferret/NinjaFerret.Wcf">on the github repository</a>  and I am going to talk about this new framework in this post.
+
+<h2>Recap of the scenario I have</h2>
+
+I have an account service that has been defined previously but now has been changed into a WCF service definition:
+
+[sourcecode language="csharp" gutter="false"]
+[ServiceContract]
+public interface AccountService
+{
+    [OperationContract]
+    [FaultContract(typeof(AccountNotFoundFault))]
+    Account Get(int id);
+
+    [OperationContract]
+    [FaultContract(typeof(NoMatchingAccountsFault))]
+    Account Find(string customerName, AccountType accountType);
+
+    [OperationContract]
+    [FaultContract(typeof(InvalidCustomerNameFault))]
+    void Create(string customerName, AccountType accountType);
+
+    [OperationContract]
+    [FaultContract(typeof(AccountNotFoundFault))]
+    void Delete(int accountId);
+
+    [OperationContract]
+    [FaultContract(typeof(AccountNotFoundFault))]
+    [FaultContract(typeof(InvalidCustomerNameFault))]
+    void ChangeAccountDetails(int accountId, string customerName, AccountType accountType);
+
+    [OperationContract]
+    [FaultContract(typeof(AccountNotFoundFault))]
+    void FreezeAccount(int accountId);
+}
+[/sourcecode]
+
+The client would like to have two different interfaces, the first of which is a general bank teller site written in ASP.NET MVC and a second administrator's application written in WPF that would be installed on the administrator's PC (at the moment as a means to justify having the service).
+
+Having now defined the service interface as well as the models and even the faults/exceptions within a single assembly that will be referenced by both clients and by the service itself. The original service implementation will stay exactly the same and a new service implementation will be created to wrap the original service but handle the conversion between the original exceptions and the Faults that are to be carried over the wire.
+
+<h2>Translating the exceptions within the service</h2>
+
+If you take the original service:
+
+[sourcecode language="csharp" gutter="false"]
+public class InternalAccountService : AccountService
+{
+    //constructors and member variables here...
+
+    public Account Get(int id)
+    {
+        var account = _accountRepository.Get(id);
+        if (account == null)
+            throw new AccountNotFoundException(id);
+        return account;
+    }
+
+    // All the other methods go here
+}
+[/sourcecode] 
+
+Create the <strong>AccountNotFoundFault</strong> fault making it implement <strong>NinjaFerret.Wcf.Exception.TranslatableFault</strong> then change the <strong>AccountNotFoundException</strong> to implement <strong>NinjaFerret.Wcf.Exception.ITranslatableException</strong>:
+
+[sourcecode language="csharp" gutter="false"]
+[DataContract]
+public class AccountNotFoundFault : TranslatableFault
+{
+    [DataMember]
+    public int AccountId { get; set; }
+
+    public override Exception ToException()
+    {
+        return new AccountNotFoundException(AccountId);
+    }
+}
+
+public class AccountNotFoundException : Exception, NinjaFerret.Wcf.Exception.ITranslatableException
+{
+    public int AccountId { get; private set; }
+
+    public AccountNotFoundException(int accountId) 
+       : base(string.Format(&quot;Account {0} could not be found&quot;, accountId)
+    {
+        AccountId = accountId;
+    }
+
+    public Fault ToFaultException()
+    {
+        return new FaultException&lt;AccountNotFoundFault &gt;(
+                    new AccountNotFoundFault {AccountNumber = AccountNumber},
+                    &quot;The account does not exist&quot;);
+    }
+}
+[/sourcecode]
+
+Your service wrapper becomes:
+
+[sourcecode language="csharp" gutter="false"]
+public class ExposedAccountService : AccountService
+{
+    // Constructors and member variables
+
+    public Account Get(int id)
+    {
+        try
+        {
+            return _internalAccountService.Get(id);
+        }
+        catch(AccountNotFoundException e)
+        {
+            throw e.ToFaultException();
+        }
+    }
+
+    // And other method implementations here
+}
+[/sourcecode]
+
+I can then host this service wrapper within IIS, within a windows service or anywhere a WCF service can be hosted.
+
+<h2>What happens to the client?</h2>
+
+I now have a service that I can communicate with but what do I have to do on the client? Well, that is where the <strong>NinjaFerret.Wcf.Client.ClientFactory</strong> class comes into play. 
+
+I am assuming that the client has been written against original interface and the current implementation (the <em>InternalAccountService</em>) was injected in to the constructor (my sample application does this using the <a href="http://www.castleproject.org/container/index.html">Castle Windsor</a> dependency injection framework). Whatever injects the service implementation into the client now needs to call:
+
+[sourcecode language="csharp" gutter="false"]
+// this will require that a standard endpoint is set up with the name
+// AccountService
+new ClientFactory&lt;AccountService&gt;().Generate(); 
+[/sourcecode]
+
+Or if you need to call into services that provide the same interface but with different endpoints then each endpoint will need its own name:
+
+[sourcecode language="csharp" gutter="false"]
+// this will require that a standard endpoint is set up with the specified endpoint name
+new ClientFactory&lt;AccountService&gt;().GenerateForEndpoint(string endpointName); 
+[/sourcecode]
+
+The <strong>ClientFactory</strong> will, at runtime, generate a client for you based on the information provided by the original interface and will use the <strong>NinjaFerret.Wcf.Exception</strong> faults provided to convert back and throw the original exceptions therefore there is no additional exception handling to be done on the client (if there is a communication exception then the client may need to handle this case but it is a significantly smaller change that would not affect behaviour should we revert to running the service in-line). The generated client handles all exceptions that come across the wire and correctly disposes any failed channels so we do not have to change the clients to dispose of the service. 
+
+What remains is the standard config changes for defining a WCF  endpoint:
+
+[sourcecode language="xml" gutter="false"]
+&lt;system.serviceModel&gt;
+    &lt;client&gt;
+      &lt;endpoint address=&quot;http://localhost:8010/AccountService&quot; binding=&quot;basicHttpBinding&quot;
+        bindingConfiguration=&quot;&quot; contract=&quot;NinjaFerret.Wcf.Sample.BankManager.Interface.AccountService&quot;
+        name=&quot;AccountService&quot; kind=&quot;&quot; endpointConfiguration=&quot;&quot;&gt;
+      &lt;/endpoint&gt;
+    &lt;/client&gt;
+  &lt;/system.serviceModel&gt;
+[/sourcecode]
+
+<h2>So what now?</h2>
+
+That is up to you... 
+
+1. Download it
+2. Try it
+3. Give feedback - without feedback (good or bad) I can't improve it

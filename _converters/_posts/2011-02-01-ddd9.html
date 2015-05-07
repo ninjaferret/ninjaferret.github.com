@@ -1,0 +1,91 @@
+---
+layout: default
+title: DDD9
+summary: DDD9
+categories:
+- Conferences
+- DeveloperDeveloperDeveloper
+---
+Firstly I have to say massive thanks to the organisers of <a href="http://developerdeveloperdeveloper.com/ddd9/">DDD9</a> who, once again, have put on a fantastic free conference for us and thanks to the speakers who put their time and effort into the sessions. 
+
+So what did I go to see:
+
+<h2>Functional Programming in C#</h2>
+by Oliver Sturm
+
+Oliver talked us through some of the basic principles of the functional paradigm, he talked about <strong>Closures</strong>, <strong>Functional composition</strong> and even <strong>Currying</strong>. The focus of the talk was on how we can apply the functional principles within C# and how many functional concepts have been brought into the language (LINQ being the most obvious).
+
+The shape of the code that we would write would be significantly different if we approached C# in function manner and there is one thing that I personally would hate which is the proliferation of generic parameters:
+
+Func<T1, T2, T3, T4> func = (a, b, c) => (a * b) + c;
+Func<T1, T2, T3, T4> curriedFunc = a => b => c => f(a, b, c); 
+
+This is why I much prefer F#, because it has been designed to be functional and dynamically typed rather than designed to be a static language but Oliver really did explain a lot of the features of the functional paradigm that will make me think about how I approach my C# development. 
+
+<h2>CQRS, Fad or Future?</h2>
+by Ian Cooper
+
+I have been a fan of the <strong>CQRS</strong> pattern for some time but I thought that it would be good to hear someone else's opinions and see if Ian was going to give us a pure, simplest definition, and not make the mistake of over-complicating it. Thankfully, Ian takes the same approach to <a href="http://blog.ninjaferret.co.uk/?p=184">CQRS</a> as I do, that is a fundamentally simple pattern separate your <strong>reads</strong> from your <strong>writes</strong>.
+
+For me this should be how we split the interfaces, we have two interfaces into a domain that split these two fundamentally different aspects of the domain. They are then free to use simple models that are focussed on either commands, or focussed on the queries that are needed within the system. Each interface can be then scaled and secured independently. 
+
+Ian told us what CQRS is definitely not, it is definitely not <strong>Event Sourcing</strong> and nor is it <a href="http://blog.ninjaferret.co.uk/?p=221">Domain events</a> though he touched very briefly on these topics. In my opinion the Domain events are the way in which domains interact with each other, they are almost integration level commands, whereas the Commands we normally talk about are externally driven.
+
+<h2>HTML5 Boilerplate</h2>
+by Dan Maharry
+
+The <a href="http://html5boilerplate.com/">HTML5 Boilerplate</a> is the collective work of a number of web developers who have built a template that will provide a basic structure for almost any site. I think that this is a fantastic tool that we should hook into because it already provides standards for handling cross-browser Javascript and CSS support to your tools.
+
+<h2>Grok Talks</h2>
+
+<h3>Sharepoint and Visio 2010</h3>
+by Dave McMahon
+
+This is a talk that is a shortened version that I have seen at <a href="http://nxtgenug.net">nxtgen user group</a> and it concerns the ability to expose the data bound visio diagrams through sharepoint onto the web using Silverlight controls. 
+
+<h3>CUDA</h3>
+by Rob Ashton
+
+CUDA is a framework for running additional processing on the GPU. It seems like a very cool framework with a very odd syntax, lots of angle brackets, I won't go into details but <strong>Add<<<1,1>>>(4, 6, output) </strong> is a little excessive.
+
+<h3>IronRuby</h3>
+
+IronRuby is a ruby implementation based on the Dynamic Language Runtime and we were given a brief but very interesting demonstration of IronRuby running on the Windows Phone 7, being dynamically changed on the phone and then running. This is a fantastic way to update your apps without having to submit to regular reviews on the app store, just download new IronRuby files and you're done.
+
+<h2>Is Your Code Solid?</h2>
+
+Once again this was a demonstration of the SOLID principles that every developer should be aware of and the following design smells that probably mean that our code isn't solid:
+
+<ul>
+  <li>Rigidity - Every change causes everything else in the system to change</li>
+  <li>Fragility - Changing X will break Y</li>
+  <li>Immobility - I can see a way to re-use X but can't re-use it because it would break Y => copy and paste</li>
+  <li>Software Viscosity - it takes too much time to "to the right thing", the hack is cheaper</li>
+  <li>Environmental Viscosity - external forces stop us "doing the right thing"</li>
+  <li>Needless complexity - this really hides the intent of the code</li>
+  <li>Needless repetition - copied code is everywhere</li>
+  <li>Opacity - this is linked to needless complexity but the code is difficult to maintain and understand</li>
+</ul>
+
+<h2>From .NET to Rails</h2>
+by Colin Gemmell
+
+This was a great talk that took us through Colin's journey into becoming a ruby developer. Starting from using IDEs that try to emulate the eclipse/visual studio environment including intellisense, which is extremely difficult for a language such as Ruby where to work out what methods are available you have to execute the code, to a basic overview of monkey patching and the problems that it holds. 
+
+Colin took us through the SOLID principles and which ones were applicable to ruby programs. 
+
+This was a refreshingly honest talk, there were problems with ruby but there were advantages to ruby such as the fact that the conventions involved in Rails development allowed for extremely rapid development but they then often caused other problems when it came to scaling of systems and the Active Record pattern. Be sure that you know how many database calls you are making when you are writing your ruby classes, you may be surprised.
+
+We also got a brief look at deployment with Ruby, which, once again really does put the .NET world to shame but this is something that we could learn from and do properly, find an architectural pattern and build templates, packages etc that will allow us to rapidly build our applications.
+
+<h2>Continuous Integration</h2>
+
+The final talk I attended as about continuous integration. The purpose of continuous integration is to assist the developers in producing better software, it was a good talk that focussed on a practical demonstration of TeamCity. 
+
+There were a number of points that I picked up on including the idea that the build environment is something that should be clean, that should be a blank slate and that we should make sure that our systems build on a blank slate... checkout and build... 
+
+The ultimate goal would be to end up in a place where we have sufficient automated testing, sufficiently frequent buildings and sufficiently short iterations that we could build and deploy our code from our build server.
+
+<h2>And finally...</h2>
+
+I would heartily recommend these events to anyone who is interested in development, it is an amazing conference with amazing people and once more many thanks to the organisers, speakers and attendees for making it an education and a pleasure. 

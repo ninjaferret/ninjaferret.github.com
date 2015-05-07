@@ -1,0 +1,103 @@
+I recently gave a nugget at <a href="http://nxtgenug.net/">nxtgen user group</a> in Cambridge on Kanban and thought that I would just get my <a href="http://ninjaferret.co.uk/Presentations/Kanban.pptx">slides on-line</a> for people to download.
+
+For several years I have been working within an agile team, or a team trying to be agile in a hostile world. We were trying to use SCRUM and achieved a lot but there were times when we actually found that it became difficult because we were not quite managing to do agile methods to their completion as we found it difficult to break away from the traditional waterfall methodologies. Testers were not close to the development so months of development work was being done before testers would even look at it and on the other side of development we were expected to do a significant amount of  analysis and design months in advance of any software being developed.
+
+My team was faced with the question <em>how much time are we going to commit to fixing bugs this iteration?</em> How can we answer that? Perhaps if we knew what bugs there were going to be found then we would know how we were going to fix them but this is the real world and we guessed. Were the guesses accurate? We found that either we were significantly under or over-committing to the sprint depending on the bugs that were found in the last project. At this point the sprints started to fail and the team became demotivated.
+
+Kanban came to the rescue. 
+
+<h2>What is Kanban?</h2>
+
+Kanban originated in the 1940's and 50's from Toyota where they were developing the <em>lean</em> processes. They devised a process where each process in the chain was the consumer of the earlier processes, in the system there should be enough parts in the stores to allow the current process to take only what it needs and then a <em>signal</em> (usually in the form of a card - or <strong>Kanban</strong> as they are called in Japanese) is sent to the previous process to produce more of the consumed items.
+
+The delivery of the final product to the consumer determines the rate of flow, if demand is low then production slows down (by removing Kanban from the system) and if demand increases more Kanban are pushed into the system to meet demand.  
+
+<h2>Applying Kanban...</h2>
+Kanban does not always have to be applied to the manufacturing industry where it was first conceived, it can be used as a means of managing workflow in a number of different environments and be applied to many processes.
+
+<h3>Value stream</h3>
+
+The first thing that you really need to do is to start looking at the <em>Value Stream</em> that you are applying Kanban to, personally I would start with the most basic flow:
+
+<ol>
+  <li><strong>To Do</strong> this is the list of tasks (hopefully prioritised) that needs to be done, sometimes I will call this <em>Options</em>.</li>
+  <li><strong>Doing</strong> the list of tasks that is currently being worked on, the things that are in progress.</li>
+  <li><strong>Done</strong> the task has been completed - it is up to the individual team to determine what they define by done</li>
+</ol>
+
+In a complicated process then it is necessary to actually break down the "Doing" column down into smaller sections that map the process that a task has to go through in order to be completed. Given the software development domain then we may have:
+
+<ul>
+  <li>Analysis</li>
+  <li>Development</li>
+  <li>Test</li>
+ </ul>
+
+We may say that something is only truly done when it is deployed to the production environment.
+
+<h3>Introduce a pull-based signalling mechanism...</h3>
+
+So, having mapped our value stream we need to think about a system where the new features are pulled through the system rather than being pushed through. Continuing with the development environment and assuming that we are aiming to deliver features into a system:
+
+<ul>
+  <li>The <strong>Testers</strong> finishes testing a feature, releases it for production deployment. They know that a feature is waiting for them and so they begin testing that feature. This is the signal to the development team that the test team need will soon need a new feature to test.</li>
+  <li>The <strong>Developers</strong> were already working on a new feature and deliver it to the test team, they complete the work and it is ready to test. They have received a signal from the Test Team that they can start work on a new feature so they take the feature that is pending; this is the signal to the analysts that a new feature is required.</li>
+  <li>The <strong>Analysts</strong> were already preparing the initial analysis for a new feature and make it available when it is ready. They receive a signal from the development team saying that they have no pending work therefore they take the next high priority story and begin their analysis.</li>
+</ul>
+
+Therefore the flow has changed from people saying "you will deliver this" to simply focussing on delivering at the speed of the slowest component.
+
+<h3>Visualisation</h3>
+
+When applying Kanban to software processes people tend to create a <strong>Kanban board</strong>. At the moment I am using a whiteboard:
+
+[caption id="attachment_147" align="alignnone" width="300" caption="My team\'s Kanban board"]<a href="http://ninjaferret.co.uk/blog/wp-content/uploads/2010/10/KanbanAtWork_small.png"><img src="http://ninjaferret.co.uk/blog/wp-content/uploads/2010/10/KanbanAtWork_small-300x237.png" alt="This is my team&#039;s Kanban board" title="My team&#039;s Kanban board" width="300" height="237" class="size-medium wp-image-147" /></a>[/caption]
+
+It is broken down into the three basic components:
+
+<ul>
+   <li>Options - a prioritised list of items that need to be done (<em>To Do</em> from above)</li>
+   <li>In Progress - what the team is working on (<em>Doing</em> from above)</li>
+   <li>Deployed - the work is finally deployed to the production server (<em>Done</em> from above)</li>
+</ul>
+
+I would generally advise that you keep the board simple and focus on mapping your value stream. We split the <em>In Progress</em> column into the three phases of <strong>Analysis</strong>, <strong>Build</strong> and <strong>Test</strong>. In the lower horizontal swim-lane we have provided a number of different sections that representing the flow of data:
+
+<ul>
+  <li><strong>Parked</strong> - After initial analysis the project is put on hold until approval is reached and once more after the design has been produced. As you can see, we have done a lot analysis and design at the moment.</li>
+  <li><strong>Awaiting Test</strong> - Our Test Team are in control about when they receive the new features. We have split this section into two pieces, the first for items in the release currently being tested and the other for items being built for the next release.</li>
+  <li><strong>Awaiting deployment</strong> - If/When the test team tell us that a feature has been tested (including UAT) then it is now just waiting for a deployment to be scheduled.</li>
+  <li><strong>Rejected</strong> - This is for features that have either been pulled, due to the estimates being large, or for bugs reported where the problem was with the original setup data.</li>
+</ul> 
+
+This board represents our view of the world, it was not our first attempt and I'm sure that over time it will evolve further.
+
+We have also been experimenting with recording the dates on which the features move from one state to the next, as we record these facts we can build metrics of how long different sized features take to pass through each stage in the system.
+
+<h3>Limiting Work in Progress</h3>
+
+We use our Kanban board to help us limit the amount of work in progress that our team is doing. With a team of 5 people we limit ourselves to no more than 8 features in progress at once, 4 things in analysis and design with a further 4 things in build. At the moment we do not constrain the work of the Test Team because we deliver work to them in a waterfall manner.
+
+Why do we limit the work in progress? If we do not limit our work in progress then a team can quickly become swamped with requests for designs to be done, bugs raised by the test team, new features and numerous other things. Context switching is expensive and it is often easier to focus on a single thing to completion before starting the next. 
+
+Limiting the total work in progress for the team to less than double the team's number ensures that no one person can be working on more than two things at once, if one task is blocked then they can work on the other. However, it encourages people to help the other members of the team, if I complete something in <em>build</em> but nothing is ready for analysis I should help someone finish their analysis, or do some work to aid the test team.
+
+
+<h3>Identifying inefficient processes</h3>
+
+So far I have talked about mapping your value streams, visualising your progress with a Kanban board and limiting your work in progress. The Kanban board is flowing and it becomes quickly obvious where the most inefficient processes are:
+
+<ul>
+  <li>Testing is swamped - there are over 40 items stacked within the test column</li>
+  <li>We are doing a significant amount of analysis so far ahead of development that we have to re-analyse everything before starting work</li>
+</ul>
+
+These are things that we already "know" but it helps us to quantify and visualise the nature of the problem. We know now that there are features waiting for almost 5 months from when we finished the development and have not yet gone into testing. We know that testing is swamped and we can see just how much work they have to do. Will this help us make changes? I hope so.
+
+<h3>Experiment</h3>
+
+The Kanban board has to be built for your specific team, they have to mean something to your team because unless you get buy-in from everyone then it is not going to work. Apply the <em>Inspect and Adapt</em> principle, try something for a while, review it and then decide whether it was a success or not.
+
+<h2>Summary</h2>
+
+Kanban is a simple system, it is a signalling system that works with your current processes, gives you the ability to constrain your work to make you more efficient and allows you to visualise the inefficiencies in your system. Please try out Kanban and experiment with it.

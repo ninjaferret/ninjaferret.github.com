@@ -1,0 +1,123 @@
+---
+layout: default
+title: MSIL - 3. If Statements...
+summary: MSIL - 3. If Statements...
+categories:
+- .NET
+- C#
+- Reflection
+---
+For my third post in the MSIL series I want to focus on a simple if statement, how do I represent the code <strong>if (x != 0)</strong> using IL?
+
+The source code for this can be found in my <a href="http://code.assembla.com/NinjaFerretDemos/subversion/nodes/Reflection/If">subversion repository</a>.
+
+<h3>Implementing division</h3>
+
+I want to take a look at the <strong>Divide()</strong> method of the Calculator class:
+
+[sourcecode language="csharp" gutter="true"]
+public int Divide(int numerator, int denominator)
+{
+	if (denominator != 0)
+	{
+		throw new ArgumentException(&quot;denominator cannot be zero&quot;,
+		                            &quot;denominator&quot;);
+	}
+	return numerator/denominator;
+}
+[/sourcecode]
+
+This gives me the opportunity to show the implementation of conditional statements and the throwing of exceptions. What would this implementation generate in IL terms for handling the equality?
+
+<code>
+.method public hidebysig newslot virtual final
+        instance int32  Divide(int32 numerator,
+                               int32 denominator) cil managed
+{
+  // Code size       37 (0x25)
+  .maxstack  3
+  .locals init ([0] int32 CS$1$0000,
+           [1] bool CS$4$0001)
+  IL_0000:  nop
+  IL_0001:  ldarg.2
+  IL_0002:  ldc.i4.0
+  IL_0003:  ceq
+  IL_0005:  ldc.i4.0
+  IL_0006:  ceq
+  IL_0008:  stloc.1
+  IL_0009:  ldloc.1
+  IL_000a:  brtrue.s   IL_001d
+  IL_000c:  nop
+  IL_000d:  ldstr      "denominator cannot be zero"
+  IL_0012:  ldstr      "denominator"
+  IL_0017:  newobj     instance void [mscorlib]System.ArgumentException::.ctor(string,
+                                                                               string)
+  IL_001c:  throw
+  IL_001d:  ldarg.1
+  IL_001e:  ldarg.2
+  IL_001f:  div
+  IL_0020:  stloc.0
+  IL_0021:  br.s       IL_0023
+  IL_0023:  ldloc.0
+  IL_0024:  ret
+} // end of method CalculatorImplementation::Divide
+</code>
+
+The <strong>if</strong> statement is executed between <strong>IL_0001</strong> and <strong>IL000a</strong>. The first thing is to push onto the stack the demoninator (<strong>ldarg.2</strong>) and the constant integer zero (<strong>ldc.i4.0</strong>) then compare them using the equals comparison operator (<strong>ceq</strong>), which pushes either a <strong>1</strong> onto the stack if it is true and <strong>0</strong> if it is false. As I am doing a <strong>not equals</strong> comparison we then compare the result of the first comparison with <strong>0</strong> to find out if the two items do not match, the result of this equality is placed back onto the stack.
+
+What do we know now? <strong>brtrue.s   IL_001d</strong> tells the compiler that if the calculation above (i.e. is the denominator not equal to zero) is true then jump past the exception throwing statements to the calculation part at position <strong>IL001d</strong> that follows the standard pattern of the Add and Subtract methods described in my first post.
+
+
+The resulting IL looks like:
+
+[sourcecode language="csharp" gutter="true"]
+private static void DefineDivideMethod(TypeBuilder typeBuilder, Type interfaceType)
+{
+	var interfaceSubtractMethod = interfaceType.GetMethod(&quot;Divide&quot;);
+	var methodBuilder = typeBuilder.DefineMethod(&quot;Divide&quot;,
+             MethodAttributes.Public |
+             MethodAttributes.Virtual |
+             MethodAttributes.Final |
+             MethodAttributes.NewSlot |
+             MethodAttributes.HideBySig);
+	methodBuilder.SetReturnType(interfaceSubtractMethod.ReturnType);
+	var parameters = interfaceSubtractMethod
+             .GetParameters()
+             .Select(parameter =&gt; parameter.ParameterType)
+             .ToArray();
+	methodBuilder.SetParameters(parameters);
+	methodBuilder.InitLocals = true;
+
+	var il = methodBuilder.GetILGenerator();
+	var returnLabel = il.DefineLabel();
+	var trueLabel = il.DefineLabel();
+	il.DeclareLocal(typeof (int));
+	il.DeclareLocal(typeof (bool));
+	il.Emit(OpCodes.Nop);
+	il.Emit(OpCodes.Ldarg_2);
+	il.Emit(OpCodes.Ldc_I4_0);
+	il.Emit(OpCodes.Ceq);
+	il.Emit(OpCodes.Ldc_I4_0);
+	il.Emit(OpCodes.Ceq);
+	il.Emit(OpCodes.Stloc_1);
+	il.Emit(OpCodes.Ldloc_1);
+	il.Emit(OpCodes.Brtrue_S, trueLabel);
+	il.Emit(OpCodes.Nop);
+	il.Emit(OpCodes.Ldstr, &quot;denominator cannot be zero&quot;);
+	il.Emit(OpCodes.Ldstr, &quot;demoninator&quot;);
+	il.Emit(OpCodes.Newobj, typeof (ArgumentException).GetConstructor(new[] {typeof (string), typeof (string)}));
+	il.Emit(OpCodes.Throw);
+	il.MarkLabel(trueLabel);
+	il.Emit(OpCodes.Ldarg_1);
+	il.Emit(OpCodes.Ldarg_2);
+	il.Emit(OpCodes.Div);
+	il.Emit(OpCodes.Stloc_0);
+	il.Emit(OpCodes.Br_S, returnLabel);
+	il.MarkLabel(returnLabel);
+	il.Emit(OpCodes.Ldloc_0);
+	il.Emit(OpCodes.Ret);
+	typeBuilder.DefineMethodOverride(methodBuilder, interfaceSubtractMethod);
+}
+[/sourcecode]
+
+So there it is, a simple if statement. The IL is starting to look increasingly complicated and it is becoming very clear that trying to dynamically generate code for anything but simple methods is increasingly difficult. What I will go onto in the very next post is how to do a simple loop to complete the fundamentals of programming.

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+    	<meta charset="utf-8"> 
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="stylesheet" href="/assets/stylesheets/bootstrap.min.css">
+	  	<link rel="stylesheet" href="/assets/stylesheets/styles.css">
+	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	    <link href="/assets/stylesheets/syntaxhighlighter/shCore.css" type="text/css" rel="stylesheet"/>
+	    <link href="/assets/stylesheets/syntaxhighlighter/shThemeDefault.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/stylesheets/twitter.css" type="text/css" rel="stylesheet"/>
+	    <title>Ninja Ferret : WCF Clients Part 3 - Runtime Generated Proxies </title>
+  	</head>
+  	<body>
+	  	<nav role="navigation" class="navbar navbar-default">
+		    <div class="navbar-header">
+		        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		        </button>
+		        <a href="#" class="navbar-brand">Ninja Ferret</a>
+		    </div>
+		    <div id="navbarCollapse" class="collapse navbar-collapse">
+		        <ul class="nav navbar-nav">
+		            <li><a href="http://ninjaferret.co.uk">Home</a></li>
+		            <li class="active"><a href="http://blog.ninjaferret.co.uk">Blog</a></li>
+		            <li><a href="http://ninjaferret.co.uk/about.aspx">About</a></li>
+		        </ul>
+		    </div>
+		</nav>
+		<div class="container-fluid">
+	  		<div class="row-fluid">
+				<h1 class="center-block"><a href="http://ninjaferret.github.com"><img class="center-block img-responsive" src="/assets/images/Logo-White.jpg" alt="Ninja Ferret" title="Ninja Ferret" /></a></h1>
+			</div>
+			<div class="row-fluid">
+				<div class="sub-heading">The random thoughts of a software developer</h2>
+			</div>
+		<!--<div id="side_bar">
+			<div id="atom">
+				<h3>Feeds</h3>
+				<a href="/feed.atom"><img src="http://www.mozilla.org/images/feed-icon-14x14.png" alt="Atom feed"/></a> To keep updated <a href="/feed.atom">subscribe to this atom feed</a>.
+			</div>
+			<div id="tags">
+				<h3>Tags</h3>
+				<ul>
+				
+				  	<li><a href="/tags.html#.net">.net</a> (10)</li>
+				
+				  	<li><a href="/tags.html#c#">c#</a> (10)</li>
+				
+				  	<li><a href="/tags.html#reflection">reflection</a> (5)</li>
+				
+				  	<li><a href="/tags.html#conferences">conferences</a> (7)</li>
+				
+				  	<li><a href="/tags.html#ddd8">ddd8</a> (1)</li>
+				
+				  	<li><a href="/tags.html#wcf">wcf</a> (3)</li>
+				
+				  	<li><a href="/tags.html#development methodologies">development methodologies</a> (2)</li>
+				
+				  	<li><a href="/tags.html#kanban">kanban</a> (1)</li>
+				
+				  	<li><a href="/tags.html#uk tech days">uk tech days</a> (1)</li>
+				
+				  	<li><a href="/tags.html#architecture">architecture</a> (5)</li>
+				
+				  	<li><a href="/tags.html#software architecture">software architecture</a> (3)</li>
+				
+				  	<li><a href="/tags.html#cqrs">cqrs</a> (1)</li>
+				
+				  	<li><a href="/tags.html#conference">conference</a> (1)</li>
+				
+				  	<li><a href="/tags.html#ddd">ddd</a> (1)</li>
+				
+				  	<li><a href="/tags.html#developerdeveloperdeveloper">developerdeveloperdeveloper</a> (2)</li>
+				
+				  	<li><a href="/tags.html#platform">platform</a> (1)</li>
+				
+				  	<li><a href="/tags.html#registration">registration</a> (1)</li>
+				
+				  	<li><a href="/tags.html#windows phone 7">windows phone 7</a> (1)</li>
+				
+				  	<li><a href="/tags.html#domain events">domain events</a> (1)</li>
+				
+				  	<li><a href="/tags.html#bar camp">bar camp</a> (1)</li>
+				
+				  	<li><a href="/tags.html#barcamp">barcamp</a> (1)</li>
+				
+				  	<li><a href="/tags.html#bdd">bdd</a> (1)</li>
+				
+				  	<li><a href="/tags.html#lean">lean</a> (2)</li>
+				
+				  	<li><a href="/tags.html#blogging">blogging</a> (4)</li>
+				
+				  	<li><a href="/tags.html#github">github</a> (4)</li>
+				
+				  	<li><a href="/tags.html#twitter">twitter</a> (1)</li>
+				
+				  	<li><a href="/tags.html#git">git</a> (1)</li>
+				
+				  	<li><a href="/tags.html#jekyll">jekyll</a> (1)</li>
+				
+				  	<li><a href="/tags.html#tags">tags</a> (1)</li>
+				
+				  	<li><a href="/tags.html#agile">agile</a> (1)</li>
+				
+				  	<li><a href="/tags.html#project management">project management</a> (1)</li>
+				
+				  	<li><a href="/tags.html#msbuild">msbuild</a> (1)</li>
+				
+				  	<li><a href="/tags.html#creativity">creativity</a> (4)</li>
+				
+				  	<li><a href="/tags.html#dddx">dddx</a> (2)</li>
+				
+				  	<li><a href="/tags.html#2012">2012</a> (2)</li>
+				
+				  	<li><a href="/tags.html#software craftsmanship">software craftsmanship</a> (1)</li>
+				
+				  	<li><a href="/tags.html#change">change</a> (2)</li>
+				
+				  	<li><a href="/tags.html#disruptive change">disruptive change</a> (1)</li>
+				
+			</div>
+	  		<div id="twitter">
+				<h3>Twitter</h3>
+				<p><a href="http://twitter.com/ijohnson_tnf"><img src="http://twitter.zendesk.com/attachments/token/yttm4jflos7vnyq/?name=t_mini-a.png" alt="Follow me on twitter" /></a> Follow <a href="http://twitter.com/ijohnson_tnf">@IJohnson_TNF</a> on Twitter</p>
+	 			<ul id="twitter_update_list"></ul>
+	  		</div>
+
+		</div>-->
+			<div class="wrapper">
+				<div class="container">
+					
+					<h2>WCF Clients Part 3 - Runtime Generated Proxies</h2>
+					
+
+					In <a href="http://ninjaferret.co.uk/blog/?p=98">Part 1</a> and <a href="http://blog.ninjaferret.co.uk/?p=109">Part 2</a> of my WCF Client series I have described the problems that I have encountered while building clients for WCF services and how I went about solving those problems by hand-crafting my own code. Having identified a standard pattern that I was using for creating a proxy client for a WCF service as seen in <a href="http://blog.ninjaferret.co.uk/?p=109">Part 2</a>.
+
+My earlier posts were focussed around understanding IL and how to use IL to generate classes at runtime to implement an interface with the aim of generating proxy clients to implement the service interfaces. 
+
+I have created a framework that will automatically generate a proxy client for the service interface at runtime. The <a href="http://github.com/downloads/ninjaferret/NinjaFerret.Wcf/NinjaFerret.Wcf.Client.zip">assemblies can be downloaded here</a> and the source code can be found <a href="http://github.com/ninjaferret/NinjaFerret.Wcf">on the github repository</a>  and I am going to talk about this new framework in this post.
+
+<h3>Recap of the scenario I have</h3>
+
+I have an account service that has been defined previously but now has been changed into a WCF service definition:
+
+<code><pre class="brush: csharp">
+[ServiceContract]
+public interface AccountService
+{
+    [OperationContract]
+    [FaultContract(typeof(AccountNotFoundFault))]
+    Account Get(int id);
+
+    [OperationContract]
+    [FaultContract(typeof(NoMatchingAccountsFault))]
+    Account Find(string customerName, AccountType accountType);
+
+    [OperationContract]
+    [FaultContract(typeof(InvalidCustomerNameFault))]
+    void Create(string customerName, AccountType accountType);
+
+    [OperationContract]
+    [FaultContract(typeof(AccountNotFoundFault))]
+    void Delete(int accountId);
+
+    [OperationContract]
+    [FaultContract(typeof(AccountNotFoundFault))]
+    [FaultContract(typeof(InvalidCustomerNameFault))]
+    void ChangeAccountDetails(int accountId, string customerName, AccountType accountType);
+
+    [OperationContract]
+    [FaultContract(typeof(AccountNotFoundFault))]
+    void FreezeAccount(int accountId);
+}
+</pre></code>
+
+The client would like to have two different interfaces, the first of which is a general bank teller site written in ASP.NET MVC and a second administrator's application written in WPF that would be installed on the administrator's PC (at the moment as a means to justify having the service).
+
+Having now defined the service interface as well as the models and even the faults/exceptions within a single assembly that will be referenced by both clients and by the service itself. The original service implementation will stay exactly the same and a new service implementation will be created to wrap the original service but handle the conversion between the original exceptions and the Faults that are to be carried over the wire.
+
+<h3>Translating the exceptions within the service</h3>
+
+If you take the original service:
+
+<code><pre class="brush: csharp">
+public class InternalAccountService : AccountService
+{
+    //constructors and member variables here...
+
+    public Account Get(int id)
+    {
+        var account = _accountRepository.Get(id);
+        if (account == null)
+            throw new AccountNotFoundException(id);
+        return account;
+    }
+
+    // All the other methods go here
+}
+</pre></code> 
+
+Create the <strong>AccountNotFoundFault</strong> fault making it implement <strong>NinjaFerret.Wcf.Exception.TranslatableFault</strong> then change the <strong>AccountNotFoundException</strong> to implement <strong>NinjaFerret.Wcf.Exception.ITranslatableException</strong>:
+
+<code><pre class="brush: csharp">
+[DataContract]
+public class AccountNotFoundFault : TranslatableFault
+{
+    [DataMember]
+    public int AccountId { get; set; }
+
+    public override Exception ToException()
+    {
+        return new AccountNotFoundException(AccountId);
+    }
+}
+
+public class AccountNotFoundException : Exception, NinjaFerret.Wcf.Exception.ITranslatableException
+{
+    public int AccountId { get; private set; }
+
+    public AccountNotFoundException(int accountId) 
+       : base(string.Format(&quot;Account {0} could not be found&quot;, accountId)
+    {
+        AccountId = accountId;
+    }
+
+    public Fault ToFaultException()
+    {
+        return new FaultException&lt;AccountNotFoundFault &gt;(
+                    new AccountNotFoundFault {AccountNumber = AccountNumber},
+                    &quot;The account does not exist&quot;);
+    }
+}
+</pre></code>
+
+Your service wrapper becomes:
+
+<code><pre class="brush: csharp">
+public class ExposedAccountService : AccountService
+{
+    // Constructors and member variables
+
+    public Account Get(int id)
+    {
+        try
+        {
+            return _internalAccountService.Get(id);
+        }
+        catch(AccountNotFoundException e)
+        {
+            throw e.ToFaultException();
+        }
+    }
+
+    // And other method implementations here
+}
+</pre></code>
+
+I can then host this service wrapper within IIS, within a windows service or anywhere a WCF service can be hosted.
+
+<h3>What happens to the client?</h3>
+
+I now have a service that I can communicate with but what do I have to do on the client? Well, that is where the <strong>NinjaFerret.Wcf.Client.ClientFactory</strong> class comes into play. 
+
+I am assuming that the client has been written against original interface and the current implementation (the <em>InternalAccountService</em>) was injected in to the constructor (my sample application does this using the <a href="http://www.castleproject.org/container/index.html">Castle Windsor</a> dependency injection framework). Whatever injects the service implementation into the client now needs to call:
+
+<code><pre class="brush: csharp">
+// this will require that a standard endpoint is set up with the name
+// AccountService
+new ClientFactory&lt;AccountService&gt;().Generate(); 
+</pre></code>
+
+Or if you need to call into services that provide the same interface but with different endpoints then each endpoint will need its own name:
+
+<code><pre class="brush: csharp">
+// this will require that a standard endpoint is set up with the specified endpoint name
+new ClientFactory&lt;AccountService&gt;().GenerateForEndpoint(string endpointName); 
+</pre></code>
+
+The <strong>ClientFactory</strong> will, at runtime, generate a client for you based on the information provided by the original interface and will use the <strong>NinjaFerret.Wcf.Exception</strong> faults provided to convert back and throw the original exceptions therefore there is no additional exception handling to be done on the client (if there is a communication exception then the client may need to handle this case but it is a significantly smaller change that would not affect behaviour should we revert to running the service in-line). The generated client handles all exceptions that come across the wire and correctly disposes any failed channels so we do not have to change the clients to dispose of the service. 
+
+What remains is the standard config changes for defining a WCF  endpoint:
+
+[sourcecode language="xml" gutter="false"]
+&lt;system.serviceModel&gt;
+    &lt;client&gt;
+      &lt;endpoint address=&quot;http://localhost:8010/AccountService&quot; binding=&quot;basicHttpBinding&quot;
+        bindingConfiguration=&quot;&quot; contract=&quot;NinjaFerret.Wcf.Sample.BankManager.Interface.AccountService&quot;
+        name=&quot;AccountService&quot; kind=&quot;&quot; endpointConfiguration=&quot;&quot;&gt;
+      &lt;/endpoint&gt;
+    &lt;/client&gt;
+  &lt;/system.serviceModel&gt;
+</pre></code>
+
+<h3>So what now?</h3>
+
+That is up to you... 
+
+1. Download it
+2. Try it
+3. Give feedback - without feedback (good or bad) I can't improve it
+
+					
+					<p class="post_categories"> Tags: 
+						
+						<a href="/tags.html#"></a>
+						
+						<a href="/tags.html#"></a>
+						
+						<a href="/tags.html#"></a>
+						
+					</p>
+					
+				</div>
+				
+					<div id="disqus_thread"></div>
+					<script type="text/javascript">
+					    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+					    var disqus_shortname = 'ninjaferretblog'; // required: replace example with your forum shortname
+
+					    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+					    //var disqus_identifier = 'unique_dynamic_id_1234';
+					    //var disqus_url = 'http://example.com/permalink-to-page.html';
+
+					    /* * * DON'T EDIT BELOW THIS LINE * * */
+					    (function() {
+					        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+					        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+					        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+					    })();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+				
+			</div>
+		</div>
+	<div id="footer">
+	 	&copy; Copyright 2010 Ian Johnson. All rights reserved. 
+	</div>
+</body>
+<script src="/assets/scripts/rendertweets.js" type="text/javascript"></script>
+<script src="http://twitter.com/statuses/user_timeline/ijohnson_tnf.json?callback=twitterCallback2&count=5" type="text/javascript"></script>
+<script src="/assets/scripts/syntaxhighlighter/shCore.js" type="text/javascript"></script>
+<script src="/assets/scripts/syntaxhighlighter/shBrushCSharp.js" type="text/javascript"></script>
+<script src="/assets/scripts/syntaxhighlighter/shBrushXml.js" type="text/javascript"></script>
+<script src="/assets/scripts/syntaxhighlighter/shBrushJScript.js" type="text/javascript"></script>
+<script src="/assets/scripts/syntaxhighlighter/shBrushPlain.js" type="text/javascript"></script>
+<script type="text/javascript">
+   SyntaxHighlighter.all(); 
+</script>
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-19283283-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+</html>

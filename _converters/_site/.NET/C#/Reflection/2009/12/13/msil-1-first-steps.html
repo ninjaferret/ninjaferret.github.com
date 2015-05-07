@@ -1,0 +1,156 @@
+In my first blog on this process I want to start simple, creating a basic calculator class that can Add and Subtract, using <strong>Reflection.Emit</strong> to give a basic introduction IL and some of the operations that I have encountered. In the subsequent blogs I will then build on this knowledge until I can achieve a specific goal of dynamically generating WCF clients at runtime.
+
+All of the source code for this blog can be found at <a href="http://code.assembla.com/NinjaFerretDemos/subversion/nodes/Reflection/FirstSteps">here</a>.
+
+<h3>What does IL look like?</h3>
+Not knowing IL I decided that the first thing to do was to write the class in C# properly, compile it then use ILDASM to take a look at the resulting IL.
+
+[sourcecode language="csharp" gutter="false"]
+public class Calculator
+{
+   public int Add(int a, int b) { return a + b; }
+   public int Subtract(int a, int b) { return a - b; }
+}
+[/sourcecode]
+
+Just looking a the Add method for now:
+
+<code>
+.method public hidebysig instance int32  Add(int32 a,
+                     int32 b) cil managed
+{
+  // Code size       9 (0x9)
+  .maxstack  2
+  .locals init ([0] int32 CS$1$0000)
+  IL_0000:  nop
+  IL_0001:  ldarg.1
+  IL_0002:  ldarg.2
+  IL_0003:  add
+  IL_0004:  stloc.0
+  IL_0005:  br.s       IL_0007
+  IL_0007:  ldloc.0
+  IL_0008:  ret
+} // end of method TestCalculator::Add
+</code>
+
+What does this all mean?
+
+<ul>
+	<li><strong>.maxstack 2</strong> tells the runtime to expect a maximum of 2 items on the stack during the execution of this method.</li>
+	<li><strong>.locals init ([0] int32 CS$1$0000)</strong> creates a new local variable of type <strong>Int32</strong> that will hold the result of the sum.</li>
+	<li><strong>IL_0000:  nop</strong> is an empty operation that does not have any affect on the system.</li>
+	<li><strong>IL_0001:  ldarg.1</strong> pushes argument 1 onto the stack - note that argument 0 for an instance method is the <strong>this</strong> parameter.</li>
+	<li><strong>IL_0002:  ldarg.2</strong> pushes argument 2 onto the stack.</li>
+	<li><strong>IL_0003:  add</strong> pops the two integers on the stack and adds them together, putting the result onto the stack.</li>
+	<li><strong>IL_0004:  stloc.0</strong> pops the item on the stack and stores it into the local variable at location 0 (defined above).</li>
+	<li><strong>IL_0005:  br.s       IL_0007</strong> transfers execution to the specified location. In my opinion it is almost redundant in this case as execution is being transferred to the next statement.</li>
+	<li><strong>IL_0007:  ldloc.0</strong> loads the value from the local variable and pushes it onto the stack</li>
+	<li><strong>IL_0008:  ret</strong> returns the value on the stack back to the caller</li>
+</ul>
+<h3>Generating this at runtime...</h3>
+
+I am now ready to begin auto-generating the above IL and I will be using the following basic pattern:
+<ol>
+	<li>Create a dynamic assembly to hold the new types</li>
+
+	<li>Create the <strong>TypeBuilder</strong> to generate the type</li>
+	<li>Create each required method using a <strong>MethodBuilder</strong></li>
+	<li>Create the actual type</li>
+</ol>
+
+<h4>1. Creating the dynamic assembly</h4>
+
+Before starting to generate types I have to first create an assembly and module in which to hold them:
+
+[sourcecode language="csharp" gutter="false"]
+var assemblyName = new AssemblyName {Name = &quot;Calculator&quot;};
+var assemblyBuilder = Thread.GetDomain().DefineDynamicAssembly(assemblyName,
+                            AssemblyBuilderAccess.RunAndSave);
+var modBuild = assemblyBuilder.DefineDynamicModule(&quot;CalculatorModule&quot;,
+                    string.Format(&quot;{0}.dll&quot;, assemblyName.Name)
+[/sourcecode]
+
+This simply defines a new dynamic assembly the <strong>AssemblyBuilderAccess.RunAndSave</strong> allows the code to be both executed and saved as an assembly to the file system. It does not automatically save the assembly, I will come to that later, but the ability to save can come in very handy when debugging the generated code. An alternative is to use <strong>AssemblyBuilderAccess.Run</strong> which will simply allow the assembly to be executed in memory.
+
+(Note: I would normally suffix the assembly name with a GUID or timestamp so that it can be uniquely identified, especially if saving to the file system)
+
+<h4>2. Create the TypeBuilder</h4>
+
+The <strong>ModuleBuilder.DefineType()</strong> method is used to create the type builder:
+
+[sourcecode language="csharp" gutter="false"]
+var typeBuilder = modBuild.DefineType(&quot;Calculator&quot;,
+                          TypeAttributes.Public |
+                          TypeAttributes.Class |
+                          TypeAttributes.AutoLayout |
+                          TypeAttributes.AnsiClass |
+                          TypeAttributes.BeforeFieldInit);
+[/sourcecode]
+
+The <strong>TypeAttributes</strong> were simply taken from what ILDASM was showing me from my compiled implementation of this code. We can see that this is now a public class but there are a few interesting attributes here that I had not seen before:
+
+<ul>
+	<li><strong>TypeAttributes.AutoLayout</strong> specifies that the fields are automatically laid out by the Common Language Runtime.</li>
+	<li><strong>TypeAttributes.AnsiLayout</strong> tells the underlying runtime that LPSTR is to be interpreted as an ANSI string.</li>
+	<li><strong>TypeAttributes.BeforeFieldInit</strong> states that calling static methods of the type does not force the system to initialize the type.</li>
+</ul>
+
+<h4>3. Create the methods</h4>
+
+Methods are created using the <strong>TypeBuilder.DefineMethod()</strong> method to create a <strong>MethodBuilder</strong> and then using the <strong>MethodBuilder.GetILGenerator()</strong> method to retrieve the object that we will use to generate the code:
+
+[sourcecode language="csharp" gutter="true" highlight="5,8,14,15"]
+var methodBuilder = typeBuilder.DefineMethod(&quot;Add&quot;,
+                    MethodAttributes.Public | MethodAttributes.Final);
+methodBuilder.SetReturnType(typeof(int));
+methodBuilder.SetParameters(new[] {typeof (int), typeof (int)});
+methodBuilder.InitLocals = true;
+
+var il = methodBuilder.GetILGenerator();
+var label = il.DefineLabel();
+il.DeclareLocal(typeof (int));
+il.Emit(OpCodes.Ldarg_1);
+il.Emit(OpCodes.Ldarg_2);
+il.Emit(OpCodes.Add);
+il.Emit(OpCodes.Stloc_0);
+il.Emit(OpCodes.Br_S, label);
+il.MarkLabel(label);
+il.Emit(OpCodes.Ldloc_0);
+il.Emit(OpCodes.Ret);
+[/sourcecode]
+
+Hopefully, the first few lines are self-explanatory, define the method with the set attributes (I'll explore method attributes in more detail in a later post) then set the parameters and return type.
+
+On line 5 the <strong>methodBuilder.InitLocals = true</strong> tells the runtime to automatically initialises local variables to zero.
+
+The following lines are simply emitting the operation codes identified in the IL that I generated above. Where you see "_1", "_2" etc. suffixes there is a more generic version where you can pass a <strong>short</strong> as the second parameter to <strong>il.Emit()</strong> e.g. <strong>il.Emit(OpCodes.Ldarg_1)</strong> can be written <strong>il.Emit(OpCodes.Ldarg, (short)1)</strong>.
+
+Lines 8, 14 and 15 show how to transfer the execution to another point. I have defined a label on line 5 then when I emit the break in execution on line 14 to tell the code to jump to that label but the label is not yet associated with a position in the IL, this happens on line 15 where I mark the label's position.
+
+Now that the Add method has been defined I repeat almost the same IL for the subtract method but use  <strong>OpCodes.Sub</strong> instead of <strong>OpCodes.Add</strong>.
+
+<h4>4. Produce the type</h4>
+So all that is left to do is to create the type and test it:
+
+[sourcecode language="csharp" gutter="false"]
+var calculatorType = typeBuilder.CreateType();
+
+var obj = Activator.CreateInstance(calculatorType);
+
+var addMethod = calculatorType.GetMethod(&quot;Add&quot;, new[] {typeof (int), typeof (int)});
+Console.WriteLine(&quot;1 + 2 = {0}&quot;, addMethod.Invoke(obj, new object[] {1, 2}));
+
+var subtractMethod = calculatorType.GetMethod(&quot;Subtract&quot;, new[] { typeof(int), typeof(int) });
+Console.WriteLine(&quot;10 + 7 = {0}&quot;, subtractMethod.Invoke(obj, new object[] { 10, 7 }));
+[/sourcecode]
+
+I simply call <strong>typeBuilder.CreateType()</strong> once everything is defined to create the type and begin to use it.
+
+However, the remaining code is very ugly simply because at the time the application is compiled the type has not been created so the compiler does not know what methods this type will have; this leaves us using reflection to call all of the methods.
+
+What would be nicer is if we could have a known interface and automatically generate the implementation using <strong>Reflection.Emit</strong> and that will be the topic of my next post.
+
+<h3>Finally...</h3>
+If you take anything away from this blog post is that you should not be scared of <strong>Reflection.Emit</strong>, by creating a real class that is close to the implementation that you want you can identify what operations you need to do the job.
+
+Over the coming blog posts things will get more complicated and more useful, hopefully, as I move towards a real-world use of runtime-class generation.

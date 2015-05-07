@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+    	<meta charset="utf-8"> 
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="stylesheet" href="/assets/stylesheets/bootstrap.min.css">
+	  	<link rel="stylesheet" href="/assets/stylesheets/styles.css">
+	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	    <link href="/assets/stylesheets/syntaxhighlighter/shCore.css" type="text/css" rel="stylesheet"/>
+	    <link href="/assets/stylesheets/syntaxhighlighter/shThemeDefault.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/stylesheets/twitter.css" type="text/css" rel="stylesheet"/>
+	    <title>Ninja Ferret : MSIL - 3. If Statements... </title>
+  	</head>
+  	<body>
+	  	<nav role="navigation" class="navbar navbar-default">
+		    <div class="navbar-header">
+		        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		        </button>
+		        <a href="#" class="navbar-brand">Ninja Ferret</a>
+		    </div>
+		    <div id="navbarCollapse" class="collapse navbar-collapse">
+		        <ul class="nav navbar-nav">
+		            <li><a href="http://ninjaferret.co.uk">Home</a></li>
+		            <li class="active"><a href="http://blog.ninjaferret.co.uk">Blog</a></li>
+		            <li><a href="http://ninjaferret.co.uk/about.aspx">About</a></li>
+		        </ul>
+		    </div>
+		</nav>
+		<div class="container-fluid">
+	  		<div class="row-fluid">
+				<h1 class="center-block"><a href="http://ninjaferret.github.com"><img class="center-block img-responsive" src="/assets/images/Logo-White.jpg" alt="Ninja Ferret" title="Ninja Ferret" /></a></h1>
+			</div>
+			<div class="row-fluid">
+				<div class="sub-heading">The random thoughts of a software developer</h2>
+			</div>
+		<!--<div id="side_bar">
+			<div id="atom">
+				<h3>Feeds</h3>
+				<a href="/feed.atom"><img src="http://www.mozilla.org/images/feed-icon-14x14.png" alt="Atom feed"/></a> To keep updated <a href="/feed.atom">subscribe to this atom feed</a>.
+			</div>
+			<div id="tags">
+				<h3>Tags</h3>
+				<ul>
+				
+				  	<li><a href="/tags.html#.net">.net</a> (10)</li>
+				
+				  	<li><a href="/tags.html#c#">c#</a> (10)</li>
+				
+				  	<li><a href="/tags.html#reflection">reflection</a> (5)</li>
+				
+				  	<li><a href="/tags.html#conferences">conferences</a> (7)</li>
+				
+				  	<li><a href="/tags.html#ddd8">ddd8</a> (1)</li>
+				
+				  	<li><a href="/tags.html#wcf">wcf</a> (3)</li>
+				
+				  	<li><a href="/tags.html#development methodologies">development methodologies</a> (2)</li>
+				
+				  	<li><a href="/tags.html#kanban">kanban</a> (1)</li>
+				
+				  	<li><a href="/tags.html#uk tech days">uk tech days</a> (1)</li>
+				
+				  	<li><a href="/tags.html#architecture">architecture</a> (5)</li>
+				
+				  	<li><a href="/tags.html#software architecture">software architecture</a> (3)</li>
+				
+				  	<li><a href="/tags.html#cqrs">cqrs</a> (1)</li>
+				
+				  	<li><a href="/tags.html#conference">conference</a> (1)</li>
+				
+				  	<li><a href="/tags.html#ddd">ddd</a> (1)</li>
+				
+				  	<li><a href="/tags.html#developerdeveloperdeveloper">developerdeveloperdeveloper</a> (2)</li>
+				
+				  	<li><a href="/tags.html#platform">platform</a> (1)</li>
+				
+				  	<li><a href="/tags.html#registration">registration</a> (1)</li>
+				
+				  	<li><a href="/tags.html#windows phone 7">windows phone 7</a> (1)</li>
+				
+				  	<li><a href="/tags.html#domain events">domain events</a> (1)</li>
+				
+				  	<li><a href="/tags.html#bar camp">bar camp</a> (1)</li>
+				
+				  	<li><a href="/tags.html#barcamp">barcamp</a> (1)</li>
+				
+				  	<li><a href="/tags.html#bdd">bdd</a> (1)</li>
+				
+				  	<li><a href="/tags.html#lean">lean</a> (2)</li>
+				
+				  	<li><a href="/tags.html#blogging">blogging</a> (4)</li>
+				
+				  	<li><a href="/tags.html#github">github</a> (4)</li>
+				
+				  	<li><a href="/tags.html#twitter">twitter</a> (1)</li>
+				
+				  	<li><a href="/tags.html#git">git</a> (1)</li>
+				
+				  	<li><a href="/tags.html#jekyll">jekyll</a> (1)</li>
+				
+				  	<li><a href="/tags.html#tags">tags</a> (1)</li>
+				
+				  	<li><a href="/tags.html#agile">agile</a> (1)</li>
+				
+				  	<li><a href="/tags.html#project management">project management</a> (1)</li>
+				
+				  	<li><a href="/tags.html#msbuild">msbuild</a> (1)</li>
+				
+				  	<li><a href="/tags.html#creativity">creativity</a> (4)</li>
+				
+				  	<li><a href="/tags.html#dddx">dddx</a> (2)</li>
+				
+				  	<li><a href="/tags.html#2012">2012</a> (2)</li>
+				
+				  	<li><a href="/tags.html#software craftsmanship">software craftsmanship</a> (1)</li>
+				
+				  	<li><a href="/tags.html#change">change</a> (2)</li>
+				
+				  	<li><a href="/tags.html#disruptive change">disruptive change</a> (1)</li>
+				
+			</div>
+	  		<div id="twitter">
+				<h3>Twitter</h3>
+				<p><a href="http://twitter.com/ijohnson_tnf"><img src="http://twitter.zendesk.com/attachments/token/yttm4jflos7vnyq/?name=t_mini-a.png" alt="Follow me on twitter" /></a> Follow <a href="http://twitter.com/ijohnson_tnf">@IJohnson_TNF</a> on Twitter</p>
+	 			<ul id="twitter_update_list"></ul>
+	  		</div>
+
+		</div>-->
+			<div class="wrapper">
+				<div class="container">
+					
+					<h2>MSIL - 3. If Statements...</h2>
+					
+
+					For my third post in the MSIL series I want to focus on a simple if statement, how do I represent the code <strong>if (x != 0)</strong> using IL?
+
+The source code for this can be found in my <a href="http://code.assembla.com/NinjaFerretDemos/subversion/nodes/Reflection/If">subversion repository</a>.
+
+<h4>Implementing division</h4>
+
+I want to take a look at the <strong>Divide()</strong> method of the Calculator class:
+
+<code><pre class="brush: csharp">
+public int Divide(int numerator, int denominator)
+{
+	if (denominator != 0)
+	{
+		throw new ArgumentException(&quot;denominator cannot be zero&quot;,
+		                            &quot;denominator&quot;);
+	}
+	return numerator/denominator;
+}
+</pre></code>
+
+This gives me the opportunity to show the implementation of conditional statements and the throwing of exceptions. What would this implementation generate in IL terms for handling the equality?
+
+<code><pre class="brush: plain">
+.method public hidebysig newslot virtual final
+        instance int32  Divide(int32 numerator,
+                               int32 denominator) cil managed
+{
+  // Code size       37 (0x25)
+  .maxstack  3
+  .locals init ([0] int32 CS$1$0000,
+           [1] bool CS$4$0001)
+  IL_0000:  nop
+  IL_0001:  ldarg.2
+  IL_0002:  ldc.i4.0
+  IL_0003:  ceq
+  IL_0005:  ldc.i4.0
+  IL_0006:  ceq
+  IL_0008:  stloc.1
+  IL_0009:  ldloc.1
+  IL_000a:  brtrue.s   IL_001d
+  IL_000c:  nop
+  IL_000d:  ldstr      "denominator cannot be zero"
+  IL_0012:  ldstr      "denominator"
+  IL_0017:  newobj     instance void [mscorlib]System.ArgumentException::.ctor(string,
+                                                                               string)
+  IL_001c:  throw
+  IL_001d:  ldarg.1
+  IL_001e:  ldarg.2
+  IL_001f:  div
+  IL_0020:  stloc.0
+  IL_0021:  br.s       IL_0023
+  IL_0023:  ldloc.0
+  IL_0024:  ret
+} // end of method CalculatorImplementation::Divide
+</pre></code>
+
+The <strong>if</strong> statement is executed between <strong>IL_0001</strong> and <strong>IL000a</strong>. The first thing is to push onto the stack the demoninator (<strong>ldarg.2</strong>) and the constant integer zero (<strong>ldc.i4.0</strong>) then compare them using the equals comparison operator (<strong>ceq</strong>), which pushes either a <strong>1</strong> onto the stack if it is true and <strong>0</strong> if it is false. As I am doing a <strong>not equals</strong> comparison we then compare the result of the first comparison with <strong>0</strong> to find out if the two items do not match, the result of this equality is placed back onto the stack.
+
+What do we know now? <strong>brtrue.s   IL_001d</strong> tells the compiler that if the calculation above (i.e. is the denominator not equal to zero) is true then jump past the exception throwing statements to the calculation part at position <strong>IL001d</strong> that follows the standard pattern of the Add and Subtract methods described in my first post.
+
+
+The resulting IL looks like:
+
+<code><pre class="brush: csharp">
+private static void DefineDivideMethod(TypeBuilder typeBuilder, Type interfaceType)
+{
+	var interfaceSubtractMethod = interfaceType.GetMethod(&quot;Divide&quot;);
+	var methodBuilder = typeBuilder.DefineMethod(&quot;Divide&quot;,
+             MethodAttributes.Public |
+             MethodAttributes.Virtual |
+             MethodAttributes.Final |
+             MethodAttributes.NewSlot |
+             MethodAttributes.HideBySig);
+	methodBuilder.SetReturnType(interfaceSubtractMethod.ReturnType);
+	var parameters = interfaceSubtractMethod
+             .GetParameters()
+             .Select(parameter =&gt; parameter.ParameterType)
+             .ToArray();
+	methodBuilder.SetParameters(parameters);
+	methodBuilder.InitLocals = true;
+
+	var il = methodBuilder.GetILGenerator();
+	var returnLabel = il.DefineLabel();
+	var trueLabel = il.DefineLabel();
+	il.DeclareLocal(typeof (int));
+	il.DeclareLocal(typeof (bool));
+	il.Emit(OpCodes.Nop);
+	il.Emit(OpCodes.Ldarg_2);
+	il.Emit(OpCodes.Ldc_I4_0);
+	il.Emit(OpCodes.Ceq);
+	il.Emit(OpCodes.Ldc_I4_0);
+	il.Emit(OpCodes.Ceq);
+	il.Emit(OpCodes.Stloc_1);
+	il.Emit(OpCodes.Ldloc_1);
+	il.Emit(OpCodes.Brtrue_S, trueLabel);
+	il.Emit(OpCodes.Nop);
+	il.Emit(OpCodes.Ldstr, &quot;denominator cannot be zero&quot;);
+	il.Emit(OpCodes.Ldstr, &quot;demoninator&quot;);
+	il.Emit(OpCodes.Newobj, typeof (ArgumentException).GetConstructor(new[] {typeof (string), typeof (string)}));
+	il.Emit(OpCodes.Throw);
+	il.MarkLabel(trueLabel);
+	il.Emit(OpCodes.Ldarg_1);
+	il.Emit(OpCodes.Ldarg_2);
+	il.Emit(OpCodes.Div);
+	il.Emit(OpCodes.Stloc_0);
+	il.Emit(OpCodes.Br_S, returnLabel);
+	il.MarkLabel(returnLabel);
+	il.Emit(OpCodes.Ldloc_0);
+	il.Emit(OpCodes.Ret);
+	typeBuilder.DefineMethodOverride(methodBuilder, interfaceSubtractMethod);
+}
+</pre></code>
+
+So there it is, a simple if statement. The IL is starting to look increasingly complicated and it is becoming very clear that trying to dynamically generate code for anything but simple methods is increasingly difficult. What I will go onto in the very next post is how to do a simple loop to complete the fundamentals of programming.
+
+					
+					<p class="post_categories"> Tags: 
+						
+						<a href="/tags.html#"></a>
+						
+						<a href="/tags.html#"></a>
+						
+						<a href="/tags.html#"></a>
+						
+					</p>
+					
+				</div>
+				
+					<div id="disqus_thread"></div>
+					<script type="text/javascript">
+					    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+					    var disqus_shortname = 'ninjaferretblog'; // required: replace example with your forum shortname
+
+					    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+					    //var disqus_identifier = 'unique_dynamic_id_1234';
+					    //var disqus_url = 'http://example.com/permalink-to-page.html';
+
+					    /* * * DON'T EDIT BELOW THIS LINE * * */
+					    (function() {
+					        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+					        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+					        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+					    })();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+				
+			</div>
+		</div>
+	<div id="footer">
+	 	&copy; Copyright 2010 Ian Johnson. All rights reserved. 
+	</div>
+</body>
+<script src="/assets/scripts/rendertweets.js" type="text/javascript"></script>
+<script src="http://twitter.com/statuses/user_timeline/ijohnson_tnf.json?callback=twitterCallback2&count=5" type="text/javascript"></script>
+<script src="/assets/scripts/syntaxhighlighter/shCore.js" type="text/javascript"></script>
+<script src="/assets/scripts/syntaxhighlighter/shBrushCSharp.js" type="text/javascript"></script>
+<script src="/assets/scripts/syntaxhighlighter/shBrushXml.js" type="text/javascript"></script>
+<script src="/assets/scripts/syntaxhighlighter/shBrushJScript.js" type="text/javascript"></script>
+<script src="/assets/scripts/syntaxhighlighter/shBrushPlain.js" type="text/javascript"></script>
+<script type="text/javascript">
+   SyntaxHighlighter.all(); 
+</script>
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-19283283-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+</html>

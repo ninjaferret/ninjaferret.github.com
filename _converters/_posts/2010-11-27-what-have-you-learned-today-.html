@@ -1,0 +1,95 @@
+---
+layout: default
+title: What have you learned today?
+summary: What have you learned today?
+categories:
+- BDD
+- Development Methodologies
+- Lean
+---
+<h2>Software development is about learning/discovery</h2>
+
+Most people think that software development is about producing a piece of code to fullfil a task, but is it really that simple? I am increasingly agreeing with the BDD community that software development is about learning, how can developers develop something to solve a business problem without understanding that problem? 
+
+Mary Poppendieck in <a href="http://www.amazon.co.uk/Lean-Software-Development-Agile-Toolkit/dp/0321150783"> Lean Software Development</a> states:
+
+<blockquote>
+Development is quite different than production. Think of development as creating a recipe and production as following the recipe... In fact, the whole idea of developing a recipe is to try many variations on a theme and discover the best dish.
+</blockquote>
+
+I think that this is an interesting analogy because the software is actually the thing that facilitates the task that the user wishes to do so you could say it gives them the recipe to be efficient at their task. When it comes to software the "production" is actually using the software not building it, the building of the software is the development. Going back onto the last few words of her quote Mary is putting the learning at the heart of the development process.
+
+I actually think that it is not just the developers who learn, if you are talking regularly with the customer then they are seeing what you are developing and they will change their minds, what they thought would work well may not work well at all when you come to develop it and they are learning about themselves, their needs and perhaps the needs of their customers. 
+
+<h2>How do we learn?</h2>
+
+While we can learn through reading up on a subject and thinking more around it but the majority of discovery and learning comes through practice. You can teach me a subject and I will pick up on the key points but when it comes down it apply it is when I truly start grasping the concepts. 
+
+Some of the greatest discoveries in science are not done through someone planning out all of the experiments that they are going to do and knowing what they will discover, people try something, measure it and then go "Oh... that wasn't what I expected to happen" then they figure out why. If Alexander Fleming had not looked at his "ruined" experiment and gone "why is it that those areas are clear of bacteria?" then he would not have discovered penicillin but that certainly did not come from a well thought out plan.
+
+When things go wrong is when we can learn the most so perhaps the best way to learn is just to let things go wrong, inspect and adapt. Our learning cycle should really be plan, do, learn and adapt but the key is to reduce the time of that cycle, the shorter the period of learning the better.
+
+
+
+<h2>Solving problems not providing solutions</h2>
+
+So, with the idea that we are constantly learning and that the software we develop is an evolving tool that reflects our current learning and assists further learning then what do we do with it?
+
+We use this learning not to just implement what the customer has asked for, we use the tools that we have in our armoury to get down to the root problem we are trying to solve. Quite often people will come to me with specific solutions to a perceived problem but actually the problem is very different. 
+
+I have recently worked on a project where I was asked to modify an integration system so that it would store two extra dates that would mark the cut-off point for certain activities, we would need to default them when importing data from a new system, provide a user interface for the users to be able to set the date. These dates would be sent to a third party who would act on them accordingly but could only be sent once so the user interface would have to then disable the fields once the data had been sent. Rather than just implementing the solution I talked to them about the problem and we dug only slightly deeper and the root problem was that currently they set up calendar entries and someone manually would go through turning off the features in the third party product on the appropriate date, which as time consuming. After discussions we realised that the defaults would be more than enough because they worked for over 90% of the cases and it would be a much smaller task to deal with the exceptional cases manually. The user interface disappeared, we reduced the amount of work the users had to do (they did not have to set these dates) and it kept the domain from leaking into the integration layer, everyone is happy.
+
+<h2>Ignorance and product delays</h2>
+
+It is very rare to find a project that runs smoothly, where there has not been a single constraint impacting on scope, delivery or technology. There are always problems in any suitably complex software system but the problem is no matter how hard we think of the problem, no matter how much we have learned, we will be ignorant of the things that we do not know (obvious isn't it?).
+
+<h3>This time we will know better</h3>
+
+Well, you've worked on a project in this domain before and you've had a few problems in the previous projects but by now you're up to speed on the solution aren't you? You now know all of the problems that you are likely to encounter, don't you?
+
+We will always assume that we do so you say "This time it will be different" and "this time we will come in on time and on budget", what could possibly go wrong?
+
+We are pre-programmed to think in this way to assume that we are now completely prepared for something and that anything that subsequently goes wrong is "bad luck" but yet anyone else failing we often say that they were "unprepared" for the task. 
+
+More than likely the project will go wrong due to some constraint that we have not previously encountered and mitigated in our processes. 
+
+<h3>Ignorance reduces in steps</h3>
+
+What happens in a project when we encounter a problem? What is the first thought? <strong>Oh!!!</strong> usually followed by a lot of swearing because we have just encountered a constraint that has invalidated out thinking. We delve deeper into the constraint and eventually we find a solution to that constraint. A bit later we get one of those <strong>Oh!!!</strong> moments again.
+
+So, even though we don't know what is going to trip us up how can we actively seek out those constraints? Probably the fastest way is to actually try, develop something to solve the problem and see what arises, learn from the problems that you face and adapt.
+
+<h2>Deliberate Discovery</h3>
+
+<ul>
+  <li><a href="#deliberatediscovery">Deliberate Discovery</a> how to reduce the ignorance of your team and deliver better software</li>
+</ul>
+
+<h2><a name="deliberatediscovery">Deliberate Discovery - Dan North</a></h2>
+
+Why do projects always seem to drag on behind schedule? There always seems to be something to trip us up and delay us. Dan argues that it is not anything overtly technical that causes the constraint but ignorance, basically we cannot know what we cannot know.
+
+We are in general ignorant of:
+
+<ul>
+  <li>The domain we are working in (we aren't domain experts after-all)</li>
+  <li>The nature of the problem we are trying to solve (often people come to us with their concept of a solution rather than with the real problem)<li>
+  <li>The current software, rarely are we in a position to have written all of the software we need to change</li>
+  <li>New technologies that may solve the problems as the world changes so rapidly these days</li>
+  <li>Organisational constraints that cause blockages</li>
+</ul>
+
+<h3>Accidental Discovery</h3>
+
+As good as we are at software development, or as good as we are at analysis, there is the problem that we cannot know which of the constraints listed above (or even constraints that I haven't mentioned here) we are going to encounter, we do not know the details so we cannot plan for them. 
+
+These constraints stalk us throughout a project and at the appropriate time they pounce and impede us. At that point the nice project plan might as well be thrown out of the window as we have to now abandon the path we were currently taking, or spend days/weeks working around a new impediment. This is accidental discovery, we discover too late the problems that we are facing.
+
+<h2>Ignorance</h2>
+
+So, assuming we have finished our first project late and over-budget but we learned a lot aout 
+
+
+
+
+

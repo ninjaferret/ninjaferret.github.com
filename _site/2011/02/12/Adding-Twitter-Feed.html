@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+    	<meta charset="utf-8"> 
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="stylesheet" href="/assets/stylesheets/bootstrap.min.css">
+	  	<link rel="stylesheet" href="/assets/stylesheets/styles.css">
+	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	    <link href="/assets/stylesheets/syntaxhighlighter/shCore.css" type="text/css" rel="stylesheet"/>
+	    <link href="/assets/stylesheets/syntaxhighlighter/shThemeDefault.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/stylesheets/twitter.css" type="text/css" rel="stylesheet"/>
+	    <title>Ninja Ferret : Adding A Twitter Feed </title>
+  	</head>
+  	<body>
+	  	<nav role="navigation" class="navbar navbar-default">
+		    <div class="navbar-header">
+		        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		        </button>
+		        <a href="#" class="navbar-brand">Ninja Ferret</a>
+		    </div>
+		    <div id="navbarCollapse" class="collapse navbar-collapse">
+		        <ul class="nav navbar-nav">
+		            <li><a href="http://ninjaferret.co.uk">Home</a></li>
+		            <li class="active"><a href="http://blog.ninjaferret.co.uk">Blog</a></li>
+		            <li><a href="http://ninjaferret.co.uk/about.aspx">About</a></li>
+		        </ul>
+		    </div>
+		</nav>
+		<div class="container-fluid">
+	  		<div class="row-fluid">
+				<h1 class="center-block"><a href="http://ninjaferret.github.com"><img class="center-block img-responsive" src="/assets/images/Logo-White.jpg" alt="Ninja Ferret" title="Ninja Ferret" /></a></h1>
+			</div>
+			<div class="row-fluid">
+				<div class="sub-heading">The random thoughts of a software developer</h2>
+			</div>
+		<!--<div id="side_bar">
+			<div id="atom">
+				<h3>Feeds</h3>
+				<a href="/feed.atom"><img src="http://www.mozilla.org/images/feed-icon-14x14.png" alt="Atom feed"/></a> To keep updated <a href="/feed.atom">subscribe to this atom feed</a>.
+			</div>
+			<div id="tags">
+				<h3>Tags</h3>
+				<ul>
+				
+				  	<li><a href="/tags.html#.net">.net</a> (10)</li>
+				
+				  	<li><a href="/tags.html#c#">c#</a> (10)</li>
+				
+				  	<li><a href="/tags.html#reflection">reflection</a> (5)</li>
+				
+				  	<li><a href="/tags.html#conferences">conferences</a> (7)</li>
+				
+				  	<li><a href="/tags.html#ddd8">ddd8</a> (1)</li>
+				
+				  	<li><a href="/tags.html#wcf">wcf</a> (3)</li>
+				
+				  	<li><a href="/tags.html#development methodologies">development methodologies</a> (2)</li>
+				
+				  	<li><a href="/tags.html#kanban">kanban</a> (1)</li>
+				
+				  	<li><a href="/tags.html#uk tech days">uk tech days</a> (1)</li>
+				
+				  	<li><a href="/tags.html#architecture">architecture</a> (5)</li>
+				
+				  	<li><a href="/tags.html#software architecture">software architecture</a> (3)</li>
+				
+				  	<li><a href="/tags.html#cqrs">cqrs</a> (1)</li>
+				
+				  	<li><a href="/tags.html#conference">conference</a> (1)</li>
+				
+				  	<li><a href="/tags.html#ddd">ddd</a> (1)</li>
+				
+				  	<li><a href="/tags.html#developerdeveloperdeveloper">developerdeveloperdeveloper</a> (2)</li>
+				
+				  	<li><a href="/tags.html#platform">platform</a> (1)</li>
+				
+				  	<li><a href="/tags.html#registration">registration</a> (1)</li>
+				
+				  	<li><a href="/tags.html#windows phone 7">windows phone 7</a> (1)</li>
+				
+				  	<li><a href="/tags.html#domain events">domain events</a> (1)</li>
+				
+				  	<li><a href="/tags.html#bar camp">bar camp</a> (1)</li>
+				
+				  	<li><a href="/tags.html#barcamp">barcamp</a> (1)</li>
+				
+				  	<li><a href="/tags.html#bdd">bdd</a> (1)</li>
+				
+				  	<li><a href="/tags.html#lean">lean</a> (2)</li>
+				
+				  	<li><a href="/tags.html#blogging">blogging</a> (4)</li>
+				
+				  	<li><a href="/tags.html#github">github</a> (4)</li>
+				
+				  	<li><a href="/tags.html#twitter">twitter</a> (1)</li>
+				
+				  	<li><a href="/tags.html#git">git</a> (1)</li>
+				
+				  	<li><a href="/tags.html#jekyll">jekyll</a> (1)</li>
+				
+				  	<li><a href="/tags.html#tags">tags</a> (1)</li>
+				
+				  	<li><a href="/tags.html#agile">agile</a> (1)</li>
+				
+				  	<li><a href="/tags.html#project management">project management</a> (1)</li>
+				
+				  	<li><a href="/tags.html#msbuild">msbuild</a> (1)</li>
+				
+				  	<li><a href="/tags.html#creativity">creativity</a> (4)</li>
+				
+				  	<li><a href="/tags.html#dddx">dddx</a> (2)</li>
+				
+				  	<li><a href="/tags.html#2012">2012</a> (2)</li>
+				
+				  	<li><a href="/tags.html#software craftsmanship">software craftsmanship</a> (1)</li>
+				
+				  	<li><a href="/tags.html#change">change</a> (2)</li>
+				
+				  	<li><a href="/tags.html#disruptive change">disruptive change</a> (1)</li>
+				
+			</div>
+	  		<div id="twitter">
+				<h3>Twitter</h3>
+				<p><a href="http://twitter.com/ijohnson_tnf"><img src="http://twitter.zendesk.com/attachments/token/yttm4jflos7vnyq/?name=t_mini-a.png" alt="Follow me on twitter" /></a> Follow <a href="http://twitter.com/ijohnson_tnf">@IJohnson_TNF</a> on Twitter</p>
+	 			<ul id="twitter_update_list"></ul>
+	  		</div>
+
+		</div>-->
+			<div class="wrapper">
+				<div class="container">
+					
+					<h2>Adding A Twitter Feed</h2>
+					
+
+					<p>
+In my post <a href="/2011/02/12/blogging-with-github-pages.html">blogging with github pages</a> I focussed on the initial steps of creating a new blog using <a href="http://pages.github.com">GitHub Pages</a> but there is more to a blog than simply a series of HTML pages. One of the things that I was looking for was to be able to display some of my more recent tweets to the outside world.
+</p>
+<p>
+I decided that I would maintain the tweets in a side-bar and then I added in the references to the twitter api into my default layout:
+</p>
+
+<code><pre class="brush: xml">&lt;html&gt;
+	...
+	&lt;body&gt;
+	   	...
+	   	&lt;div id="twitter"&gt;
+			&lt;h3&gt;Twitter: (&lt;a href="http://twitter.com/ijohnson_tnf"&gt;@IJohnson_TNF&lt;/a&gt;)&lt;/h3&gt;
+ 			&lt;ul id="twitter_update_list"&gt;&lt;/ul&gt;
+		&lt;/div&gt;
+		...
+	&lt;/body&gt;
+	&lt;script src="http://twitter.com/javascripts/blogger.js" 
+	  	type="text/javascript"&gt;&lt;/script&gt;
+	&lt;script
+		src="http://twitter.com/statuses/user_timeline/ijohnson_tnf.json?callback=twitterCallback2&count=5"
+	 	type="text/javascript"&gt;&lt;/script&gt;
+&lt;/html&gt;</pre></code>
+
+<p>This uses the browser to render a list of tweets limited by the number specified in the scripts (currently 5) which means that you don't have to generate that list server-side.</p>
+
+<p>There is something that I did not like about the contents of the twitter javascript file (<a href="http://twitter.com/javascripts/blogger.js">blogger.js</a>) which was that there was specific formatting embedded in the generated HTML that was overriding my javascript, namely the size of certain links was set at 85%. In general, I would recommend that you take a look at using this file as a template for your own tweet rendering javascript file because then you are in control of how your tweets look. This is my <a href="https://github.com/ninjaferret/ninjaferret.github.com/blob/master/assets/scripts/rendertweets.js">javascript code for rendering tweets</a>.  
+
+<p>It's as easy as that, in no time at all you have a twitter feed on your blog.</p>
+					
+					<p class="post_categories"> Tags: 
+						
+						<a href="/tags.html#"></a>
+						
+						<a href="/tags.html#"></a>
+						
+						<a href="/tags.html#"></a>
+						
+					</p>
+					
+				</div>
+				
+					<div id="disqus_thread"></div>
+					<script type="text/javascript">
+					    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+					    var disqus_shortname = 'ninjaferretblog'; // required: replace example with your forum shortname
+
+					    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+					    //var disqus_identifier = 'unique_dynamic_id_1234';
+					    //var disqus_url = 'http://example.com/permalink-to-page.html';
+
+					    /* * * DON'T EDIT BELOW THIS LINE * * */
+					    (function() {
+					        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+					        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+					        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+					    })();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+				
+			</div>
+		</div>
+	<div id="footer">
+	 	&copy; Copyright 2010 Ian Johnson. All rights reserved. 
+	</div>
+</body>
+<script src="/assets/scripts/rendertweets.js" type="text/javascript"></script>
+<script src="http://twitter.com/statuses/user_timeline/ijohnson_tnf.json?callback=twitterCallback2&count=5" type="text/javascript"></script>
+<script src="/assets/scripts/syntaxhighlighter/shCore.js" type="text/javascript"></script>
+<script src="/assets/scripts/syntaxhighlighter/shBrushCSharp.js" type="text/javascript"></script>
+<script src="/assets/scripts/syntaxhighlighter/shBrushXml.js" type="text/javascript"></script>
+<script src="/assets/scripts/syntaxhighlighter/shBrushJScript.js" type="text/javascript"></script>
+<script src="/assets/scripts/syntaxhighlighter/shBrushPlain.js" type="text/javascript"></script>
+<script type="text/javascript">
+   SyntaxHighlighter.all(); 
+</script>
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-19283283-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+</html>

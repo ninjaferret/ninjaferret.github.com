@@ -1,0 +1,157 @@
+This is the last of the "tutorial" posts on MSIL. There is a massive amount that I have not had time to cover here but this is, as I said in my first post, the story of my journey through MSIL. You will find the source code for this blog post on my <a href="http://code.assembla.com/NinjaFerretDemos/subversion/nodes/Reflection/LambdaExpressions">subversion repository</a>.
+
+For this one last time I want to carry on the Calculator for one final time. This time I want to explore the use of Lambda expressions and to introduce a pattern similar to the one that I will make use of in later posts.
+
+The implementation of the Calculator interface then looks identical for each method:
+
+[sourcecode language="csharp" gutter="true"]
+// Generated class
+public class Calc : Calculator
+{
+	public int Add(int a, int b)
+	{
+		int result = 0;
+		Evaluator.Evaluate(() =&gt; result = a + b);
+		return result;
+	}
+
+	...
+}
+
+public delegate void CalcFunction(int a, int b);
+
+public static class Evaluator
+{
+	public static void Evaluate(CalcFunction codeBlock)
+	{
+		codeBlock();
+	}
+}
+[/sourcecode]
+
+<h3>Defining the Lambda Expression</h3>
+
+As always, the first task is to make a test implementation in order use ILDASM to see what has been generated. Looking at the generated type <strong>TestCalculator</strong> there are four nested types:
+
+<ul>
+    <li>&lt;&gt;__DisplayClass1</li>
+	<li>&lt;&gt;__DisplayClass4</li>
+	<li>&lt;&gt;__DisplayClass7</li>
+	<li>&lt;&gt;__DisplayClassa</li>
+</ul>
+
+These are the internal representation of the lambda expressions. Each lambda expression has it's own class nested inside the class in which it was defined so it is necessary to generate these nested types using IL. For the most part how a nested type is created is very similar to creating a normal type, it is only how the <strong>TypeBuilder</strong> is created that is different using the method <strong>typeBuilder.DefineNestedType(string.Format("&lt;&gt;__DisplayClass{0}", index, NestedTypeAttributes);</strong>.
+
+The nested types each have three public fields <strong>a</strong>, <strong>b</strong> and <strong>result</strong>; based on the lambda expression <strong>() =&gt; result = a + b</strong> it should be easy to see where these fields have been derived from.
+
+Finally, there is the method which again has a special format, e.g. <strong>&lt;Add&gt;b__0</strong> and <strong>&lt;Subtract&gt;b__3</strong>, which has again been auto-generated based on the name of the method that the lambda expression was defined in and an incrementing number to permit uniqueness. The IL for these methods is very simple, load the two fields (<strong>a</strong> and <strong>b</strong>) add/subtract/divide/multiple and save the result in the <strong>result</strong> field.
+
+The <strong>DefineLambdaExpression</strong> method in my example code creates the nested type, defines the default constructor, defines the fields and implements the method. The final act is to then create the nested type using the <strong>TypeBuilder.CreateType()</strong> method.
+
+<h4>Why can't I use the generated type yet?</h4>
+
+Once the nested type has been created it must surely be a usable type? When generating the code that will call this lambda expression I initially expected to be able to use <strong>Type.GetConstructor()</strong>, <strong>Type.GetMethod()</strong> and <strong>Type.GetField()</strong> to get access to the required members of the lambda expression. I was wrong, the first thing I needed to do was to delcare a local of the lambda expression type but I get the exception:
+
+<code>
+System.TypeLoadException: Could not load type 'Calculator' from assembly 'Calculatorb1d3a726-fa47-47cc-b190-ff5403de4ad7, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'.
+   at System.RuntimeTypeHandle.GetDeclaringType(RuntimeType type)
+   at System.RuntimeType.RuntimeTypeCache.GetEnclosingType()
+   at System.RuntimeType.get_DeclaringType()
+   at System.Reflection.Emit.ModuleBuilder.GetTypeRefNested(Type type, Module refedModule, String strRefedModuleFileName)
+   at System.Reflection.Emit.ModuleBuilder.GetTypeTokenWorkerNoLock(Type type, Boolean getGenericDefinition)
+   at System.Reflection.Emit.ModuleBuilder.GetTypeTokenInternal(Type type, Boolean getGenericDefinition)
+   at System.Reflection.Emit.SignatureHelper.AddOneArgTypeHelperWorker(Type clsArgument, Boolean lastWasGenericInst)
+   at System.Reflection.Emit.SignatureHelper.AddArgument(Type argument, Boolean pinned)
+   at System.Reflection.Emit.ILGenerator.DeclareLocal(Type localType, Boolean pinned)
+   at System.Reflection.Emit.ILGenerator.DeclareLocal(Type localType)
+   at LambdaExpressions.Program.DefineMethod(MethodInfo method, TypeBuilder typeBuilder, LambdaExpressionDetails lambdaExpression) in D:\code\dotNet\BlogDemos\Reflection\LambdaExpressions\Program.cs:line 150
+   at LambdaExpressions.Program.Main(String[] args) in D:\code\dotNet\BlogDemos\Reflection\LambdaExpressions\Program.cs:line 54
+</code>
+
+So, even though the nested type has compiled it cannot be used directly until the containing type has been fully defined, but the containing type is the one that I am still building. Thankfully, <strong>TypeBuilder</strong> inherits <strong>Type</strong> so I can simply use the <strong>TypeBuilder</strong> when declaring the local variable.
+
+The same occurs trying to use the <strong>Type.GetConstructor()</strong>, <strong>Type.GetMethod()</strong> or <strong>Type.GetField()</strong> methods on either the created type or on the <strong>TypeBuilder</strong>. However, when creating each of these members the appropriate method used returns a <strong>XXXBuilder</strong> object that inherits from its equivalent and can be used in its place:
+
+<ul>
+    <li><strong>ConstructorBuilder</strong> inherits <strong>ConstructorInfo</strong></li>
+	<li><strong>MethodBuilder</strong> inherits <strong>MethodInfo</strong></li>
+	<li><strong>FieldBuilder</strong> inherits <strong>FieldInfo</strong></li>
+</ul>
+
+Hence, the <strong>DefineLambdaExpression</strong> method, stores these objects in a <strong>LambdaExpressionDetails</strong> object that can be passed on to the method where the call into this lambda expression will be made.
+
+<h3>Making the call</h3>
+
+The creation of the type and the initial definition of the methods of the <strong>ICalculator</strong> interface should be identical to that in previous posts; it is only the implementation that will differ.
+
+The four methods again look very similar, the only difference between them is the lambda expression that they are using:
+
+[sourcecode language="csharp" gutter="true"]
+var result = 0;
+Evaluator.Evaluate(() =&gt; result = a * b);
+return result;
+[/sourcecode]
+
+As before, the test implementation and ILDASM shows how the calling method is constructed. The contents of each method can be distilled to the following (ignoring what has gone before in previous posts):
+
+<ul>
+   <li>Declare a <em>lamdba expression</em> local variable </li>
+   <li>Declare the <em>result</em> local variable</li>
+   <li>Create a new instance of the lambda expression using the <strong>LambdaExpressionDetails.Constructor</strong> property</li>
+   <li>Save it to the <em>lambda expression</em> local variable</li>
+   <li>For each argument:
+      <ul>
+	     <li>Push the <em>lambda expression</em> local variable onto the stack</li>
+		 <li>Push the appropriate argument onto the stack</li>
+		 <li>Store the value into the appropriate field on the lambda expression using the <strong>LambdaExpressionDetails.Method</strong> property</li>
+	  </ul>
+   </li>
+   <li>Load the <em>lambda expression</em> local variable</li>
+   <li>Load the function pointer to the method of the lambda expression using </li>
+   <li>Create a new instance of the <strong>CalcFunction</strong> delegate</li>
+   <li>Call the <strong>Evaluator.Evaluate()</strong> method</li>
+   <li>Load the result field</li>
+   <li>Return the result</li>
+</ul>
+
+So the IL becomes:
+
+[sourcecode language="csharp" gutter="true"][/sourcecode]
+// Create the lambda expression object
+il.Emit(OpCodes.Newobj, lambdaExpressionDetails.Constructor);
+il.Emit(OpCodes.Stloc_0);
+
+// Load all of the parameters into the lambda expression's fields
+il.Emit(OpCodes.Ldloc_0);
+il.Emit(OpCodes.Ldarg_1);
+il.Emit(OpCodes.Stfld, lambdaExpressionDetails.ParameterFields.SingleOrDefault(x =&gt; x.Name.Equals("a")));
+il.Emit(OpCodes.Ldloc_0);
+il.Emit(OpCodes.Ldarg_2);
+il.Emit(OpCodes.Stfld, lambdaExpressionDetails.ParameterFields.SingleOrDefault(x =&gt; x.Name.Equals("b")));
+il.Emit(OpCodes.Nop);
+
+// Set up the return value
+il.Emit(OpCodes.Ldloc_0);
+il.Emit(OpCodes.Ldc_I4_0);
+il.Emit(OpCodes.Stfld, lambdaExpressionDetails.ResultField);
+
+// Make the call
+il.Emit(OpCodes.Ldloc_0);
+il.Emit(OpCodes.Ldftn, lambdaExpressionDetails.Method);
+var constructorInfo = typeof(EvaluationDelegate).GetConstructor(new[] { typeof(object), typeof(IntPtr) });
+il.Emit(OpCodes.Newobj, constructorInfo);
+var methodInfo = typeof(Evaluator).GetMethod("Evaluate", new[] { typeof(EvaluationDelegate) });
+il.Emit(OpCodes.Call, methodInfo);
+il.Emit(OpCodes.Ldloc_0);
+il.Emit(OpCodes.Ldfld, lambdaExpressionDetails.ResultField);
+il.Emit(OpCodes.Stloc_1);
+il.Emit(OpCodes.Br_S, label);
+il.MarkLabel(label);
+il.Emit(OpCodes.Ldloc_1);
+il.Emit(OpCodes.Ret);
+[/sourcecode
+
+<h3>Finally...</h3>
+Today, I have shown that lambda expressions are really nothing special under the hood, from what I can tell there are no features of <strong>MSIL</strong> that make lambda expressions possible, they are made possible through features of the languages and the compilers that produce <strong>MSIL</strong>. By investigating the structure of the generated <strong>MSIL</strong> for this one case I hope to have demonstrated the principles behind dynamically generating your own lambda expressions for a variety of other cases.
+
+That is it for my investigation into <strong>MSIL</strong> and <strong>Refleciton.Emit</strong>. My guiding principles throughout these tutorials has been to make an example of what I wish to produce then use <strong>ILDASM</strong> to break the compiled assembly down into <strong>MSIL</strong> to gain an understanding of what is produced. I hope that these tutorials will prove useful to anyone trying to make use of <strong>Reflection.Emit</strong> but I hope that when I have achieved my ultimate goal (a generic WCF Service Client factory) will prove valuable and that will be the topic of my next blog post.

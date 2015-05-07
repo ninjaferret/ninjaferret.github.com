@@ -1,0 +1,66 @@
+I believe that I was one of the lucky ones who managed to get a place at <strong>DeveloperDeveloperDeveloper 8</strong> (<strong>DDD8</strong>) at the Microsoft Campus in Reading. I say I was lucky because I believe that the 400 available places were snapped up in 12 minutes and another 200 people were put on the reserve list within the next 12 minutes. Sadly, I had to get the first train of the day to get to Reading.
+
+There were a lot of different sessions that I wanted to attend but I could be at only attend one session at a time as I haven't yet mastered the ability of being in multiple places at once.
+
+<h3>Real World MVC Architectures - Ian Cooper</h3>
+
+
+I am relatively new to ASP.NET MVC and have made a number of the mistakes that Ian Cooper was talking about.
+
+Ian explained the "Thin Controller/Fat Model" pattern where the model/domain is where the majority of the work takes place and the controller provides more of the application logic. The controller needs to gather the required data, prepare it for the view then render the appropriate view. More of the business logic needs to be pushed down into the domain, or in the case for my sites into the service layer. However, we don't want a fat service layer either so the same principle applies, the logic from there needs to be pushed down into the domain from the service.
+
+This certainly has given me some ideas that I need to take back to work and to my home projects
+
+<h3>Hello Document Databases - Neil Robbins</h3>
+
+I wasn't sure whether to attend this one or go to the <strong>Multi-tenant ASP.NET MVC Projects (Or 30 very different customers and a single codebase)</strong> by Rob Ashton but since I'd been to one MVC talk I decided to look at something completely different.
+
+In the end I think I made a good choice as Neil really gave me something to think about for my next projects at home. For a long time now RDBMS has been the "only choice" when people want to store data and to use the same quote Neil did "No one ever got fired for choosing IBM". However, they aren't that fault tolerant and don't scale well for vast distributed systems (think Google).
+
+Document databases are designed to be more fault tolerant, they are distributed so a node can disappear without bringing the entire system down but that is at the price of data consistency. The nodes communicate with each other and diff the data but there is a latency there so should a node go down some data may be lost.
+
+Neil focussed on <a href="http://couchdb.apache.org/">Couch DB</a> which he ran on Linux because it is easier to install (Linux at Microsoft shock!). The API is URL based and RESTful and he demonstrated it using a linux terminal and curl.
+
+<h3>C#4.0 - Jon Skeet</h3>
+
+Well, what can I say about this talk? Jon is a fantastic presenter and he made it so easy to understand the new features of C# 4.0.
+
+The main purpose of this release is to improve COM interop with a primary focus on getting better interop with Microsoft Office. C# is getting a number of features that were in VB that C# has been desperately needing to help with COM interop such as <strong>Named Arguments</strong> and <strong>Default Parameters</strong>.
+
+I found Jon's explanation of covariance and contravariance extremely easy to follow, one of the best explanations that I have come across and I would say that if the video of his talk is put online I would recommend it just for that.
+
+<h3>Lunchtime - grok talks</h3>
+
+At lunch I went to the grok talks and listened to topics that ranged from using CodeRush Xpress to trying to introduce Lean and Kanban into the workplace to the death of MSBuild, I'm sure I'm missing one out...
+
+I found the Kanban talk very interesting and I need to read Chris' <a href="http://www.jobshy.com/shift-in/post/2010/01/05/Personal-Kanban.aspx">blog</a> on the subject.
+
+Ben's talk on using <a href="http://github.com/derickbailey/Albacore">albacore</a> to automate build/deployment processes was very interested and something that I need to read about more.
+
+<h3>Not Everything is an Object - Gary Short</h3>
+
+I was debating to go to this talk or the entity framework talk but in the end I came to the conclusion that this sounded a little different and therefore a bit more interesting.
+
+Gary began right at the very beginnings of programming and his talk began very much like a "brief history of everything" as he delved into discussions on quantum limitations on chip size and into quantum tunnelling.
+
+I was intrigued by his thoughts that the reasons Object Orientation is failing to solve current world problems is that we are, in essence, trying to model something and we aren't very good modellers. He also brought us back to the concept that objects hide data whereas data structures present data but no behaviour. In some ways this links very neatly in with some of what Ian Cooper was saying in his talk earlier (about a fatter model).
+
+Back onto the subject matter at hand, objects also have shared state that is not thread safe and as software gets more complex and processors get more cores rather than faster we need to focus on parallel processing (and threading isn't nice in the OO world).
+
+Gary introduced a JVM based functional language called "Clojure" and gave us a brief introduction to the language and the benefits of a functional language where everything is immutable. I am seriously going to take a look at Clojure or another functional language.
+
+<h3>Automating Testing With Windows Virtual PC - Guy Smith-Ferrier</h3>
+
+This was one of the talks that I was interested in going to from the start as automating testing through a Virtual PC is something I am about to start looking into.
+
+There are several ways to do most actions, Guy showed us the easy way and the hard way (e.g. auto-login on windows rather than trying to automate login - using a sequence of characters into the keyboard buffer).
+
+This talk has given me lots to think about and ideas about how to automate the deployment and build processes using the simple methods, batch files in the start-up folder of the Virtual PC that do the install and then run the tests. I also like Guy's idea of using shared hard disks that can be used between different VPC images.
+
+<h3>Final thoughts</h3>
+
+Firstly, thanks very much to the organisers, speakers, helpers and sponsors for providing a phenomenal free conference. The Microsoft facilities and staff were again fantastic so thanks very much to everyone involved from Microsoft.
+
+I have learned a lot today and have been to talks on topics that I would never have even considered looking at before and I hope to take a look at a lot of what was discussed here over the next few months.
+
+Hopefully I'll be there next year, perhaps I might even think about doing a grok talk.

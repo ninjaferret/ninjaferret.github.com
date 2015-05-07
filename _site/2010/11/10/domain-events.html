@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+    	<meta charset="utf-8"> 
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="stylesheet" href="/assets/stylesheets/bootstrap.min.css">
+	  	<link rel="stylesheet" href="/assets/stylesheets/styles.css">
+	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	    <link href="/assets/stylesheets/syntaxhighlighter/shCore.css" type="text/css" rel="stylesheet"/>
+	    <link href="/assets/stylesheets/syntaxhighlighter/shThemeDefault.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/stylesheets/twitter.css" type="text/css" rel="stylesheet"/>
+	    <title>Ninja Ferret : Domain Events </title>
+  	</head>
+  	<body>
+	  	<nav role="navigation" class="navbar navbar-default">
+		    <div class="navbar-header">
+		        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		        </button>
+		        <a href="#" class="navbar-brand">Ninja Ferret</a>
+		    </div>
+		    <div id="navbarCollapse" class="collapse navbar-collapse">
+		        <ul class="nav navbar-nav">
+		            <li><a href="http://ninjaferret.co.uk">Home</a></li>
+		            <li class="active"><a href="http://blog.ninjaferret.co.uk">Blog</a></li>
+		            <li><a href="http://ninjaferret.co.uk/about.aspx">About</a></li>
+		        </ul>
+		    </div>
+		</nav>
+		<div class="container-fluid">
+	  		<div class="row-fluid">
+				<h1 class="center-block"><a href="http://ninjaferret.github.com"><img class="center-block img-responsive" src="/assets/images/Logo-White.jpg" alt="Ninja Ferret" title="Ninja Ferret" /></a></h1>
+			</div>
+			<div class="row-fluid">
+				<div class="sub-heading">The random thoughts of a software developer</h2>
+			</div>
+		<!--<div id="side_bar">
+			<div id="atom">
+				<h3>Feeds</h3>
+				<a href="/feed.atom"><img src="http://www.mozilla.org/images/feed-icon-14x14.png" alt="Atom feed"/></a> To keep updated <a href="/feed.atom">subscribe to this atom feed</a>.
+			</div>
+			<div id="tags">
+				<h3>Tags</h3>
+				<ul>
+				
+				  	<li><a href="/tags.html#.net">.net</a> (10)</li>
+				
+				  	<li><a href="/tags.html#c#">c#</a> (10)</li>
+				
+				  	<li><a href="/tags.html#reflection">reflection</a> (5)</li>
+				
+				  	<li><a href="/tags.html#conferences">conferences</a> (7)</li>
+				
+				  	<li><a href="/tags.html#ddd8">ddd8</a> (1)</li>
+				
+				  	<li><a href="/tags.html#wcf">wcf</a> (3)</li>
+				
+				  	<li><a href="/tags.html#development methodologies">development methodologies</a> (2)</li>
+				
+				  	<li><a href="/tags.html#kanban">kanban</a> (1)</li>
+				
+				  	<li><a href="/tags.html#uk tech days">uk tech days</a> (1)</li>
+				
+				  	<li><a href="/tags.html#architecture">architecture</a> (5)</li>
+				
+				  	<li><a href="/tags.html#software architecture">software architecture</a> (3)</li>
+				
+				  	<li><a href="/tags.html#cqrs">cqrs</a> (1)</li>
+				
+				  	<li><a href="/tags.html#conference">conference</a> (1)</li>
+				
+				  	<li><a href="/tags.html#ddd">ddd</a> (1)</li>
+				
+				  	<li><a href="/tags.html#developerdeveloperdeveloper">developerdeveloperdeveloper</a> (2)</li>
+				
+				  	<li><a href="/tags.html#platform">platform</a> (1)</li>
+				
+				  	<li><a href="/tags.html#registration">registration</a> (1)</li>
+				
+				  	<li><a href="/tags.html#windows phone 7">windows phone 7</a> (1)</li>
+				
+				  	<li><a href="/tags.html#domain events">domain events</a> (1)</li>
+				
+				  	<li><a href="/tags.html#bar camp">bar camp</a> (1)</li>
+				
+				  	<li><a href="/tags.html#barcamp">barcamp</a> (1)</li>
+				
+				  	<li><a href="/tags.html#bdd">bdd</a> (1)</li>
+				
+				  	<li><a href="/tags.html#lean">lean</a> (2)</li>
+				
+				  	<li><a href="/tags.html#blogging">blogging</a> (4)</li>
+				
+				  	<li><a href="/tags.html#github">github</a> (4)</li>
+				
+				  	<li><a href="/tags.html#twitter">twitter</a> (1)</li>
+				
+				  	<li><a href="/tags.html#git">git</a> (1)</li>
+				
+				  	<li><a href="/tags.html#jekyll">jekyll</a> (1)</li>
+				
+				  	<li><a href="/tags.html#tags">tags</a> (1)</li>
+				
+				  	<li><a href="/tags.html#agile">agile</a> (1)</li>
+				
+				  	<li><a href="/tags.html#project management">project management</a> (1)</li>
+				
+				  	<li><a href="/tags.html#msbuild">msbuild</a> (1)</li>
+				
+				  	<li><a href="/tags.html#creativity">creativity</a> (4)</li>
+				
+				  	<li><a href="/tags.html#dddx">dddx</a> (2)</li>
+				
+				  	<li><a href="/tags.html#2012">2012</a> (2)</li>
+				
+				  	<li><a href="/tags.html#software craftsmanship">software craftsmanship</a> (1)</li>
+				
+				  	<li><a href="/tags.html#change">change</a> (2)</li>
+				
+				  	<li><a href="/tags.html#disruptive change">disruptive change</a> (1)</li>
+				
+			</div>
+	  		<div id="twitter">
+				<h3>Twitter</h3>
+				<p><a href="http://twitter.com/ijohnson_tnf"><img src="http://twitter.zendesk.com/attachments/token/yttm4jflos7vnyq/?name=t_mini-a.png" alt="Follow me on twitter" /></a> Follow <a href="http://twitter.com/ijohnson_tnf">@IJohnson_TNF</a> on Twitter</p>
+	 			<ul id="twitter_update_list"></ul>
+	  		</div>
+
+		</div>-->
+			<div class="wrapper">
+				<div class="container">
+					
+					<h2>Domain Events</h2>
+					
+
+					<h3>Architecture Series Overview</h3>
+
+I have recently become increasingly interested in how we, as developers and architects, structure the systems that we are creating. The demands on on-line systems are significantly different to the demands on desktop only software. Scalability, robustness, performance, resilience are all important factors when thinking about on-line services and there has been a lot of debate within the software world about how we should architect these systems. These posts are my views of interesting architectural patterns and practices that I have been looking at:
+
+<ol>
+  <li><a href="http://blog.ninjaferret.co.uk/?p=184">CQRS: Keeping it simple</a></li>
+  <li><strong>Domain Events</strong> is right here</li>
+</ol>
+
+<h3>Domain Events Introduction</h3>
+
+In my previous post on software architecture on <a href="http://blog.ninjaferret.co.uk/?p=184">CQRS</a> I talked about how we can apply a simple pattern for our domains with the outside world, the separation of the command from the query gives us many advantages but does not solve all of our problems. 
+
+In this post I hope to briefly explain the architecture of how we can use Domain Events, some of the advantages of using them followed by some of the perceived complexities of using them. I have not gone into any technical implementation detail here but I will come onto this in a later post. 
+
+<h3>Multiple Domains</h3>
+
+In a large enterprise there are going to be a number of domains but these domains do not sit in isolation as business processes sit on top of the domain. For example, in an on-line store you may have a <strong>supplier management domain</strong>, a <strong>billing domain</strong>, a <strong>warehouse management domain</strong> and an <strong>order management domain</strong> and business processes will cover all of these domains, for example (this is not an optimal workflow and would annoy most customers but bear with me for this example):
+
+<blockquote>
+When someone places an order it is sent to the warehouse for processing and the user is billed. In the warehouse, each item needs to be located and added to the package. Once billing and packaging is complete it can be dispatched to the customer. If the item is out of stock then we order more of the item from the supplier but if the supplier tells us that there is a long lead time for the item then we have to notify the customer and let them make a choice about whether to cancel or not, if they choose to cancel then we should refund them for the price of that item.
+</blockquote>
+
+So how do we handle the communication between domains? Should the order domain know about the warehouse domain and issue commands? Well, if that was the only consumer of the order then I guess that would be OK but the billing system will also want to know about the order. Actually, they are both interested that an order has been placed but both will respond to that <em>event</em> in different ways. 
+
+<h3>Transferring data between domains</h3>
+
+When we are looking at our domains we have a number of points where something has happened in our domain that has an effect on the processing within other domains so how can we handle this?
+
+<ul>
+  <li>Have a single database where every domain is always up to date (though we can run into scalability and performance issues here)</li>
+  <li>Have some form of data transfer between the different databases that then goes away behind the scenes manipulating data in the destination systems</li>
+  <li>Raise an event and the interested domains can consume that event</li>
+</ul>
+
+So when our order is placed and the <em>orders domain</em> has done all of the checks that it needs then it will raise an <strong>New Order Event</strong> and publish that to the outside world. Any domain can then receive and act based upon that event. In my example so far the warehouse management system will compile the list of items, work out how big a package they should go in, check the stock levels and create a work order for someone to process the order and that order goes on to the queue. At the same time the billing system is retrieving the customer's details and charging them for the total amount. 
+
+So what events would be needed to satisfy the example above?
+
+<ul>
+  <li><strong>Order Placed Event</strong> from the <em>orders domain</em> - consumed by the <em>billing domain</em> and the <em>warehouse domain</em></li>
+  <li><strong>Payment Completed Event</strong> from the <em>billing domain</em> - consumed by the <em>warehouse domain</em></li>
+  <li><strong>Missing Stock Event</strong> from the <em>warehouse domain</em> - consumed by the <em>supplier management domain</em></li>
+  <li><strong>Stock Estimated Arrival Event</strong>t from the <em>supplier management domain</em> - consumed by the <em>orders domain</em></li>
+  <li><strong>Cancel Order Item Event</strong> from the <em>orders domain</em> - consumed by the <em>warehouse domain</em></li>
+</ul>
+
+I think that there are other events, even if they are not currently consumed in the process, that may need to be raised (e.g. when a payment fails) which we may need to trap. Perhaps the greatest difficulty in this pattern is knowing what events people are going to need to isolate yourself from needing to change when a new system comes along.
+
+<h3>What are the benefits?</h3>
+
+There are many of you out there at the moment who are going "why don't you just have an ETL task to populate related databases with the appropriate information?" and that is a valid pattern to use, so the question becomes why use Domain Events?
+
+<h4>1. Extensibility</h4>
+
+Let us say that sometime in the future I want to send a printed invoice to the customer independent of the actual package when an order has been paid, this is a little contrived but bear with me, then using most other techniques I have to write an entire new integration system. With Domain Events I already have all of the integration points that I need because I can subscribe to the <strong>Payment Completed Event</strong> and  retrieve the order information from the order query service (using <a href="http://blog.ninjaferret.co.uk/?p=184">CQRS</a>) then print out the invoice and send it.
+
+Another approach would be to prepare the invoice when the <strong>Order Placed Event</strong> is received but only send it when the <strong>Payment Completed Event</strong> is received but delete the invoice if the <strong>Payment Failed Event</strong> is received. 
+
+<h4>2. Implementation Isolation</h4>
+
+Each implementation of your system is completely isolated from every other implementation. Using Domain Events if I choose to implement a new billing system, using a different language or even using a different database I can do without having to change anything but that domain. The inputs to the domain are known, the Commands from <a href="http://blog.ninjaferret.co.uk/?p=184">CQRS</a> and the <strong>Domain Events</strong> from the other systems. Also my outputs are well defined, my outputs are the <strong>Domain Events</strong> and the Queries from <a href="http://blog.ninjaferret.co.uk/?p=184">CQRS</a>.
+
+Using ETL etc then we are having to do more work in the background to move data into this new system, into the new data structure, rather than forcing the outside world to conform to the technical implementations of the domain using <strong>Domain Events</strong> we are forcing ourselves to comply with our own domain.
+
+<h4>3. Logging</h4>
+
+By definition an event within a domain is something that is extremely important and should contain a lot of important information about the action that has just transpired. Logging at this level means that we are recording all of the important information that is happening within the system and we can do this without actually needing to write much specific logging, we can create a logging component/domain that subscribes to these events and records them. 
+
+<h4>4. Design and Documentation</h4>
+
+I know, this is something that every developer finds dull and boring, but when you are designing your systems and how they interact you are now thinking in terms of the events that each domain is raising and consuming and this will give us a very simple way to document our business processes at a high level.
+
+<cite>
+<strong>ORDERS DOMAIN</strong>
+&nbsp;<em>Raises: Order Placed Event</em>
+&nbsp;&nbsp;Consumed by:
+&nbsp;&nbsp;&nbsp;&nbsp;- Warehouse Domain
+&nbsp;&nbsp;&nbsp;&nbsp;- Billing Domain
+&nbsp;<em>Raises: Cancel Order Item Event</em>
+&nbsp;&nbsp;Consumed by:
+&nbsp;&nbsp;&nbsp;&nbsp;- Warehouse Domain
+&nbsp;&nbsp;&nbsp;&nbsp;- Billing Domain
+&nbsp;&nbsp;<em>Consumes: Stock Estimated Arrival Event</em>
+&nbsp;&nbsp;&nbsp;&nbsp;- Gives user the chance to cancel
+</cite>
+<cite>
+<strong>BILLING DOMAIN</strong>
+&nbsp;<em>Raises: Payment Completed Event</em>
+&nbsp;&nbsp;Consumed by:
+&nbsp;&nbsp;&nbsp;&nbsp;- Warehouse Domain
+&nbsp;<em>Consumes: Order Placed Event</em>
+&nbsp;&nbsp;&nbsp;&nbsp;- Bills the user and raises the Payment Completed Event
+&nbsp;<em>Consumes: Order Cancelled Event</em>
+&nbsp;&nbsp;&nbsp;&nbsp;- Issues a refund back to the user
+</cite>
+
+This is not the entire documentation for the process defined but it helps to show how easy it is to document and hopefully how easy it is to follow. We will have to build this documentation anyway as we are designing our systems and there is little there that we could not take directly to the users and discuss with non-technical business experts.
+
+<h3>Areas of concern?</h3>
+
+It all sounds extremely simple doesn't it? So where does the complexity lie?
+
+There are a number of different problems that happens when we get into using domain events. The way that we design our systems needs to change and we need to take into account these concepts when we are designing our systems.
+
+<h4>1. Reliable Messaging</h4>
+
+We are busy raising events in our systems and assuming that they will reach all of the consumers of those events. How can we be sure that this is the case? This is where reliable messaging comes into the frame. 
+
+A reliable messaging system, such as <a href="http://nservicebus.com/">NServiceBus</a>, will ensure that when you publish a message it will ensure that all messages will be delivered to the consumers. The delivery mechanism used by NServiceBus is to use a queuing mechanism allowing the receiver to pull the messages at a speed that they can cope with. One way to guarantee delivery is that taking the item from the queue and the end of the process is maintained in a distributed transaction so that should any component fail the message ends up back on the queue to be retrieved again at a later date.
+
+However, another mechanism that could be applied is for each domain to send a standard acknowledgement of the event and reports if an error has occurred or a message has disappeared from the queue without being acknowledged then the event is replayed into the system. 
+
+<h4>2. Eventual Consistency</h4>
+
+In a traditional system, where all processing is completed in a single transaction, we are separating out the processing, distributing it between domains so there is a temporal cost to the processing. The data across all domains may not be consistent at the very moment that the data returns to the user, the data is being processed in the background and will eventually be consistent. 
+
+What does this mean? If I am running a website and the user has just submitted some data then when the page refreshes the data may not appear for the customer, a few seconds/minutes later the page may accurately display the current state of the system. One suggestion for this is that the user interface uses a bit of trickery and actively fools the user for a few seconds by making it appear that their command has already been processed. 
+
+<h4>3. How do I handle queries?</h4>
+
+In looking at the <strong>Domain Events</strong> they look very similar to the Commands from CQRS, I think that the main difference between them is that the <strong>Domain Event</strong> is driven by internal forces within the organisation whereas the commands are external, from users or even from third-party applications.
+
+So what happens about queries? Well, the domains should contain enough information within themselves to successfully process the command but the domains are still exposing queries to the world for external systems to communicate with them. There is nothing to stop the generation of new composite services that will gather data from several different domains and present a unified query model.
+
+<h3>Conclusion</h3>
+
+<strong>Domain Events</strong> provide us with a loose coupling mechanism for communication between domains. They allow us to define our interactions, our inputs and out outputs that are focussed on the delivery of the domain, hopefully keeping the domain simple and easy to implement/re-implement as necessary. They work well with CQRS, which says that the commands should be split from the queries, but does not immediately handle how communication should occur between the domains whereas <strong>Domain Events</strong> focusses us on how the domains interact.
+
+					
+					<p class="post_categories"> Tags: 
+						
+						<a href="/tags.html#"></a>
+						
+						<a href="/tags.html#"></a>
+						
+						<a href="/tags.html#"></a>
+						
+					</p>
+					
+				</div>
+				
+					<div id="disqus_thread"></div>
+					<script type="text/javascript">
+					    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+					    var disqus_shortname = 'ninjaferretblog'; // required: replace example with your forum shortname
+
+					    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+					    //var disqus_identifier = 'unique_dynamic_id_1234';
+					    //var disqus_url = 'http://example.com/permalink-to-page.html';
+
+					    /* * * DON'T EDIT BELOW THIS LINE * * */
+					    (function() {
+					        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+					        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+					        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+					    })();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+				
+			</div>
+		</div>
+	<div id="footer">
+	 	&copy; Copyright 2010 Ian Johnson. All rights reserved. 
+	</div>
+</body>
+<script src="/assets/scripts/rendertweets.js" type="text/javascript"></script>
+<script src="http://twitter.com/statuses/user_timeline/ijohnson_tnf.json?callback=twitterCallback2&count=5" type="text/javascript"></script>
+<script src="/assets/scripts/syntaxhighlighter/shCore.js" type="text/javascript"></script>
+<script src="/assets/scripts/syntaxhighlighter/shBrushCSharp.js" type="text/javascript"></script>
+<script src="/assets/scripts/syntaxhighlighter/shBrushXml.js" type="text/javascript"></script>
+<script src="/assets/scripts/syntaxhighlighter/shBrushJScript.js" type="text/javascript"></script>
+<script src="/assets/scripts/syntaxhighlighter/shBrushPlain.js" type="text/javascript"></script>
+<script type="text/javascript">
+   SyntaxHighlighter.all(); 
+</script>
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-19283283-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+</html>

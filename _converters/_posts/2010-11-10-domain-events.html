@@ -1,0 +1,137 @@
+---
+layout: default
+title: Domain Events
+summary: Domain Events
+categories:
+- Architecture
+- Domain Events
+- Software Architecture
+---
+<h2>Architecture Series Overview</h2>
+
+I have recently become increasingly interested in how we, as developers and architects, structure the systems that we are creating. The demands on on-line systems are significantly different to the demands on desktop only software. Scalability, robustness, performance, resilience are all important factors when thinking about on-line services and there has been a lot of debate within the software world about how we should architect these systems. These posts are my views of interesting architectural patterns and practices that I have been looking at:
+
+<ol>
+  <li><a href="http://blog.ninjaferret.co.uk/?p=184">CQRS: Keeping it simple</a></li>
+  <li><strong>Domain Events</strong> is right here</li>
+</ol>
+
+<h2>Domain Events Introduction</h2>
+
+In my previous post on software architecture on <a href="http://blog.ninjaferret.co.uk/?p=184">CQRS</a> I talked about how we can apply a simple pattern for our domains with the outside world, the separation of the command from the query gives us many advantages but does not solve all of our problems. 
+
+In this post I hope to briefly explain the architecture of how we can use Domain Events, some of the advantages of using them followed by some of the perceived complexities of using them. I have not gone into any technical implementation detail here but I will come onto this in a later post. 
+
+<h2>Multiple Domains</h2>
+
+In a large enterprise there are going to be a number of domains but these domains do not sit in isolation as business processes sit on top of the domain. For example, in an on-line store you may have a <strong>supplier management domain</strong>, a <strong>billing domain</strong>, a <strong>warehouse management domain</strong> and an <strong>order management domain</strong> and business processes will cover all of these domains, for example (this is not an optimal workflow and would annoy most customers but bear with me for this example):
+
+<blockquote>
+When someone places an order it is sent to the warehouse for processing and the user is billed. In the warehouse, each item needs to be located and added to the package. Once billing and packaging is complete it can be dispatched to the customer. If the item is out of stock then we order more of the item from the supplier but if the supplier tells us that there is a long lead time for the item then we have to notify the customer and let them make a choice about whether to cancel or not, if they choose to cancel then we should refund them for the price of that item.
+</blockquote>
+
+So how do we handle the communication between domains? Should the order domain know about the warehouse domain and issue commands? Well, if that was the only consumer of the order then I guess that would be OK but the billing system will also want to know about the order. Actually, they are both interested that an order has been placed but both will respond to that <em>event</em> in different ways. 
+
+<h2>Transferring data between domains</h2>
+
+When we are looking at our domains we have a number of points where something has happened in our domain that has an effect on the processing within other domains so how can we handle this?
+
+<ul>
+  <li>Have a single database where every domain is always up to date (though we can run into scalability and performance issues here)</li>
+  <li>Have some form of data transfer between the different databases that then goes away behind the scenes manipulating data in the destination systems</li>
+  <li>Raise an event and the interested domains can consume that event</li>
+</ul>
+
+So when our order is placed and the <em>orders domain</em> has done all of the checks that it needs then it will raise an <strong>New Order Event</strong> and publish that to the outside world. Any domain can then receive and act based upon that event. In my example so far the warehouse management system will compile the list of items, work out how big a package they should go in, check the stock levels and create a work order for someone to process the order and that order goes on to the queue. At the same time the billing system is retrieving the customer's details and charging them for the total amount. 
+
+So what events would be needed to satisfy the example above?
+
+<ul>
+  <li><strong>Order Placed Event</strong> from the <em>orders domain</em> - consumed by the <em>billing domain</em> and the <em>warehouse domain</em></li>
+  <li><strong>Payment Completed Event</strong> from the <em>billing domain</em> - consumed by the <em>warehouse domain</em></li>
+  <li><strong>Missing Stock Event</strong> from the <em>warehouse domain</em> - consumed by the <em>supplier management domain</em></li>
+  <li><strong>Stock Estimated Arrival Event</strong>t from the <em>supplier management domain</em> - consumed by the <em>orders domain</em></li>
+  <li><strong>Cancel Order Item Event</strong> from the <em>orders domain</em> - consumed by the <em>warehouse domain</em></li>
+</ul>
+
+I think that there are other events, even if they are not currently consumed in the process, that may need to be raised (e.g. when a payment fails) which we may need to trap. Perhaps the greatest difficulty in this pattern is knowing what events people are going to need to isolate yourself from needing to change when a new system comes along.
+
+<h2>What are the benefits?</h2>
+
+There are many of you out there at the moment who are going "why don't you just have an ETL task to populate related databases with the appropriate information?" and that is a valid pattern to use, so the question becomes why use Domain Events?
+
+<h3>1. Extensibility</h3>
+
+Let us say that sometime in the future I want to send a printed invoice to the customer independent of the actual package when an order has been paid, this is a little contrived but bear with me, then using most other techniques I have to write an entire new integration system. With Domain Events I already have all of the integration points that I need because I can subscribe to the <strong>Payment Completed Event</strong> and  retrieve the order information from the order query service (using <a href="http://blog.ninjaferret.co.uk/?p=184">CQRS</a>) then print out the invoice and send it.
+
+Another approach would be to prepare the invoice when the <strong>Order Placed Event</strong> is received but only send it when the <strong>Payment Completed Event</strong> is received but delete the invoice if the <strong>Payment Failed Event</strong> is received. 
+
+<h3>2. Implementation Isolation</h3>
+
+Each implementation of your system is completely isolated from every other implementation. Using Domain Events if I choose to implement a new billing system, using a different language or even using a different database I can do without having to change anything but that domain. The inputs to the domain are known, the Commands from <a href="http://blog.ninjaferret.co.uk/?p=184">CQRS</a> and the <strong>Domain Events</strong> from the other systems. Also my outputs are well defined, my outputs are the <strong>Domain Events</strong> and the Queries from <a href="http://blog.ninjaferret.co.uk/?p=184">CQRS</a>.
+
+Using ETL etc then we are having to do more work in the background to move data into this new system, into the new data structure, rather than forcing the outside world to conform to the technical implementations of the domain using <strong>Domain Events</strong> we are forcing ourselves to comply with our own domain.
+
+<h3>3. Logging</h3>
+
+By definition an event within a domain is something that is extremely important and should contain a lot of important information about the action that has just transpired. Logging at this level means that we are recording all of the important information that is happening within the system and we can do this without actually needing to write much specific logging, we can create a logging component/domain that subscribes to these events and records them. 
+
+<h3>4. Design and Documentation</h3>
+
+I know, this is something that every developer finds dull and boring, but when you are designing your systems and how they interact you are now thinking in terms of the events that each domain is raising and consuming and this will give us a very simple way to document our business processes at a high level.
+
+<cite>
+<strong>ORDERS DOMAIN</strong>
+&nbsp;<em>Raises: Order Placed Event</em>
+&nbsp;&nbsp;Consumed by:
+&nbsp;&nbsp;&nbsp;&nbsp;- Warehouse Domain
+&nbsp;&nbsp;&nbsp;&nbsp;- Billing Domain
+&nbsp;<em>Raises: Cancel Order Item Event</em>
+&nbsp;&nbsp;Consumed by:
+&nbsp;&nbsp;&nbsp;&nbsp;- Warehouse Domain
+&nbsp;&nbsp;&nbsp;&nbsp;- Billing Domain
+&nbsp;&nbsp;<em>Consumes: Stock Estimated Arrival Event</em>
+&nbsp;&nbsp;&nbsp;&nbsp;- Gives user the chance to cancel
+</cite>
+<cite>
+<strong>BILLING DOMAIN</strong>
+&nbsp;<em>Raises: Payment Completed Event</em>
+&nbsp;&nbsp;Consumed by:
+&nbsp;&nbsp;&nbsp;&nbsp;- Warehouse Domain
+&nbsp;<em>Consumes: Order Placed Event</em>
+&nbsp;&nbsp;&nbsp;&nbsp;- Bills the user and raises the Payment Completed Event
+&nbsp;<em>Consumes: Order Cancelled Event</em>
+&nbsp;&nbsp;&nbsp;&nbsp;- Issues a refund back to the user
+</cite>
+
+This is not the entire documentation for the process defined but it helps to show how easy it is to document and hopefully how easy it is to follow. We will have to build this documentation anyway as we are designing our systems and there is little there that we could not take directly to the users and discuss with non-technical business experts.
+
+<h2>Areas of concern?</h2>
+
+It all sounds extremely simple doesn't it? So where does the complexity lie?
+
+There are a number of different problems that happens when we get into using domain events. The way that we design our systems needs to change and we need to take into account these concepts when we are designing our systems.
+
+<h3>1. Reliable Messaging</h3>
+
+We are busy raising events in our systems and assuming that they will reach all of the consumers of those events. How can we be sure that this is the case? This is where reliable messaging comes into the frame. 
+
+A reliable messaging system, such as <a href="http://nservicebus.com/">NServiceBus</a>, will ensure that when you publish a message it will ensure that all messages will be delivered to the consumers. The delivery mechanism used by NServiceBus is to use a queuing mechanism allowing the receiver to pull the messages at a speed that they can cope with. One way to guarantee delivery is that taking the item from the queue and the end of the process is maintained in a distributed transaction so that should any component fail the message ends up back on the queue to be retrieved again at a later date.
+
+However, another mechanism that could be applied is for each domain to send a standard acknowledgement of the event and reports if an error has occurred or a message has disappeared from the queue without being acknowledged then the event is replayed into the system. 
+
+<h3>2. Eventual Consistency</h3>
+
+In a traditional system, where all processing is completed in a single transaction, we are separating out the processing, distributing it between domains so there is a temporal cost to the processing. The data across all domains may not be consistent at the very moment that the data returns to the user, the data is being processed in the background and will eventually be consistent. 
+
+What does this mean? If I am running a website and the user has just submitted some data then when the page refreshes the data may not appear for the customer, a few seconds/minutes later the page may accurately display the current state of the system. One suggestion for this is that the user interface uses a bit of trickery and actively fools the user for a few seconds by making it appear that their command has already been processed. 
+
+<h3>3. How do I handle queries?</h3>
+
+In looking at the <strong>Domain Events</strong> they look very similar to the Commands from CQRS, I think that the main difference between them is that the <strong>Domain Event</strong> is driven by internal forces within the organisation whereas the commands are external, from users or even from third-party applications.
+
+So what happens about queries? Well, the domains should contain enough information within themselves to successfully process the command but the domains are still exposing queries to the world for external systems to communicate with them. There is nothing to stop the generation of new composite services that will gather data from several different domains and present a unified query model.
+
+<h2>Conclusion</h2>
+
+<strong>Domain Events</strong> provide us with a loose coupling mechanism for communication between domains. They allow us to define our interactions, our inputs and out outputs that are focussed on the delivery of the domain, hopefully keeping the domain simple and easy to implement/re-implement as necessary. They work well with CQRS, which says that the commands should be split from the queries, but does not immediately handle how communication should occur between the domains whereas <strong>Domain Events</strong> focusses us on how the domains interact.

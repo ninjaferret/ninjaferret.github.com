@@ -1,0 +1,157 @@
+---
+layout: default
+title: MSIL - 4. For Loops
+summary: MSIL - 4. For Loops
+categories:
+- .NET
+- C#
+- Reflection
+---
+So for completeness I thought that I would introduce you to basic loops, although I have no need of them in my intended use of <strong>Reflection.Emit</strong>. I am going to finish off my Calculator implementation by non-optimal implementation of the multiply method, I could make use of the <strong>OpCodes.Mul</strong> operator in the same way as I have used <strong>OpCodes.Add</strong> etc. but this would not demonstrate a basic for loop. As part of this I will also demonstrate calling a method of the generated class.
+
+The source code for this can be found in my <a href="http://code.assembla.com/NinjaFerretDemos/subversion/nodes/Reflection/ForLoop">subversion repository</a>.
+
+<h3>Implementing Multiply</h3>
+I can create a loop that will make use of the <strong>Add()</strong> method to calculate the multiplication:
+
+[sourcecode language="csharp" gutter="true"]
+public int Multiply(int a, int b)
+{
+	int result = 0;
+	for (int i = a; i &gt; 0; i--)
+	{
+		result = Add(result, b);
+	}
+	return result;
+}
+[/sourcecode]
+
+So taking a look at ILDASM:
+
+<code>
+.method public hidebysig newslot virtual final
+        instance int32  Multiply(int32 a,
+                                 int32 b) cil managed
+{
+  // Code size       36 (0x24)
+  .maxstack  3
+  .locals init ([0] int32 result,
+           [1] int32 i,
+           [2] int32 CS$1$0000,
+           [3] bool CS$4$0001)
+  IL_0000:  nop
+  IL_0001:  ldc.i4.0
+  IL_0002:  stloc.0
+  IL_0003:  ldarg.1
+  IL_0004:  stloc.1
+  IL_0005:  br.s       IL_0016
+  IL_0007:  nop
+  IL_0008:  ldarg.0
+  IL_0009:  ldloc.0
+  IL_000a:  ldarg.2
+  IL_000b:  call       instance int32 Inheritance.CalculatorImplementation::Add(int32,
+                                                                                int32)
+  IL_0010:  stloc.0
+  IL_0011:  nop
+  IL_0012:  ldloc.1
+  IL_0013:  ldc.i4.1
+  IL_0014:  sub
+  IL_0015:  stloc.1
+  IL_0016:  ldloc.1
+  IL_0017:  ldc.i4.0
+  IL_0018:  cgt
+  IL_001a:  stloc.3
+  IL_001b:  ldloc.3
+  IL_001c:  brtrue.s   IL_0007
+  IL_001e:  ldloc.0
+  IL_001f:  stloc.2
+  IL_0020:  br.s       IL_0022
+  IL_0022:  ldloc.2
+  IL_0023:  ret
+} // end of method CalculatorImplementation::Multiply
+</code>
+
+The first thing is that we now have 4 local variables:
+<ul>
+   <li><strong>[0] int32 result</strong> - the integer variable to hold the <em>result</em></li>
+   <li><strong>[1] int32 i</strong> - the integer variable to hold the <em>loop counter</em></li>
+   <li><strong>[2] int32 CS$1$0000</strong> - an integer variable, created by the compiler, that holds the <em>return value</em></li>
+   <li><strong>[3] bool CS$4$0001</strong> - a boolean variable, created by the compiler, that holds the result of the <em>loop condition</em> <code>for(int i = a; <strong>i &gt; 0</strong>; i--)</code></li>
+</ul>
+
+Initially, the <em>result</em> variable is assigned the constant 0 (<strong>OpCodes.Ldc_I4_0</strong>) and the <em>loop counter</em> is assigned the value of the first parameter (<strong>OpCodes.Ldarg_1</strong>). The IL then switches execution to the location <strong>IL0016</strong> that executes the condition and stores the result of that condition into the <em>loop condition</em> variable. If the <em>loop condition</em> variable is true execution then returns to location <strong>IL0007</strong> to execute the main body of the loop. Note the use of the <strong>OpCodes.Cgt - greater than</strong> code.
+
+In the main body of the loop the <strong>this</strong> parameter (parameter 0) is pushed onto the stack followed by the current <em>result</em> variable and the second parameter. The stack is now set-up for a call into the <strong>Add</strong> method and the result is stored into the <em>result</em> variable. The <em>loop counter</em> variable is then decremented and the condition is evaluated once more.
+
+When the <em>loop condition</em> is false, the <em>result variable</em> is stored into the <em>return</em> variable which is then returned to the caller.
+
+So putting this into code:
+
+[sourcecode language="csharp" gutter="true"]
+private static void DefineMultiplyMethod(TypeBuilder typeBuilder, Type interfaceType)
+{
+	var interfaceMethod = interfaceType.GetMethod(&quot;Multiply&quot;);
+	var addMethod = interfaceType.GetMethod(&quot;Add&quot;);
+	var addParameters = addMethod
+		.GetParameters()
+		.Select(parameter =&gt; parameter.ParameterType)
+		.ToArray();
+	var methodBuilder = typeBuilder.DefineMethod(&quot;Multiply&quot;,
+                             MethodAttributes.Public |
+                             MethodAttributes.Virtual |
+                             MethodAttributes.Final |
+                             MethodAttributes.NewSlot |
+                             MethodAttributes.HideBySig);
+	methodBuilder.SetReturnType(interfaceMethod.ReturnType);
+	var parameters = interfaceMethod
+                             .GetParameters()
+                             .Select(parameter =&gt; parameter.ParameterType)
+                             .ToArray();
+	methodBuilder.SetParameters(parameters);
+	methodBuilder.InitLocals = true;
+
+	var il = methodBuilder.GetILGenerator();
+	var returnLabel = il.DefineLabel();
+	var decisionLabel = il.DefineLabel();
+	var loopStartLabel = il.DefineLabel();
+	il.DeclareLocal(typeof(int));
+	il.DeclareLocal(typeof(int));
+	il.DeclareLocal(typeof(int));
+	il.DeclareLocal(typeof(bool));
+	il.Emit(OpCodes.Nop);
+	il.Emit(OpCodes.Ldc_I4_0);
+	il.Emit(OpCodes.Stloc_0);
+	il.Emit(OpCodes.Ldarg_1);
+	il.Emit(OpCodes.Stloc_1);
+	il.Emit(OpCodes.Br_S, decisionLabel);
+	il.MarkLabel(loopStartLabel);
+	il.Emit(OpCodes.Nop);
+	il.Emit(OpCodes.Ldarg_0);
+	il.Emit(OpCodes.Ldloc_0);
+	il.Emit(OpCodes.Ldarg_2);
+	il.EmitCall(OpCodes.Call, addMethod, addParameters);
+	il.Emit(OpCodes.Stloc_0);
+	il.Emit(OpCodes.Nop);
+	il.Emit(OpCodes.Ldloc_1);
+	il.Emit(OpCodes.Ldc_I4_1);
+	il.Emit(OpCodes.Sub);
+	il.Emit(OpCodes.Stloc_1);
+	il.MarkLabel(decisionLabel);
+	il.Emit(OpCodes.Ldloc_1);
+	il.Emit(OpCodes.Ldc_I4_0);
+	il.Emit(OpCodes.Cgt);
+	il.Emit(OpCodes.Stloc_3);
+	il.Emit(OpCodes.Ldloc_3);
+	il.Emit(OpCodes.Brtrue_S, loopStartLabel);
+	il.Emit(OpCodes.Ldloc_0);
+	il.Emit(OpCodes.Stloc_2);
+	il.MarkLabel(returnLabel);
+	il.Emit(OpCodes.Ldloc_2);
+	il.Emit(OpCodes.Ret);
+	typeBuilder.DefineMethodOverride(methodBuilder, interfaceMethod);
+}
+[/sourcecode]
+
+I now have a fully functional and fully working calculator class that implements the <strong>Calculator</strong> interface and has been generated dynamically at runtime.
+
+Next time, I will be looking into lambda expressions...

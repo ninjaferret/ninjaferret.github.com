@@ -1,0 +1,78 @@
+---
+layout: default
+title: MSIL - 2. Implementing Interfaces
+summary: MSIL - 2. Implementing Interfaces
+categories:
+- .NET
+- C#
+- Reflection
+---
+Following on from my previous blog post I intend to show you how to take the basics that I presented and extend them to become much more useful. One of the problems with the previous example was that there was absolutely no way when writing the test code to use the object that had been dynamically created without using even more reflection. The answer to this is to start implementing interfaces so that the compiled code knows the interface for the dynamically generated methods.
+
+Once again, all of the source code can be downloaded from the <a href="http://code.assembla.com/NinjaFerretDemos/subversion/nodes/Reflection/Interfaces">here</a>.
+
+<h3>The interface</h3>
+I am going to continue on with the Calculator theme:
+
+[sourcecode language="csharp" gutter="true"]
+public interface Calculator
+{
+	int Add(int a, int b);
+	int Subtract(int a, int b);
+	int Multiply(int a, int b);
+	int Divide(int numerator, int denominator);
+}
+[/sourcecode]
+
+<h3>Implementing a method</h3>
+In my last blog post I showed you how to create a method using <strong>Reflection.Emit</strong>, so staying with the <strong>Add()</strong> method I will show you how I would create the method based on the interface. The IL inside the method will not change so the primary changes will come from simply defining the method.
+
+<h4>1. Mark the class as implementing the interface</h4>
+
+[sourcecode language="csharp" gutter="true"]
+var interfaceType = typeof(Calculator);
+...
+typeBuilder.AddInterfaceImplementation(interfaceType);
+[/sourcecode]
+
+<h4>2. Define the method</h4>
+The definition of the method is almost identical to the definition of the method shown in the previous post:
+
+[sourcecode language="csharp" gutter="true"]
+var interfaceAddMethod = interfaceType.GetMethod(&quot;Add&quot;);
+
+var methodBuilder = typeBuilder.DefineMethod(&quot;Add&quot;, MethodAttributes.Public |
+                    MethodAttributes.Virtual |
+                    MethodAttributes.Final |
+                    MethodAttributes.NewSlot |
+                    MethodAttributes.HideBySig);
+methodBuilder.SetReturnType(interfaceAddMethod.ReturnType);
+var parameters = interfaceAddMethod
+    .GetParameters()
+    .Select(parameter =&gt; parameter.ParameterType)
+    .ToArray();
+methodBuilder.SetParameters(parameters);
+...
+var il = methodBuilder.GetILGenerator();
+...
+typeBuilder.DefineMethodOverride(methodBuilder, interfaceAddMethod);
+[/sourcecode]
+
+One of the most interesting things that have discovered on my journey through IL I realised that the implementing method is marked as <strong>Virtual</strong> and <strong>Final</strong> in order to implement the interface. The attribute <strong>HideBySig</strong> indicates that this method hides all methods in base classes and interfaces with the same signature and the attribute <strong>NewSlot</strong> tells the compiler to allocate a new spot in the V-Table.
+
+A lot of work has already been done for us in defining the interface, the parameters and the return type are defined for us. After generating the IL for the method there is one final call to make <strong>typeBuilder.DefineMethodOverride()</strong> passing in the generated method and the method from the interface that it is overriding.
+
+<h4>3. Defining Multiply and Divide as Not Implemented</h4>
+For now I do not need to implement these methods and I would like to throw a <strong>NotImplementedException</strong> rather than worrying about writing the IL now. The method bodies become very simple:
+
+[sourcecode language="csharp" gutter="true"]
+var il = methodBuilder.GetILGenerator();
+il.Emit(OpCodes.Ldstr, &quot;The Multiply method has not been implemented yet&quot;);
+il.Emit(OpCodes.Newobj, typeof(NotImplementedException).GetConstructor(new [] {typeof(string)}));
+il.Emit(OpCodes.Throw);
+[/sourcecode]
+
+It simply pushes the string onto the stack and uses it to create a new exception that is then immediately throws.
+
+<h3>What is next?</h3>
+I have shown you how to implement an interface and the basic mechanisms of creating a new object (in this case an exception). The next stage is to take the calculator implementation further using the <strong>Divide</strong> method which will take us into writing an <strong>if</strong> statement to detect if the denominator is 0.
