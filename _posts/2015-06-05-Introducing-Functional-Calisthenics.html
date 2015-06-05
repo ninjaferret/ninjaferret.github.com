@@ -1,0 +1,135 @@
+---
+layout: default
+title: Introducing functional calisthenics
+summary: So, on my way to <a href="http://socratesuk.org">SoCraTes UK 2015</a> and talking about <a href="http://www.cs.helsinki.fi/u/luontola/tdd-2009/ext/ObjectCalisthenics.pdf">Object Calisthenics</a> I was struck by an idea, <strong>is there an equivalent of Object Calisthenics for functional programming to help people learn?</strong> So I asked the wonderful people at the conference and here is what we concluced.
+categories:
+- Software Craftsmanship
+- Functional Programming
+- Learning
+---
+
+<h3>TL;DR</h3>
+
+<p>
+ 	<a href="http://www.cs.helsinki.fi/u/luontola/tdd-2009/ext/ObjectCalisthenics.pdf">Object Calisthenics</a> helps people to become better Object-Oriented programmers and as someone new(ish) to the functional world I wondered if there were an equivalent set of rules that would help me become a better functional programmer, so I asked the people at <a href="http://socratesuk.org">SoCraTes UK 2015</a>:
+</p>
+
+<ul>
+	<li>
+		<a href="#toplevelsideeffects">Side effects can only occur at the top level</a>
+	</li>
+	<li>
+		<a href="#nomutablestate">No mutable state</a>
+	<li>
+		<a href="#expressionsnotstatements">Expressions not statements</a>
+	</li>
+	<li>
+		<a href="#oneargumentfunctions">Functions should have 1 argument</a> 
+	</li>
+	<li>
+		<a href="#noexplicitrecursion">No explicit recursion</a> 
+	</li>
+	<li>
+		<a href="#maximumlevelofabstraction">Maximum type-level abstraction</a>
+	</li>
+	<li>
+		<a href="#infinitesequences">Always use infinite sequences</a>
+	</li>
+	<li>
+		<a href="#noif">No "if"</a>
+	</li>
+	<li>
+		<a href="#nameeverything">Name everything</a>
+	</li>
+	<li>
+		<a href="#useintermediates">Use intermediates</a>
+	</li>
+	<li>
+		<a href="#dontabbreviate">Don't abbreviate</a>
+	</li> 
+</ul>
+
+<h3>Want to read more?</h3>
+
+<p>
+What are <em>Functional Calisthenics</em>? They are derived from <a href="http://www.cs.helsinki.fi/u/luontola/tdd-2009/ext/ObjectCalisthenics.pdf">Object Calisthenics</a>, these rules that you can apply to make your object-oriented code better by applying strict rules in what you can and cannot do. These strict rules force you to think differently about how to write your code, e.g. the rule <em>No getters of setters</em> will often lead to people thinking <em>If I can't get at the internal state using a getter, how can I test that the current state is correct?</em> I was wondering whether there was something similar that I could use as a training exercise to improve my functional programming and escape an "object-oriented mindset".
+</p>
+
+<p>
+So, I asked the wonderful community at the <a href="http://socratesuk.org">SoCraTes UK 2015 conference</a> about them, there was a huge amount of interest and a lot of people enthusiastically helped to come up with these initial thoughts on our <em>Functional Calisthenics</em>.
+</p>
+
+<h4 id="toplevelsideeffects">Side effects can only occur at the top level</h4>
+
+<p>
+We want the majority of our code to be <em>pure functions</em> and in order for that to be the case they cannot depend on anything that is impure. This means we should pull the impure functions up to the top level and isolate them as much as possible from the rest of the code. This can include:
+</p>
+
+<ul>
+	<li>User interaction</li>
+	<li>Database access</li>
+	<li>API calls</li>
+</ul>
+
+<h4 id="nomutablestate">No mutable state</h4>
+
+<p>
+This is very close to the <a href="toplevelsideeffects">Side effects can only occur at the top level rule</a> but we can go further than just creating pure functions, we don't want to mutate state within a function either, e.g. do not re-use variables (if your language allows) as this has a negative impact on code readability and any mutable state could potentially result in an unintended consequence. 
+</p>
+
+<h4 id="expressionsnotstatements">Expressions not statements</h4>
+
+<p>
+This is a kind of extension of the <a href="#nomutablestate">No mutable state</a> rule, if we are calling a function that does not return anything then we are probably expecting that some mutable state will be changes as a part of this call and the function will not be pure. If we are aiming for purity then we should only be using functions that take return values. 
+</p>
+
+<h4 id="oneargumentfunctions">Functions should have one argument</h4>
+<p>
+This is one that is probably causing a fair amount of debate, but we should be using restricting the number of arguments that a function can take, a function with a large number of arguments smells of a <em>single responsibility principle</em> violation. <a href="http://en.wikipedia.org/wiki/Currying">Currying</a> provides us with the ability to reduce long argument lists to a series of functions that all take one parameter.
+</p>
+
+<h4 id="noexplicitrecursion">No explicit recursion</h4>
+<p>
+Prefer separating the method of recursion away from the logic that you are trying to execute.
+</p>
+
+<h4 id="maximumlevelofabstraction">Maximum level of abstraction</h4>
+<p>
+Functions should take the highest level of abstraction possible, e.g. if <em>List</em> is a special case of <em>Enumerable</em> then the function should take <em>Enumerable</em>.
+</p>
+
+<h4 id="infinitesequences">Use infinite sequences</h4>
+<p>
+If you function takes, or returns, a sequence of data then write the function in a way that does not exclude infinite sequences, allow for tail recursion etc.
+</p>
+
+<h4 id="noif">No if</h4>
+<p>
+Avoid using <em>if</em> statements where possible. As <a href="https://twitter.com/SamirTalwar">Samir</a> said 
+</p>
+<blockquote>"if" is just a special case of pattern matching anyway</blockquote>
+
+<h4 id="nameeverything">Name everything</h4>
+<p>
+We should provide named types for primitives including tuples and we should avoid anoymous functions and lambdas.
+</p>
+
+<h4 id="useintermediates">Use intermediate variables</h4>
+<p>
+Avoid chaining function calls, extract into intermediate variables.
+</p>
+
+<h4 id="dontabbreviate">Don't abbreviate</h4>
+<p>
+Let's be fair, we've all seen functional code with functions like f(), we're not in the dark ages people and we can afford to use more descriptive names to help those who come along later to understand the intent of the code. 
+</p>
+
+<h3>What's next</h3>
+<p>
+Thse are all preliminary ideas that could help people learn and grow their knowledge of functional programming, they are barely 9 hours old as I write this and we have had our first tentative steps in applying these rules to a code kata. The next step is to try <em>Functional Calisthenics</em> in code katas, see what works, what doesn't are there other rules that would help produce better functional programmers. The discussion is just beginning. 
+</p>
+
+<h3>Thanks</h3>
+<p>
+I could not have come up with these rules without those who attended my session at the <a href="http://socratesuk.org">SoCraTes UK 2015 conference</a>, I may have had an idea but they have taken the concept and fleshed it out to where we are now and hopefully together we will continue to develop these ideas for the benefit of the community.
+</p>
