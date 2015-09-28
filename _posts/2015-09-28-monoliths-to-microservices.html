@@ -1,0 +1,70 @@
+---
+layout: default
+title: Monoliths to microservices
+summary: At <a href="http://dddeastanglia.com">DDD East Anglia</a> I talked about how we can, as part of our daily jobs, refactor our code into a loosely coupled structure. As a side-effect of this process it is easier to extract <em>microservices</em> from the giant <em>monolith</em>. 
+categories:
+- architecture
+- microservices
+---
+
+<h3>TL;DR</h3>
+
+<p>
+ 	Moving to <em>microservices</em> is a massive step, there are huge challenges that face us that have the ability to overwhelm us. We do not need to do all of this at once, we can take small steps within the <em>monolith</em> to improve the structure of the code then we can face these problems one step at a time. 
+</p>
+
+<p>
+	I gave this talk at <a href="http://dddeastanglia.com">DDD East Anglia</a> a few days ago, you can <a href="downloads/2015-09-26-DDDEA-Microservices-to-Monoliths.pptx">download my slides here</a>.
+</p>
+
+<h3>Introduction</h3>
+
+<h4>What do I mean by a <em>monolith</em>?</h4>
+
+<p>
+	I have worked on many different applications over the years and very few of them are ever made up of a single application, most of them have at least one of:
+</p>
+<ul>
+	<li>Websites</li>
+	<li>Background service</li>
+	<li>Scheduled tasks</li>
+	<li>Web services</li>
+</ul>
+<p>
+	However, most of the systems that I have seen use a single code base to represent the entire domain of the system and each of the components is highly coupled to the entirety of that code base. They all share the same large monolithic database that is the central integration point. All of this means the different comnponents are so tightly coupled they have to be deployed in unison as well as increasing the development effort to make a change while slowing down the release cycle. 
+</p>
+<p>
+	This is not to say all monoliths are like this, there are monoliths with clean code, separation of concerns that can be developed and deployed efficiently.
+</p>
+
+<h4>What do I mean by a <em>microservice</em>?</h4>
+
+<p>
+	<em>Microservices</em> are the latest thing, what people need to make their CVs buzzword compliant (and yes I did create a talk about them so I'm not immune). But I think that the definitions of them is still not clear, I've heard it said that they are things you can re-write in two weeks, or something you can hold in your head easily but I'll go with a slightly different definition.
+</p>
+<blockquote>
+	A <em>microservice</em> is an <strong>appropriately sized</strong> code-base that represents one <strong>business capability</strong> efficiently, controls its own data and may comprise of multiple deployable components
+</blockquote>
+<p>
+	A <strong>business capability</strong> can be seen as a <strong>bounded context</strong> in <em>Domain Driven Design</em> terms. This could be managing the payment systems for a website, or management reports, or the reservations system of a hotel. These all have different sizes so the code should be sufficient to represent these <strong>business capabilities</strong> and no more than that.
+</p>
+<p>
+	This may result in more than one deployable component, as listed above, you may have service to receive commands, background processors to handle events and maybe even a website to render specific UI components as part of a composable UI. 
+</p>
+<h5>Advantages</h5>
+<ul>
+	<li>Smaller, simpler code bases</li>
+	<li>Loosely coupled services</li>
+	<li>Independently deployable services</li>
+	<li>Independently scalable services</li>
+	<li>Developers work in isolation, no code conflicts so faster development</li>
+	<li>Faster deployment of features to production</li>
+</ul>
+<h5>Disadvantages</h5>
+<ul>
+	<li><strong>Eventual consistency</strong> - in more "traditional" models we can create a single transaction for a web request or for processing a command and any errors result in a rollback of the transaction. As we move away from this to a <em>microservice</em> approach we have to think more about lots of small transactions and managing errors by compensatory actions to undo what has gone before.</li>
+	<li><strong>Operational complexity</strong> - once we break the <em>monolith</em> into <em>microservices</em> we probably have tens of different deployed components, maybe more, and each one of these needs to be monitored and maintained.</li>
+	<li><strong>Versioning of interfaces/messages</strong> - when we are within the <em>monolith</em> refactoring code, changing messages, or changing the interface of a service is easy, we are in one repository, however when we split things apart into <em>microservices</em> we have multiple repositories, multiple independently deployable components and to keep them independent we have to think about how we make our interfaces/messages backwards compatible or at least versioned.</li>
+	<li><strong>Defining service boundaries</strong> - like any version of <em>SOA</em> we have the problem of creating coherent service boundaries, wrapping them around a logical set of operations that form the business capability, getting the wrong boundaries will lead to tightly-coupled services and retain the pain of the original system.</li>
+</ul>
+
