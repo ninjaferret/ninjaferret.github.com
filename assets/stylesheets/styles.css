@@ -4,6 +4,12 @@
 	text-align: center;
 }
 
+a,
+a:visited,
+a:hover {
+	text-decoration: underline;
+}
+
 h1 {
 	display: inline-block;
 }
