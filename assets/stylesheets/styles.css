@@ -41,3 +41,9 @@ blockquote {
 	font-style: italic;
 }
 
+.centred_image {
+	display: inline-block;
+	margin: inherit auto;
+	width: 90%;
+}
+
