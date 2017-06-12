@@ -41,9 +41,9 @@ blockquote {
 	font-style: italic;
 }
 
-.centred_image {
-	display: inline-block;
-	margin: inherit auto;
-	width: 90%;
+.sketchnote_centred_image {
+	display: block;
+	margin: 0 auto;
+	width: 400px;
 }
 
