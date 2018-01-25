@@ -150,3 +150,21 @@ categories:
         />
     </a>
 </div>
+
+<p>
+	Kevlin talked about the combination of mutability and shared state. Originally, mutable state did not cause much of a problem
+	simply because only one thread accessed it at a time, it was only when mutable state is shared between multiple threads that
+	we end up in race conditions. 
+</p>
+<p>
+	Another interesting factor that Kevlin just briefly touched upon was the orthogonal factors of code:
+</p>
+<ul>
+	<li><strong>Functional</strong> - what the application does</li>
+	<li><strong>Operational</strong> - how the code runs, how it is monitored, how performant it is</li>
+	<li><strong>Developmental</strong> - how easy the code is to develop</li>
+</ul>
+<p>
+	Different operations that we perform on the code affect mostly one area, e.g. <em>refactoring</em> affects the <em>developmental</em>
+	factor without changing the other two while <em>optimisation</em> mosty focusses on improving the <em>operational</em> side. 
+</p>
