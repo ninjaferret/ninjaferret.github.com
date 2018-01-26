@@ -1,6 +1,6 @@
 --- 
 layout: default 
-title: NDC London 2018 - Day 1
+title: NDC London 2018
 summary: I made some sketchnotes when I attended NDC London 2018. 
 categories:
 - Conferences 
@@ -28,6 +28,8 @@ categories:
 		<ul>
 			<li><a href="#raspberry_pi">Building a Raspberry Pi Kubernetes Cluster and running .NET Core</a></li>
 			<li><a href="#what_is_cloud_native">What is this Cloud Native thing anyway?</a></li>
+			<li><a href="#windows_based_apps_on_kubernetes">Deploying Windows Container based apps using Kubernetes</a></li>
+			<li><a href="#styleguide_driven_development">Styleguide-Driven Development</a></li>
 		</ul>
 	</li>
 </ul>
@@ -279,5 +281,57 @@ categories:
 	What about <strong>lock in</strong>? That depends on your business? Are the advantages of the Cloud, of adopting a platform, greater than
 	the potential costs of lock-in? Over time, standards may arise, allowing people to switch easily between platforms but these abstractions
 	may come with a cost.
+</p>
+
+
+<h4 id="windows_based_apps_on_kubernetes">Deploying Windows Container based apps using Kubernetes</h4>
+<p>by <a href="https://twitter.com/Ben_Hall">Ben Hall</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/ndclondon/2018/windows_based_apps_on_kubernetes.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/ndclondon/2018/windows_based_apps_on_kubernetes_small.jpg" 
+        	alt="Sketchnotes about deploying windows container based apps using Kubernetes"
+        />
+    </a>
+</div>
+<p>
+	Ben continued the <em>Kubernetes</em> theme of the morning. He took us through the basics of why we would want to use <em>Kubernetes</em>
+	to schedule containers on any number of platforms. An interesting concept was the idea of <em>multi-stage builds</em> where we can 
+	have a development container and create a new container from that with everything the runtime does not need removed to save space.
+</p>
+<p>
+	Microsoft have produced lighter-weight versions of windows to run in containers, <em>Server Core</em> and <em>Server Nano</em> which
+	is 1/20th the size of <em>Server Core</em>. <em>Server Nano</em> is potentially more secure because it can run inside a light-weight
+	virtual machine, which <em>Server Core</em> would not. Given how trimmed down <em>Server Nano</em> is, it is more limited, but may
+	be more suited the more modern apps (e.g. <em>.NET Core</em> applications).
+</p>
+
+<h4 id="styleguide_driven_development">Styleguide-Driven Development</h4>
+<p>by <a href="https://twitter.com/unicorn_job">Tatiana Kolesnikova</a> and <a href="https://twitter.com/arvtor">Arvid Torset</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/ndclondon/2018/styleguide_driven_development.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/ndclondon/2018/styleguide_driven_development_small.jpg" 
+        	alt="Sketchnotes about styleguide-driven development"
+        />
+    </a>
+</div>
+
+<p>
+	Tatiana and Arvid talked us through their approach to front-end development. They start by identifying the individual components,
+	or <strong>atoms</strong>, things like individual controls (buttons, text boxes, labels, checkboxes). Once the <em>toms</em> are identified
+	they minimise the numnber of different variations, to create a simple pallete from which to build more <em>complex components</em>
+	(which can be called <strong>molecules</strong>). These <em>molecules</em> are still components, they are still building blocks, but they 
+	compose together several <em>atoms</em>. Finally, the <em>molecules</em> and <em>atoms</em> can be composed into <strong>organisms</strong>
+	like pages with minimal fuss, 
+</p>
+<p>
+	Both designers and developers work from a component library, the designers build the component library in their own tools, the developers
+	in their own frameworks. The designers only work in terms of the components, if a new component is needed then it has to be implemented in
+	both. 
 </p>
 
