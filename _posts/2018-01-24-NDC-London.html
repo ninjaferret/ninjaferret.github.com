@@ -1,6 +1,6 @@
 --- 
 layout: default 
-title: NDC London 2018 
+title: NDC London 2018 - Day 1
 summary: I made some sketchnotes when I attended NDC London 2018. 
 categories:
 - Conferences 
@@ -8,16 +8,28 @@ categories:
 - Sketchnotes 
 ---
 
-<p>Last week, I attended <em>NDC London</em> conference and here are some of my sketchnotes I attended.</p>
+<p>Last week, I attended <em>NDC London</em> conference and here are some of my sketchnotes that I made.</p>
 
 <ul>
 	<li><a href="#react_workshop">React workshop</a></li>
-	<li><a href="#what_is_programming">What is programming anyway?</a></li>
-	<li><a href="#the_power_of_technical_decisions">The power of technical decisions</a></li>
-	<li><a href="#you_build_it_you_run_it">You build it, you run it!</a></li>
-	<li><a href="#be_a_better_interviewer">How to be a better interviewer, change the world and work with amazing people</a></li>
-	<li><a href="#refactoring_to_immutability">Refactoring to immutability</a></li>
-	<li><a href="#ethics_of_programming">Code is not neutral: the ethics of programming</a></li>
+	<li>
+		<a href="#day_1">Day 1</a>
+		<ul>
+			<li><a href="#what_is_programming">What is programming anyway?</a></li>
+			<li><a href="#the_power_of_technical_decisions">The power of technical decisions</a></li>
+			<li><a href="#you_build_it_you_run_it">You build it, you run it!</a></li>
+			<li><a href="#be_a_better_interviewer">How to be a better interviewer, change the world and work with amazing people</a></li>
+			<li><a href="#refactoring_to_immutability">Refactoring to immutability</a></li>
+			<li><a href="#ethics_of_programming">Code is not neutral: the ethics of programming</a></li>
+		</ul>
+	</li>
+	<li>
+		<a href="#day_1">Day 2</a>
+		<ul>
+			<li><a href="#raspberry_pi">Building a Raspberry Pi Kubernetes Cluster and running .NET Core</a></li>
+			<li><a href="#what_is_cloud_native">What is this Cloud Native thing anyway?</a></li>
+		</ul>
+	</li>
 </ul>
 
 <h3 id="react_workshop">React Workshop</h3>
@@ -40,7 +52,9 @@ categories:
     </a>
 </div>
 
-<h3 id="what_is_programming">Keynote: What is programming</h3>
+<h3 id="day_1">Day 1</h3>
+
+<h4 id="what_is_programming">Keynote: What is programming</h4>
 
 <p>by <a href="https://twitter.com/felienne">Felienne Hermans</a></p>
 <div>
@@ -70,7 +84,7 @@ categories:
 	concepts.
 </p>
 
-<h3 id="the_power_of_technical_decisions">The power of technical decisions</h3>
+<h4 id="the_power_of_technical_decisions">The power of technical decisions</h4>
 
 <p>by <a href="https://twitter.com/jakeginnivan">Jake Ginnivan</a></p>
 
@@ -91,7 +105,7 @@ categories:
 	components, that bring their own styling so they can be composed quickly and easily. 
 </p>
 
-<h3 id="you_build_it_you_run_it">You build it, you run it!</h3>
+<h4 id="you_build_it_you_run_it">You build it, you run it!</h4>
 
 <p>by <a href="https://twitter.com/chrisannodell">Chris O'Dell</a></p>
 
@@ -117,7 +131,7 @@ categories:
 	to give people time to relax.
 </p>
 
-<h3 id="be_a_better_interviewer">How to be a better interviewer, change the world and work with amazing people</h3>
+<h4 id="be_a_better_interviewer">How to be a better interviewer, change the world and work with amazing people</h4>
 
 <p>by <a href="https://twitter.com/SuziEdwards">Suzie Edwards-Alexander</a></p>
 
@@ -138,7 +152,7 @@ categories:
 	Rather than trying to trip up a potential colleague in an interview, think <strong>"let's be smart together"</strong>.
 </p>
 
- <h3 id="refactoring_to_immutability">Refactoring to immutability</h3>
+ <h4 id="refactoring_to_immutability">Refactoring to immutability</h4>
 
 <p>by <a href="https://twitter.com/KevlinHenney">Kevlin Henney</a></p>
 
@@ -170,7 +184,7 @@ categories:
 	factor without changing the other two while <em>optimisation</em> mosty focusses on improving the <em>operational</em> side. 
 </p>
 
- <h3 id="ethics_of_programming">Code is not neutral: the ethics of programming</h3>
+ <h4 id="ethics_of_programming">Code is not neutral: the ethics of programming</h4>
 
 <p>by <a href="https://twitter.com/clarissa">Clarissa Peterson</a></p>
 
@@ -194,5 +208,76 @@ categories:
 	What about our systems' security? What would happen if someone hacks your system and gets hold of someone's private information?
 	What damage could be done to someone's life with the information you hold? Do you ever put yourself in the shoes of someone trying
 	to access your system with malicious intent?
+</p>
+
+<h3 id="day_2">Day 2</h3>
+
+<h4 id="raspberry_pi">Building a Raspberry Pi Kubernetes Cluster and running .NET Core</h4>
+<p>by <a href="https://twitter.com/shanselman">Scott Hanselman</a> and <a href="https://twitter.com/alexellisuk">Alex Ellis</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/ndclondon/2018/raspberry_pi_kubernetes.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/ndclondon/2018/raspberry_pi_kubernetes_small.jpg" 
+        	alt="Sketchnotes about building a Raspberry Pi Kubernetes cluser and running .NET Core"
+        />
+    </a>
+</div>
+
+<p>
+	Alex, the creator of <a href="https://openfaas.com">OpenFaaS</a>, which allows people to run anything as a <em>serveless function</em>,
+	and Scott were talking about how to build a cluster of Raspberry Pis and use them to run their own cloud of serverless functions. 
+</p>
+<p>
+	It feels like only yesterday that <em>Docker</em> was the big thing but now the world of <em>serverless functions</em> (I still hate the
+	term "serverless"). <strong>OpenFaaS</strong> has provided an abstraction layer beyond docker, to take advantage of the power of <em>Kubernetes</em>
+	to schedule your functions.
+</p>
+<p>
+	Building your own <em>Raspberry Pi</em> cluster gives you a cheap way to get a decent amount of compute power and they showed us their own
+	set-up to more elaborate clusters produced by both amateurs are companies. 
+</p>
+
+<h4 id="what_is_cloud_native">What is this Cloud Native thing anyway?</h4>
+<p>by <a href="https://twitter.com/samnewman">Sam Newman</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/ndclondon/2018/what_is_cloud_native.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/ndclondon/2018/what_is_cloud_native_small.jpg" 
+        	alt="Sketchnotes about cloud native"
+        />
+    </a>
+</div>
+
+<p>
+	Sam took us through the birth of <em>Cloud Native</em>, from people running virtual machines on someone else's hardware, <em>Infrastructure
+	as a Service (IaaS)</em>, to giving a service the code and they host it on their own virtual machines where they maintain the platform, 
+	<em>Platform as a Service (PaaS)</em>. In recent years, <em>Docker</em> and <em>Kubernetes</em> have moved the <em>PaaS</em> world to beyond
+	virtual machines and into containers. 
+</p>
+<p>
+	It's not just about being <em>Cloud Native</em>, you can be on the Cloud in several ways:
+</p>
+<ul>
+	<li>
+		<strong>Lift and Shift</strong> - you take your code and run it in the Cloud. Yet, you are sticking to your old traditional paradigms and 
+		fighting the underlying Cloud technologies.
+	</li>
+	<li>
+		<strong>Cloud ready</strong> - you are still running your code in a way that can be run on your own servers but you are making the
+		system in a way that does not fight the cloud. 
+	</li>
+	<li>
+		<strong>Cloud native</strong> - your code is designed to run on a cloud platform, designed to run in the cloud first, perhaps even 
+		attached to a specific platform.
+	</li>
+</ul>
+<p>
+	What about <strong>lock in</strong>? That depends on your business? Are the advantages of the Cloud, of adopting a platform, greater than
+	the potential costs of lock-in? Over time, standards may arise, allowing people to switch easily between platforms but these abstractions
+	may come with a cost.
 </p>
 
