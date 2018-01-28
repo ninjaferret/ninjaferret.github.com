@@ -1,6 +1,6 @@
 --- 
 layout: default 
-title: NDC London 2018 
+title: NDC London 2018
 summary: I made some sketchnotes when I attended NDC London 2018. 
 categories:
 - Conferences 
@@ -8,15 +8,42 @@ categories:
 - Sketchnotes 
 ---
 
-<p>Last week, I attended <em>NDC London</em> conference and here are some of my sketchnotes I attended.</p>
+<p>I attended <em>NDC London</em> conference and here are some of my sketchnotes that I made.</p>
 
 <ul>
 	<li><a href="#react_workshop">React workshop</a></li>
-	<li><a href="#what_is_programming">What is programming anyway?</a></li>
-	<li><a href="#the_power_of_technical_decisions">The power of technical decisions</a></li>
-	<li><a href="#you_build_it_you_run_it">You build it, you run it!</a></li>
-	<li><a href="#be_a_better_interviewer">How to be a better interviewer, change the world and work with amazing people</a></li>
-	<li><a href="#refactoring_to_immutability">Refactoring to immutability</a></li>
+	<li>
+		<a href="#day_1">Day 1</a>
+		<ul>
+			<li><a href="#what_is_programming">What is programming anyway?</a></li>
+			<li><a href="#the_power_of_technical_decisions">The power of technical decisions</a></li>
+			<li><a href="#you_build_it_you_run_it">You build it, you run it!</a></li>
+			<li><a href="#be_a_better_interviewer">How to be a better interviewer, change the world and work with amazing people</a></li>
+			<li><a href="#refactoring_to_immutability">Refactoring to immutability</a></li>
+			<li><a href="#ethics_of_programming">Code is not neutral: the ethics of programming</a></li>
+		</ul>
+	</li>
+	<li>
+		<a href="#day_2">Day 2</a>
+		<ul>
+			<li><a href="#raspberry_pi">Building a Raspberry Pi Kubernetes Cluster and running .NET Core</a></li>
+			<li><a href="#what_is_cloud_native">What is this Cloud Native thing anyway?</a></li>
+			<li><a href="#windows_based_apps_on_kubernetes">Deploying Windows Container based apps using Kubernetes</a></li>
+			<li><a href="#styleguide_driven_development">Styleguide-Driven Development</a></li>
+			<li><a href="#social_engineering">The psychology of social engineering</a></li>
+			<li><a href="#accessible_forms">Don't be afraid of accessible forms</a></li>
+		</ul>
+	</li>
+	<li>
+		<a href="#day_3">Day 3</a>
+		<ul>
+			<li><a href="#modern_cloud">The modern cloud</a></li>
+			<li><a href="#data_dichotomy">The data dichotomy: Rethinking data and services with streams</a></li>
+			<li><a href="#painless_visual_testing">Painless visual testing</a></li>
+			<li><a href="#azure_tips_and_tricks">Azure tips &amp; tricks</a></li>
+			<li><a href="#why_not_leaving_net">Why I'm not leaving .NET</a></li>
+		</ul>
+	</li>
 </ul>
 
 <h3 id="react_workshop">React Workshop</h3>
@@ -39,7 +66,9 @@ categories:
     </a>
 </div>
 
-<h3 id="what_is_programming">Keynote: What is programming</h3>
+<h3 id="day_1">Day 1</h3>
+
+<h4 id="what_is_programming">Keynote: What is programming</h4>
 
 <p>by <a href="https://twitter.com/felienne">Felienne Hermans</a></p>
 <div>
@@ -69,7 +98,7 @@ categories:
 	concepts.
 </p>
 
-<h3 id="the_power_of_technical_decisions">The power of technical decisions</h3>
+<h4 id="the_power_of_technical_decisions">The power of technical decisions</h4>
 
 <p>by <a href="https://twitter.com/jakeginnivan">Jake Ginnivan</a></p>
 
@@ -90,7 +119,7 @@ categories:
 	components, that bring their own styling so they can be composed quickly and easily. 
 </p>
 
-<h3 id="you_build_it_you_run_it">You build it, you run it!</h3>
+<h4 id="you_build_it_you_run_it">You build it, you run it!</h4>
 
 <p>by <a href="https://twitter.com/chrisannodell">Chris O'Dell</a></p>
 
@@ -116,7 +145,7 @@ categories:
 	to give people time to relax.
 </p>
 
-<h3 id="be_a_better_interviewer">How to be a better interviewer, change the world and work with amazing people</h3>
+<h4 id="be_a_better_interviewer">How to be a better interviewer, change the world and work with amazing people</h4>
 
 <p>by <a href="https://twitter.com/SuziEdwards">Suzie Edwards-Alexander</a></p>
 
@@ -137,7 +166,7 @@ categories:
 	Rather than trying to trip up a potential colleague in an interview, think <strong>"let's be smart together"</strong>.
 </p>
 
- <h3 id="refactoring_to_immutability">Refactoring to immutability</h3>
+ <h4 id="refactoring_to_immutability">Refactoring to immutability</h4>
 
 <p>by <a href="https://twitter.com/KevlinHenney">Kevlin Henney</a></p>
 
@@ -150,3 +179,372 @@ categories:
         />
     </a>
 </div>
+
+<p>
+	Kevlin talked about the combination of mutability and shared state. Originally, mutable state did not cause much of a problem
+	simply because only one thread accessed it at a time, it was only when mutable state is shared between multiple threads that
+	we end up in race conditions. 
+</p>
+<p>
+	Another interesting factor that Kevlin just briefly touched upon was the orthogonal factors of code:
+</p>
+<ul>
+	<li><strong>Functional</strong> - what the application does</li>
+	<li><strong>Operational</strong> - how the code runs, how it is monitored, how performant it is</li>
+	<li><strong>Developmental</strong> - how easy the code is to develop</li>
+</ul>
+<p>
+	Different operations that we perform on the code affect mostly one area, e.g. <em>refactoring</em> affects the <em>developmental</em>
+	factor without changing the other two while <em>optimisation</em> mosty focusses on improving the <em>operational</em> side. 
+</p>
+
+ <h4 id="ethics_of_programming">Code is not neutral: the ethics of programming</h4>
+
+<p>by <a href="https://twitter.com/clarissa">Clarissa Peterson</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/ndclondon/2018/code_is_not_neutral.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/ndclondon/2018/code_is_not_neutral_small.jpg" 
+        	alt="Sketchnotes about the ethics of programming"
+        />
+    </a>
+</div>
+
+<p>
+	Clarissa challenged the idea that technology is inherently neutral, that our code does not have any negative impact on the world 
+	around us. She pointed us to the events around the Volkswagen developer who was imprisoned for helping to hide the true emissions
+	results of their cars. Yet, it isn't just the impact of us on helping to do something illegal, what about accessibility? What about
+	supporting different languages and cultures? 
+</p>
+<p>
+	What about our systems' security? What would happen if someone hacks your system and gets hold of someone's private information?
+	What damage could be done to someone's life with the information you hold? Do you ever put yourself in the shoes of someone trying
+	to access your system with malicious intent?
+</p>
+
+<h3 id="day_2">Day 2</h3>
+
+<h4 id="raspberry_pi">Building a Raspberry Pi Kubernetes Cluster and running .NET Core</h4>
+<p>by <a href="https://twitter.com/shanselman">Scott Hanselman</a> and <a href="https://twitter.com/alexellisuk">Alex Ellis</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/ndclondon/2018/raspberry_pi_kubernetes.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/ndclondon/2018/raspberry_pi_kubernetes_small.jpg" 
+        	alt="Sketchnotes about building a Raspberry Pi Kubernetes cluser and running .NET Core"
+        />
+    </a>
+</div>
+
+<p>
+	Alex, the creator of <a href="https://openfaas.com">OpenFaaS</a>, which allows people to run anything as a <em>serveless function</em>,
+	and Scott were talking about how to build a cluster of Raspberry Pis and use them to run their own cloud of serverless functions. 
+</p>
+<p>
+	It feels like only yesterday that <em>Docker</em> was the big thing but now the world of <em>serverless functions</em> (I still hate the
+	term "serverless"). <strong>OpenFaaS</strong> has provided an abstraction layer beyond docker, to take advantage of the power of <em>Kubernetes</em>
+	to schedule your functions.
+</p>
+<p>
+	Building your own <em>Raspberry Pi</em> cluster gives you a cheap way to get a decent amount of compute power and they showed us their own
+	set-up to more elaborate clusters produced by both amateurs are companies. 
+</p>
+
+<h4 id="what_is_cloud_native">What is this Cloud Native thing anyway?</h4>
+<p>by <a href="https://twitter.com/samnewman">Sam Newman</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/ndclondon/2018/what_is_cloud_native.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/ndclondon/2018/what_is_cloud_native_small.jpg" 
+        	alt="Sketchnotes about cloud native"
+        />
+    </a>
+</div>
+
+<p>
+	Sam took us through the birth of <em>Cloud Native</em>, from people running virtual machines on someone else's hardware, <em>Infrastructure
+	as a Service (IaaS)</em>, to giving a service the code and they host it on their own virtual machines where they maintain the platform, 
+	<em>Platform as a Service (PaaS)</em>. In recent years, <em>Docker</em> and <em>Kubernetes</em> have moved the <em>PaaS</em> world to beyond
+	virtual machines and into containers. 
+</p>
+<p>
+	It's not just about being <em>Cloud Native</em>, you can be on the Cloud in several ways:
+</p>
+<ul>
+	<li>
+		<strong>Lift and Shift</strong> - you take your code and run it in the Cloud. Yet, you are sticking to your old traditional paradigms and 
+		fighting the underlying Cloud technologies.
+	</li>
+	<li>
+		<strong>Cloud ready</strong> - you are still running your code in a way that can be run on your own servers but you are making the
+		system in a way that does not fight the cloud. 
+	</li>
+	<li>
+		<strong>Cloud native</strong> - your code is designed to run on a cloud platform, designed to run in the cloud first, perhaps even 
+		attached to a specific platform.
+	</li>
+</ul>
+<p>
+	What about <strong>lock in</strong>? That depends on your business? Are the advantages of the Cloud, of adopting a platform, greater than
+	the potential costs of lock-in? Over time, standards may arise, allowing people to switch easily between platforms but these abstractions
+	may come with a cost.
+</p>
+
+
+<h4 id="windows_based_apps_on_kubernetes">Deploying Windows Container based apps using Kubernetes</h4>
+<p>by <a href="https://twitter.com/Ben_Hall">Ben Hall</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/ndclondon/2018/windows_based_apps_on_kubernetes.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/ndclondon/2018/windows_based_apps_on_kubernetes_small.jpg" 
+        	alt="Sketchnotes about deploying windows container based apps using Kubernetes"
+        />
+    </a>
+</div>
+<p>
+	Ben continued the <em>Kubernetes</em> theme of the morning. He took us through the basics of why we would want to use <em>Kubernetes</em>
+	to schedule containers on any number of platforms. An interesting concept was the idea of <em>multi-stage builds</em> where we can 
+	have a development container and create a new container from that with everything the runtime does not need removed to save space.
+</p>
+<p>
+	Microsoft have produced lighter-weight versions of windows to run in containers, <em>Server Core</em> and <em>Server Nano</em> which
+	is 1/20th the size of <em>Server Core</em>. <em>Server Nano</em> is potentially more secure because it can run inside a light-weight
+	virtual machine, which <em>Server Core</em> would not. Given how trimmed down <em>Server Nano</em> is, it is more limited, but may
+	be more suited the more modern apps (e.g. <em>.NET Core</em> applications).
+</p>
+
+<h4 id="styleguide_driven_development">Styleguide-Driven Development</h4>
+<p>by <a href="https://twitter.com/unicorn_job">Tatiana Kolesnikova</a> and <a href="https://twitter.com/arvtor">Arvid Torset</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/ndclondon/2018/styleguide_driven_development.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/ndclondon/2018/styleguide_driven_development_small.jpg" 
+        	alt="Sketchnotes about styleguide-driven development"
+        />
+    </a>
+</div>
+
+<p>
+	Tatiana and Arvid talked us through their approach to front-end development. They start by identifying the individual components,
+	or <strong>atoms</strong>, things like individual controls (buttons, text boxes, labels, checkboxes). Once the <em>toms</em> are identified
+	they minimise the numnber of different variations, to create a simple pallete from which to build more <em>complex components</em>
+	(which can be called <strong>molecules</strong>). These <em>molecules</em> are still components, they are still building blocks, but they 
+	compose together several <em>atoms</em>. Finally, the <em>molecules</em> and <em>atoms</em> can be composed into <strong>organisms</strong>
+	like pages with minimal fuss, 
+</p>
+<p>
+	Both designers and developers work from a component library, the designers build the component library in their own tools, the developers
+	in their own frameworks. The designers only work in terms of the components, if a new component is needed then it has to be implemented in
+	both. 
+</p>
+
+<h4 id="social_engineering">The psychology of social engineering</h4>
+<p>by <a href="https://twitter.com/nmerrigan">Niall Merrigan</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/ndclondon/2018/psychology_social_engineering.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/ndclondon/2018/psychology_social_engineering_small.jpg" 
+        	alt="Sketchnotes about the psychology of social engineering"
+        />
+    </a>
+</div>
+
+<p>
+	Niall started by pointing out the techniques that are used by advertisers to manipulate us, how they use aspirational
+	advertisements to make their products attractive, or how they use negativity to target your insecurities to make you
+	then sell you a solution. 
+</p>
+<p>
+	He points out how <em>anchoring</em> works, that the first thing you are introduced to anchors you and becomes the comparison
+	for everything else you are presented with to make the majority of people make a specific choice.
+</p>
+<p>
+	After that he pointed out some of the techniques that hackers use to socially engineer their way into your accounts, or into
+	organisations. We are socially engineered to help pregnant women, mothers with screaming children, and some people will use
+	that to hack your organisation.
+</p>
+
+<h4 id="accessible_forms">Don't be afraid of accessible forms</h4>
+<p>by <a href="https://twitter.com/nethermind">Elle Waters</a></p>
+
+<p>
+	Elle took us through the basics of making accessible forms. There was a lot of content and I couldn't keep up with the sketchnotes
+	so I just focussed on what she was saying. 
+</p>
+<p>
+	At the root of everything there is <strong>semantic HTML</strong>, write the HTML to be meaningful and screen readers will be 
+	able to give the right signals to the user. I've been guilty before of styling a <em>link</em> like a <em>button</em> but 
+	now I realise that I think a link should be idempotent, it should not change state, where I feel the intent of a button is
+	to commit an action.
+</p>
+<p>
+	We should leverage the styling ability on top of existing controls rather than creating <em>custom controls</em>, this is 
+	because screen readers know about these controls and how to interact with them.
+</p>
+<p>
+	Beyond that, we should provide all the accessibility hints, such as:
+</p>
+<ul>
+	<li>Labels should link to the appropriate field</li>
+	<li>Images should have an alternate text descriptions</li>
+	<li>The order of the HTML is important to screen readers</li>
+</ul>
+<p>
+	If you get the HTML correct, and the Javascript correct, and the CSS correct, only then should you think about augmenting
+	things in <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA">ARIA (Accessible Rich Internet Applications)</a>.
+</p>
+
+<h3 id="day_3">Day 3</h3>
+
+<h4 id="modern_cloud">Keynote: The Modern Cloud</h4>
+<p>by <a href="https://twitter.com/scottgu">Scott Guthrie</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/ndclondon/2018/the_modern_cloud.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/ndclondon/2018/the_modern_cloud_small.jpg" 
+        	alt="Sketchnotes about the modern cloud, by Scott Guthrie"
+        />
+    </a>
+</div>
+
+<p>
+	Scott started by telling people that there was so much to learn about the modern web, that things were moving really fast
+	and that it is OK to not learn everything. Try to know what is out there, the basics, understand what can be done and then 
+	focus on byte-sized learning that takes you where you need to go. 
+</p>
+<p>
+	<em>Serverless</em> and <em>Cloud</em> technologies have been a theme throughout NDC. Computational power is becoming a 
+	commodity, it is no longer necessary to run an entire virtual machine 24/7 to process a handful of messages, it is 
+	becoming possible to spin up a container, run the required operation and shut down in seconds for a fraction of the cost.
+</p>
+<p>
+	<em>Artificual intelligence</em> is another growing field at the moment, using computational power to provide an intelligent
+	and adaptive response to the world around us. We are at the stage where companies are able to make it simpler to categorise 
+	speach and images, to combine them with context-sensitive search to produce knowledge.
+</p>
+<p>
+	The power of globalised databases, keeping data local to the user to keep applications fast, with context-sensitive processing 
+	of that data (awareness of culture, language, location) and the use of serverless technology opens up a whole new world of 
+	potential for software developers.
+</p>
+
+<h4 id="data_dichotomy">The data dichotomy: Rethinking data and services with streams</h4>
+<p>by <a href="https://twitter.com/benstopford">Ben Stopford</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/ndclondon/2018/data_dichotomy.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/ndclondon/2018/data_dichotomy_small.jpg" 
+        	alt="Sketchnotes about the data dichotomy by Ben Stopford"
+        />
+    </a>
+</div>
+
+<p>
+	Ben points out that the while developers are told to abstract and encapsulate data, but, when it comes to the database 
+	we tend not to encapsulate. Databases almost want to share their data, they want to make it easy to get access to as much data
+	as possible as efficiently as possible. In the <em>microservice</em> world we tend to state that <em>"microservices should
+	not share databases"</em>, making the service the boundary of encapsulation of data. 
+</p>
+<o>
+	Yet, trying to accessing as much of the data as posslble, for reporting, etc, the cost of calling the individual services
+	can be expensive.
+</p>
+<p>
+	In the world of <strong>Streams</strong>, different microservices publish <em>events</em> to the <strong>Stream</strong>, these can then 
+	be processed by other services in a read-only capacity. <em>Events</em> not only give data, they give meaning to that data, and the 
+	persisted streams become the single point of truth of what happened in your system.
+</p>
+<p>
+	The power of persisted <strong>Streams</strong> means new components can be produced easily to consume existing <strong>Streams</strong>
+	allowing for speed of delivery of new features. 
+</p>
+
+<h4 id="painless_visual_testing">Painless visual testing</h4>
+<p>by <a href="https://twitter.com/gojkoadzic">Gojko Adzic</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/ndclondon/2018/painless_visual_testing.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/ndclondon/2018/painless_visual_testing_small.jpg" 
+        	alt="Sketchnotes about painless visual testing by Gojko Adzic"
+        />
+    </a>
+</div>
+
+<p>
+	Gojko believes that as the world has progressed and time has come to re-evaluate some of the <em>perceived wisdom</em> about automated
+	UI testing.
+</p>
+<ul>
+	<li>
+		<strong>UI testing is slow</strong> - each test may need to spin up a browser, open the page, make some tests, then shut everything
+		down. People perceive 2-3s per test as extremely slow, over a test-suite of hundreds of tests. None of this has changed. What has 
+		changed is the evolution of <em>Serverless</em>, that <em>headless Chrome</em> exists and that <em>headless Firefox</em> is on the 
+		way. It is now possible to <strong>parallelise</strong> the running of the entire test-suite across Azure Functions/AWS Lambda.
+	</li>
+	<li>
+		<strong>UI testing is brittle</strong> - traditional UI testing involves driving the user interface, checking the properties of the 
+		objects directly. Gojko is proposing that we do the simplest testing possible, we render the appropriate components (using dummy data)
+		then take images of the rendered page. By comparing to a known good example we can detect changes. It is then up to humans to decide
+		whether that change has been successful or not. <em>Automate to assist humans, not replace them.</em>
+	</li>
+	<li>
+		<strong>UI testing is not that helpful anyway</strong> - UI testiung that focusses on the wrong things, the things that are slow and
+		brittle, will make you feel that they are not helpful. Design the UI to be rendered in each of the states and use <em>snapshot testing</em>
+		we should be able to find the differences then allow and quickly resolve those differences by either accepting the changed 
+		image as <em>good</em> or by fixing the user interface.
+	</li>
+</ul>
+<p>
+	Combining this with the <a href="#styleguide_driven_development">Styleguide-Driven Development</a> gives me an idea about how the 
+	world could change. We could build, and test, a component library in this fashion and have growing confidence that the components that
+	we are producing are correct and can be composed correctly to build our products.
+</p>
+
+<h4 id="azure_tips_and_tricks">Azure tips &amp; tricks</h4>
+<p>by <a href="https://twitter.com/scottgu">Scott Guthrie</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/ndclondon/2018/azure_tips_and_tricks.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/ndclondon/2018/azure_tips_and_tricks_small.jpg" 
+        	alt="Sketchnotes about azure tips and tricks by Scott Guthrie"
+        />
+    </a>
+</div>
+
+<p>
+	Scott talks us through the features in Azure that most people don't know exist, from performance enhancements to saving money, these
+	are some pretty cool features. 
+</p>
+
+<h4 id="why_not_leaving_net">Why I'm not leaving .NET</h4>
+<p>by <a href="https://twitter.com/markrendle">Mark Rendle</a></p>
+
+<p>
+	Mark gives us a run down of the potential that is opening up in the .NET world, how the <em>cloud</em>, <em>containers</em>
+	and <em>serverless</em> work together with <em>.NET core</em> to give us the ability to deploy anywhere, on any cloud, on
+	any operating system.
+</p>
+<p>
+	.NET can be compiled onto mobile phones and even be used for gaming with the <em>Unity</em> engine. There is so much scope
+	for the ecosystem right now that there is no reason to leave, but this does not mean that we should not be looking at other
+	languages, gaining inspiration from them and developing in them. 
+</p>
