@@ -24,12 +24,21 @@ categories:
 		</ul>
 	</li>
 	<li>
-		<a href="#day_1">Day 2</a>
+		<a href="#day_2">Day 2</a>
 		<ul>
 			<li><a href="#raspberry_pi">Building a Raspberry Pi Kubernetes Cluster and running .NET Core</a></li>
 			<li><a href="#what_is_cloud_native">What is this Cloud Native thing anyway?</a></li>
 			<li><a href="#windows_based_apps_on_kubernetes">Deploying Windows Container based apps using Kubernetes</a></li>
 			<li><a href="#styleguide_driven_development">Styleguide-Driven Development</a></li>
+			<li><a href="#social_engineering">The psychology of social engineering</a></li>
+			<li><a href="#accessible_forms">Don't be afraid of accessible forms</a></li>
+		</ul>
+	</li>
+	<li>
+		<a href="#day_3">Day 3</a>
+		<ul>
+			<li>
+			</li>
 		</ul>
 	</li>
 </ul>
@@ -335,3 +344,75 @@ categories:
 	both. 
 </p>
 
+<h4 id="social_engineering">The psychology of social engineering</h4>
+<p>by <a href="https://twitter.com/nmerrigan">Niall Merrigan</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/ndclondon/2018/psychology_social_engineering.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/ndclondon/2018/psychology_social_engineering_small.jpg" 
+        	alt="Sketchnotes about the psychology of social engineering"
+        />
+    </a>
+</div>
+
+<p>
+	Niall started by pointing out the techniques that are used by advertisers to manipulate us, how they use aspirational
+	advertisements to make their products attractive, or how they use negativity to target your insecurities to make you
+	then sell you a solution. 
+</p>
+<p>
+	He points out how <em>anchoring</em> works, that the first thing you are introduced to anchors you and becomes the comparison
+	for everything else you are presented with to make the majority of people make a specific choice.
+</p>
+<p>
+	After that he pointed out some of the techniques that hackers use to socially engineer their way into your accounts, or into
+	organisations. We are socially engineered to help pregnant women, mothers with screaming children, and some people will use
+	that to hack your organisation.
+</p>
+
+<h4 id="accessible_forms">Don't be afraid of accessible forms</h4>
+<p>by <a href="https://twitter.com/nethermind">Elle Waters</a></p>
+
+<p>
+	Elle took us through the basics of making accessible forms. There was a lot of content and I couldn't keep up with the sketchnotes
+	so I just focussed on what she was saying. 
+</p>
+<p>
+	At the root of everything there is <strong>semantic HTML</strong>, write the HTML to be meaningful and screen readers will be 
+	able to give the right signals to the user. I've been guilty before of styling a <em>link</em> like a <em>button</em> but 
+	now I realise that I think a link should be idempotent, it should not change state, where I feel the intent of a button is
+	to commit an action.
+</p>
+<p>
+	We should leverage the styling ability on top of existing controls rather than creating <em>custom controls</em>, this is 
+	because screen readers know about these controls and how to interact with them.
+</p>
+<p>
+	Beyond that, we should provide all the accessibility hints, such as:
+</p>
+<ul>
+	<li>Labels should link to the appropriate field</li>
+	<li>Images should have an alternate text descriptions</li>
+	<li>The order of the HTML is important to screen readers</li>
+</ul>
+<p>
+	If you get the HTML correct, and the Javascript correct, and the CSS correct, only then should you think about augmenting
+	things in <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA">ARIA (Accessible Rich Internet Applications)</a>.
+</p>
+
+<h3 id="day_3">Day 3</h3>
+
+<h4 id="modern_cloud">Keynote: The Modern Cloud</h4>
+<p>by <a href="https://twitter.com/scottgu">Scott Guthrie</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/ndclondon/2018/the_modern_cloud.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/ndclondon/2018/the_modern_cloud_small.jpg" 
+        	alt="Sketchnotes about the modern cloud, by Scott Guthrie"
+        />
+    </a>
+</div>
