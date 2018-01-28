@@ -39,6 +39,7 @@ categories:
 		<ul>
 			<li><a href="#modern_cloud">The modern cloud</a></li>
 			<li><a href="#data_dichotomy">The data dichotomy: Rethinking data and services with streams</a></li>
+			<li><a href="#painless_visual_testing">Painless visual testing</a></li>
 		</ul>
 	</li>
 </ul>
@@ -470,3 +471,47 @@ categories:
 	The power of persisted <strong>Streams</strong> means new components can be produced easily to consume existing <strong>Streams</strong>
 	allowing for speed of delivery of new features. 
 </p>
+
+<h4 id="painless_visual_testing">Painless visual testing</h4>
+<p>by <a href="https://twitter.com/gojkoadzic">Gojko Adzic</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/ndclondon/2018/painless_visual_testing.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/ndclondon/2018/painless_visual_testing_small.jpg" 
+        	alt="Sketchnotes about painless visual testing by Gojko Adzic"
+        />
+    </a>
+</div>
+
+<p>
+	Gojko believes that as the world has progressed and time has come to re-evaluate some of the <em>perceived wisdom</em> about automated
+	UI testing.
+</p>
+<ul>
+	<li>
+		<strong>UI testing is slow</strong> - each test may need to spin up a browser, open the page, make some tests, then shut everything
+		down. People perceive 2-3s per test as extremely slow, over a test-suite of hundreds of tests. None of this has changed. What has 
+		changed is the evolution of <em>Serverless</em>, that <em>headless Chrome</em> exists and that <em>headless Firefox</em> is on the 
+		way. It is now possible to <strong>parallelise</strong> the running of the entire test-suite across Azure Functions/AWS Lambda.
+	</li>
+	<li>
+		<strong>UI testing is brittle</strong> - traditional UI testing involves driving the user interface, checking the properties of the 
+		objects directly. Gojko is proposing that we do the simplest testing possible, we render the appropriate components (using dummy data)
+		then take images of the rendered page. By comparing to a known good example we can detect changes. It is then up to humans to decide
+		whether that change has been successful or not. <em>Automate to assist humans, not replace them.</em>
+	</li>
+	<li>
+		<strong>UI testing is not that helpful anyway</strong> - UI testiung that focusses on the wrong things, the things that are slow and
+		brittle, will make you feel that they are not helpful. Design the UI to be rendered in each of the states and use <em>snapshot testing</em>
+		we should be able to find the differences then allow and quickly resolve those differences by either accepting the changed 
+		image as <em>good</em> or by fixing the user interface.
+	</li>
+</ul>
+<p>
+	Combining this with the <a href="#styleguide_driven_development">Styleguide-Driven Development</a> gives me an idea about how the 
+	world could change. We could build, and test, a component library in this fashion and have growing confidence that the components that
+	we are producing are correct and can be composed correctly to build our products.
+</p>
+
