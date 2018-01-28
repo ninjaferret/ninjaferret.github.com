@@ -1,2 +1,2 @@
-plugins: ./_plugins
+plugins: [./_plugins/VersionReporter.rb]
 permalink: /:year/:month/:day/:title.html
