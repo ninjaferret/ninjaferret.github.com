@@ -38,6 +38,7 @@ categories:
 		<a href="#day_3">Day 3</a>
 		<ul>
 			<li><a href="#modern_cloud">The modern cloud</a></li>
+			<li><a href="#data_dichotomy">The data dichotomy: Rethinking data and services with streams</a></li>
 		</ul>
 	</li>
 </ul>
@@ -437,3 +438,35 @@ categories:
 	potential for software developers.
 </p>
 
+<h4 id="data_dichotomy">The data dichotomy: Rethinking data and services with streams</h4>
+<p>by <a href="https://twitter.com/benstopford">Ben Stopford</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/ndclondon/2018/data_dichotomy.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/ndclondon/2018/data_dichotomy_small.jpg" 
+        	alt="Sketchnotes about the data dichotomy by Ben Stopford"
+        />
+    </a>
+</div>
+
+<p>
+	Ben points out that the while developers are told to abstract and encapsulate data, but, when it comes to the database 
+	we tend not to encapsulate. Databases almost want to share their data, they want to make it easy to get access to as much data
+	as possible as efficiently as possible. In the <em>microservice</em> world we tend to state that <em>"microservices should
+	not share databases"</em>, making the service the boundary of encapsulation of data. 
+</p>
+<o>
+	Yet, trying to accessing as much of the data as posslble, for reporting, etc, the cost of calling the individual services
+	can be expensive.
+</p>
+<p>
+	In the world of <strong>Streams</strong>, different microservices publish <em>events</em> to the <strong>Stream</strong>, these can then 
+	be processed by other services in a read-only capacity. <em>Events</em> not only give data, they give meaning to that data, and the 
+	persisted streams become the single point of truth of what happened in your system.
+</p>
+<p>
+	The power of persisted <strong>Streams</strong> means new components can be produced easily to consume existing <strong>Streams</strong>
+	allowing for speed of delivery of new features. 
+</p>
