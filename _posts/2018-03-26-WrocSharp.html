@@ -1,0 +1,230 @@
+--- 
+layout: default 
+title: Wroc# Conference 
+summary: I made some sketchnotes when I attended the Wroc# conference. 
+categories:
+- Conferences 
+- Wroc#
+- Sketchnotes 
+---
+
+<p>I was invited to the <a href="https://www.wrocsharp.com/" target="_blank">Wroc#</a> conference and here are some of my sketchnotes.</p>
+
+<ul>
+	<li><a href="#event_based_serverless">That just happened! A look at event-based serverless computing</a></li>
+	<li><a href="#flow">Flow: the worst software development approach in history</a></li>
+	<li><a href="#multi_tenant_saas">Developing multi-tenant SaaS business applications on Azure</a></li>
+	<li><a href="#security">CSP XXP STS PKP CAA ETC OMG WTF BBQ</a></li>
+	<li><a href="#elastic_leadership">Growing great teams and adopting new processes through Elastic Leadership</a></li>
+	<li><a href="#xamarin">Building real-world mobile apps with Xamarin: Under the hood of the Azure Mobile app</a></li>
+</ul>
+
+<p>
+	This was a great conference and I have to thank the organisers for inviting me over to sketchnote the conference. 
+</p>
+
+<h3 id="event_based_serverless">That just happened! A look at event-based serverless computing</h3>
+
+<p>by <a href="https://twitter.com/henriksen">Glenn Henriksen</a></p>
+<div>
+    <a href="/assets/images/sketchnotes/wrocsharp/2018/that_just_happened.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/wrocsharp/2018/that_just_happened_small.jpg" 
+        	alt="Sketchnotes from the talk 'That just happened! A look at event-based serveless programming'"
+        />
+    </a>
+</div>
+<p> 
+	Glenm started by stating the most important thing to consider when it comes to any <em>function</em> or <em>microservice</em> is to think about:
+</p>
+<ul>
+	<li><strong>Coupling</strong> - how many connections exist between our components, how many things does a component depend upon</li>
+	<li><strong>Cohesion</strong> - how close together are thing things that are coupled?</li>
+</ul>
+<p>
+	We cannot get anything done without any form of <strong>coupling</strong> but we want to have <strong>LOW COUPLING</strong>. Anything
+	that is coupled together we want to be close to each other so that they can easily change together, i.e. we want <strong>HIGH COHESION</strong>.
+</p>
+<p>
+	<em>Events</em> and <em>Messages</em> are ways of decoupling our systems:
+</p>
+<ul>
+	<li>
+		<strong>Events</strong> are <em>fire and forget</em>, other systems can subscribe to those events and take actions but the 
+		original systems do not know what is being done with the information they contain.
+	</li>
+	<li>
+		<strong>Messages</strong> are published with knowledge about what is to be done with the message. The message may require a reponse that
+		will also be published as a message, or the message could be a specific command that another system must carry out.
+	</li>
+</ul>
+
+<h3 id="flow">Flow: the worst software development approach in history</h3>
+<p>by <a href="https://twitter.com/aahoogendoorn">Sander Hoogendoorn</a> and <a href="https://twitter.com/kimvanwilgen">Kim van Wilgen</a></p>
+<div>
+    <a href="/assets/images/sketchnotes/wrocsharp/2018/flow.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/wrocsharp/2018/flow_small.jpg" 
+        	alt="Sketchnotes from the talk 'Flow: the worst software development approach in history'"
+        />
+    </a>
+</div>
+
+<p>
+	Kim and Sander have an issue with <strong>Agile&trade;</strong>, how an entire industry has appeared out of a simple set of principles
+	that had helped some early pioneers grow faster. So they decided to create <em>FLOW: The worse software development approach in 
+	history</em> which takes a lot of the anti-patterns from other development methodologies. 
+</p>
+<p>
+	The current <strong>Agile&trade;</strong> practices focus more on certification than real-world practical experiences and so people
+	use the techniques blindly rather than applying the principles. 
+</p>
+<p>
+	Let's take a look at the <a href="http://agilemanifesto.org/">Agile Manifesto</a> again:
+</p>
+<ul>
+	<li><strong>Individuals and interactions</strong> over <em>processes and tools</em></li>
+	<li><strong>Working software</strong> over <em>comprehensive documentation</em></li>
+	<li><strong>Customer collaboration</strong> over <em>contract negotiation</em></li>
+	<li><strong>Responding to change</strong> over <em>following a plan</em></li>
+</ul>
+
+<blockquote cite="http://agilemanifesto.org">
+	<p>That is, while there is value in the items on the right, we value the items on the left more.</p>
+</blockquote>
+
+<p>
+	<strong>Agile&trade;</strong> has grown to focus solely on the left and ignoring the right. It was never about no tools, no processes,
+	no documentation, no contract negotiation and no plan. We still need all of these but not at the expense of the items on the left. 
+</p>
+
+<h3 id="multi_tenant_saas">Developing multi-tenant SaaS business applications on Azure</h3>
+<p>by <strong>Zan Kavtaskin</strong></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/wrocsharp/2018/multi_tenant_saas.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/wrocsharp/2018/multi_tenant_saas_small.jpg" 
+        	alt="Sketchnotes from the talk 'Developing multi-tenant SaaS business applications on Azure'"
+        />
+    </a>
+</div>
+
+<p>
+	Zan took us through some of the architectural decisions that we might need to make when building a <em>multi-tenant</em> system and 
+	how we apply it to building systems on Azure.
+</p>
+
+<p>
+	This was not about absolutes, but about trade-offs, for every decision that is needed there are multiple possible solutions and Zan 
+	gives us a look at the <em>pros and cons</em> of some of those possibilities. 
+</p>
+
+<h3 id="security">CSP XXP STS PKP CAA ETC OMG WTF BBQ</h3>
+<p>by <a href="https://twitter.com/Scott_Helme">Scott Helme</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/wrocsharp/2018/csp_xxp_sts_pkp_caa_etc_wtf_omg_bbq.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/wrocsharp/2018/csp_xxp_sts_pkp_caa_etc_wtf_omg_bbq_small.jpg" 
+        	alt="Sketchnotes from the talk 'CSP XXP STS PKP CAA ETC OMG WTF BBQ'"
+        />
+    </a>
+</div>
+<p>
+	There is a lot about security that I need to think about after this talk. He takes us through some of the interesting attacks that 
+	can be made against your site and how you can defend against them.
+</p>
+<p>
+	There is a lot to learn and to try out, but when building up one of the policies we should start bit by bit. We can use the 
+	<code>report-uri</code> to understand what we are missing and what violations may cause our site to break. 
+</p>
+
+<h3 id="elastic_leadership">Growing great teams and adopting new processes through Elastic Leadership</h3>
+<p>by <a href="https://twitter.com/RoyOsherove">Roy Osherove</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/wrocsharp/2018/elastic_leadership.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/wrocsharp/2018/elastic_leadership_small.jpg" 
+        	alt="Sketchnotes from the talk 'Growing great teams and adopting new processes through Elastic Leadership'"
+        />
+    </a>
+</div>
+
+<p>
+	Roy made me think a lot about the interactions that I have with people around me, about how I learn and about how I can improve how
+	I can learn.
+</p>
+<p>
+	Being a <em>leader</em> is not always about command and control, a leader should be enabling people, helping them to grow to a position
+	where they do not need you to tell them what to do. 
+</p>
+<p>
+	When Roy talks abhout how we learn, he points out that we have points in our abilities jump rapidly, but these jumps tend to be brief and
+	then we "plateau", there are long periods where we don't grow. These jumps are linked to times when we learn something new, we learn a new 
+	technique, or a new programming language, where we are taken out of our comfort zone. Being out of our comfort zone pushes you into a 
+	<em>ravine</em> where you are less effective, less able, but by going through this process you find the knowledge and skills we need to 
+	make the next jump in our abilities.
+</p>
+<p>
+	I came away with several questions, how can I deliberately push myself out of my comfort zone? How can I push myself to learn something new? 
+	How can I then do the same for the rest of my team?
+</p>
+<p>
+	One interesting point about team dynamics was that to make a team adapt, the team needs to have the space to adapt. A team exists in one of
+	several states:
+</p>
+<ul>
+	<li>
+		<strong>Survival</strong> - the team is running just to keep up with the demands placed upon them, they are firefighting and have no spare
+		capacity to learn. In this case, a <em>command and control</em> leadership style is needed while you work to create the space for them to 
+		learn.
+	</li>
+	<li>
+		<strong>Learning</strong> - the team has the space now to learn, they do not need people to tell then what to do, to solve problems for them.
+		The team needs a <em>coach</em> to challenge them, teach them, help them to understand the problems and to find their own answers. 
+	</li>
+	<li>
+		<strong>Self-organising</strong> - the team is able to solve most problems on its own. The team now needs a <em>facilitator</em> who will
+		help to keep them moving in the right direction.
+	</li>
+</ul>
+<p>
+	Teams can move between these states, so it is important to recognise which state your team is in.
+</p>
+
+<h3 id="xamarin">Building real-world mobile apps with Xamarin: Under the hood of the Azure Mobile app</h3>
+<p> by <a href="https://twitter.com/JakubJedryszek">Jacob Jedryszek</a></p>
+
+<div>
+    <a href="/assets/images/sketchnotes/wrocsharp/2018/real_world_mobile_apps_with_xamarin.jpg" target="_blank">
+        <img 
+        	class="sketchnote_centred_image" 
+        	src="/assets/images/sketchnotes/wrocsharp/2018/real_world_mobile_apps_with_xamarin_small.jpg" 
+        	alt="Sketchnotes from the talk 'Building real-world mobile apps with Xamarin: Under the hood of the Azure Mobile app'"
+        />
+    </a>
+</div>
+
+<p>
+	Jacob took us through the world of Xamarin at Microsoft, how we can build cross-platform applications for mobile devises in the 
+	.NET world. There is a lot that Xamarin provides, including the ability to test on multiple different devices and even develop
+	for MacOS on the web. 
+</p>
+
+<p>
+	My favourite part of the talk was where Jacob introduced us to <a href="https://www.microsoft.com/en-us/seeing-ai/">Seeing AI</a>, 
+	an application that has been built by Microsoft to help narrate the world to blind/partially sighted people. There are so many different
+	features, like being able to read a document, telling the user to rotate their phone to align with the document, or being able to 
+	recognise the expressions of faces in a meeting.
+</p>
+<p>
+	Tech like this shows me the potential that exists for the world, technology that is designed to actually make people's lives better,
+	and I hope more apps like this can be made to make the world more accessible.
+</p>
