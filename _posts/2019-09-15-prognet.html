@@ -1,0 +1,255 @@
+---
+layout: default
+title: Progressive .NET Tutorials 2019
+summary: My learnings and sketchnotes from Skillsmatter's Progressive .NET Tutorials
+categories:
+  - Conferences
+  - Skillsmatter
+  - Sketchnotes
+  - ProgNet
+---
+
+<p>
+  I attended the <em>Progressive .NET Tutorials</em> at Skillsmatter in London.
+</p>
+
+<h3 id="future-guardians">Keynote: We are the guardians of our future</h3>
+<p>by <a href="https://twitter.com/tessferrandez">Tess Ferrandez</a></p>
+
+<p>
+  Tess argued that we cannot be isolated from the ethical impacts of our
+  decisions. It is easy for us to say that we are just doing mathematics, that
+  we are just applying an algorithm, that it is someone else's job to think
+  about the impacts of what we are doing. Even in the world of
+  <em>A.I.</em>, as she said
+  <em>"if the source data is biased, the model is biased"</em>.
+</p>
+<p>
+  She talked us through a number of examples where the ethical implications of
+  our actions can impact people but also how we can improve our processes.
+</p>
+<ul>
+  <li>Build better guidelines.</li>
+  <li>
+    Provide <em>datasheets</em> for datasets explaining the expected use cases.
+    Just as materials come with tolerances, so do datasets, explaining the
+    nature of the training data.
+  </li>
+  <li>Detect, don't predict.</li>
+  <li>Keep humans in the loop.</li>
+</ul>
+
+<p>Here are my sketchnotes:</p>
+<div>
+  <a
+    href="/assets/images/sketchnotes/2019/prognet/we-are-the-guardians-of-our-future.png"
+    target="_blank"
+  >
+    <img
+      class="sketchnote_centred_image"
+      src="/assets/images/sketchnotes/2019/prognet/we-are-the-guardians-of-our-future-small.png"
+      alt="Sketchnotes from the keynote 'We are the guardians of our future'"
+    />
+  </a>
+</div>
+
+<h3 id="grpc">Beyond HTTP in ASP.NET Core 3.0 with gRPC</h3>
+<p>by <a href="https://twitter.com/stevejgordon">Steve Gordon</a></p>
+
+<p>
+  Steve talked us through the current changes that are happening in .NET Core
+  3.0 to support <a href="https://grpc.io/">gRPC</a>, a high-performance,
+  cross-platform RPC framework. The primary ability to communicate between
+  platforms relies on an interface specification in a <em>.proto</em> file that
+  allows for code-generation of the client and server and allows the message
+  contents to be pure data because the metadata is in the contract in that file.
+</p>
+
+<p>Here are my sketchnotes:</p>
+<div>
+  <a
+    href="/assets/images/sketchnotes/2019/prognet/beyond-http-with-grpc.png"
+    target="_blank"
+  >
+    <img
+      class="sketchnote_centred_image"
+      src="/assets/images/sketchnotes/2019/prognet/beyond-http-with-grpc-small.png"
+      alt="Sketchnotes from the talk 'Beyond HTTP in ASP.NET Core 3.0 with gRPC'"
+    />
+  </a>
+</div>
+
+<h3 id="channels">Go Channels in .NET - concurrency made easy</h3>
+<p>by <a href="https://twitter.com/trikace">Riccardo Terrell</a></p>
+
+<p>
+  Riccardo introduced us to
+  <a href="https://en.wikipedia.org/wiki/Communicating_sequential_processes"
+    >CSP - Communicating sequential processes</a
+  >
+  and how to use the
+  <a
+    href="https://docs.microsoft.com/en-us/dotnet/api/system.threading.channels?view=dotnet-plat-ext-2.1"
+    >System.Threading.Channels</a
+  >
+  package in .NET while comparing this with the
+  <a href="https://getakka.net/">Akka .NET</a> framework.
+</p>
+
+<div>
+  <a
+    href="/assets/images/sketchnotes/2019/prognet/channels-made-easy.png"
+    target="_blank"
+  >
+    <img
+      class="sketchnote_centred_image"
+      src="/assets/images/sketchnotes/2019/prognet/channels-made-easy-small.png"
+      alt="Sketchnotes from the talk 'Go Channels in .NET - concurrency made easy'"
+    />
+  </a>
+</div>
+
+<h3 id="quantum-computing">Quantum Computing 101</h3>
+<p>by <a href="https://twitter.com/djohnnieke">Johnny Hooyberghs</a></p>
+
+<p>
+  Johnny gave us a brief introduction to the principles behind
+  <em>Quantum Computing</em>, how this is different to the classic computation
+  that we are used to. He introduced us to the concepts of
+  <em>superposition</em> where in the <em>Quantum</em> world a
+  <em>Qubit</em> can hold all possible values at the same time, only when
+  observed will the value collapse. Along with <em>superposition</em>,
+  <em>Quantum Entanglement</em> is a key concept in the
+  <em>Quantum Computing</em>
+  world where two particles are linked so that when one changes value, the other
+  instantly changes.
+</p>
+
+<p>
+  He introduced us to
+  <a
+    href="https://docs.microsoft.com/en-us/quantum/language/?view=qsharp-preview"
+    >Q# by Microsoft</a
+  >, which is their simulation of a <em>Quantum Programming Language</em> that
+  simulates the <em>Quantum Computer</em> and
+  <a href="https://quantum-computing.ibm.com">IBM's Q Experience</a> which is a
+  more graphical representation that includes the ability to run on a real
+  quantum computer or a simulation of one.
+</p>
+
+<div>
+  <a
+    href="/assets/images/sketchnotes/2019/prognet/quantum-computing-101.png"
+    target="_blank"
+  >
+    <img
+      class="sketchnote_centred_image"
+      src="/assets/images/sketchnotes/2019/prognet/quantum-computing-101-small.png"
+      alt="Sketchnotes from the talk 'Quantum Computing 101'"
+    />
+  </a>
+</div>
+
+<h3 id="surviving-microservices">Surviving Microservices</h3>
+<p>
+  by <a href="https://twitter.com/michelebusta">Michele Leroux Bustamante</a>
+</p>
+
+<p>
+  Michele gave us an awesome, high-content, keynote about surviving the
+  transitions to microservices, especially for the medium to large sized
+  organisations that have old-legacy code-bases. She explained to us that we
+  need to understand why we wanted to do the transformation, that in order to
+  prove the value we have to talk in the <em>strategic</em> value rather than in
+  terms of the <em>tactical</em> value that we see from our technical
+  perspectives.
+</p>
+
+<p>
+  She went on to talk about the different decisions that we must make along the
+  way, that this is a long process that can take a lot of thought and effort,
+  that we have to balance design, to re-architect to understant
+  <em>eventual consistency</em> and the problems of going through the production
+  in a system of complex microservices.
+</p>
+
+<p>Here are my sketchnotes:</p>
+
+<div>
+  <a
+    href="/assets/images/sketchnotes/2019/prognet/surviving-microservices.png"
+    target="_blank"
+  >
+    <img
+      class="sketchnote_centred_image"
+      src="/assets/images/sketchnotes/2019/prognet/surviving-microservices-small.png"
+      alt="Sketchnotes from the talk 'Surviving microservices'"
+    />
+  </a>
+</div>
+
+<h3 id="authentication-for-serverless">Authentication for serverless</h3>
+<p>by <a href="https://twitter.com/robinem">Robin Minto</a></p>
+
+<p>
+  Robin started by explaining how security has changed over the past few
+  decades, how moving from a <em>monolith</em> where the identity boundary was
+  the edges of the application through to <em>microservices</em> where the
+  identity boundary was distributed (or at least multiple identity boundaries)
+  and then onto <em>serverless</em> where you don't even have control of where
+  the code is running.
+</p>
+
+<p>Here are my sketchnotes:</p>
+
+<div>
+  <a
+    href="/assets/images/sketchnotes/2019/prognet/authentication-for-serverless.png"
+    target="_blank"
+  >
+    <img
+      class="sketchnote_centred_image"
+      src="/assets/images/sketchnotes/2019/prognet/authentication-for-serverless-small.png"
+      alt="Sketchnotes from the talk 'Authentication for serverless'"
+    />
+  </a>
+</div>
+
+<h3 id="pipeline-driven-organisation">Pipeline driven organisations</h3>
+<p>by <a href="https://twitter.com/royosherove">Roy Osherove</a></p>
+
+<p>
+  Roy talked us through how traditional organisations are partially implementing
+  pipelines, individual silos within the organisation (dev, test, security,
+  etc), but the pipelines are not connected and require humans to be the
+  decision makers.
+</p>
+
+<p>
+  He argues that in the ideal world we <em>code delegates</em> in a universal
+  pipeline, where we allow the pipeline to make the decisions according to the
+  rules that we encode.
+</p>
+
+<p>
+  To have trust in the pipeline we need to be disciplined, we need to "skill up"
+  and we need to train the pipeline, when something goes wrong (i.e. when the
+  pipeline fails to block something) we have to correct the delegates, or add
+  new ones. Each discipline, each silo, needs to continue to produce their own
+  delegates and trust the others to produce theirs.
+</p>
+
+<p>Here are my sketchnotes:</p>
+
+<div>
+  <a
+    href="/assets/images/sketchnotes/2019/prognet/the-pipeline-driven-organisation.png"
+    target="_blank"
+  >
+    <img
+      class="sketchnote_centred_image"
+      src="/assets/images/sketchnotes/2019/prognet/the-pipeline-driven-organisation-small.png"
+      alt="Sketchnotes from the talk 'The pipeline driven organisation'"
+    />
+  </a>
+</div>
