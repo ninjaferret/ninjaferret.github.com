@@ -1,0 +1,228 @@
+---
+layout: default
+title: DDD East Anglia 2019
+summary: My learnings, sketchnotes and lightning talk from DeveloperDeveloperDeveloper! East Anglia 2019
+categories:
+  - Conferences
+  - DeveloperDeveloperDeveloper
+  - Sketchnotes
+  - Lightning Talk
+---
+
+<p>
+  I attended the <em>DDD East Anglia</em> conference in Cambridge. The
+  <strong>DeveloperDeveloperDeveloper!</strong> series of events are free,
+  community-driven events that are held around the country and on a Saturday to
+  allow as many people as possible to attend.
+</p>
+
+<h3>My Lightning Talk - Creativity</h3>
+
+<p>
+  I have been interested in how to be more creative and I wanted to share a
+  simple technique for becoming more creative.
+</p>
+<p>
+  There are several mindsets we can find ourselves in:
+</p>
+<ul>
+  <li>
+    <strong>Open mindsets</strong> are playful, open to new experiences, very
+    creative but they lose focus easily and are terrible at getting things done.
+  </li>
+  <li>
+    <strong>Closed mindsets</strong> are where we are focused on getting things
+    done, but are less open to new ideas and so less creative.
+  </li>
+</ul>
+<p>
+  You need to exist in both the open modes and the closed modes. When we want to
+  explore ideas to solve a complex problem we need to be in the open mode, when
+  we are trying to implement on the decisions that are made we need to work in
+  the closed mindset where new ideas don't distract us from delivering.
+</p>
+<p>
+  To get into the creative mode you cannot be stressed, you can't be worried
+  about that e-mail you need to send, etc. so you need to find a time and space
+  where you can relax (~90 minutes). A bit of humour goes a long way in helping
+  you get into an open mindset. Once there, you need to play with the problem
+  and allow yourself to explore tangential areas.
+</p>
+<p>
+  Don't expect ot always find the solution straight away, never leave the
+  creative process to the last possible moment, play in advance so that when the
+  time comes you have more than just one idea. Even if you don't come up with
+  possible solutions straight away, you have seeded ideas and your subconscious
+  may well find a new creative solution.
+</p>
+<p>
+  When you're in the closed mode, trying to get stuff done, if you have a
+  creative idea don't let it distract you, write it down and come back to it
+  later when you have actually delivered.
+</p>
+<p>
+  <a href="assets/images/talks/201909/creativity/creativity.pptx"
+    >Here are my slides from my talk.</a
+  >
+</p>
+
+<h3>The very first computer program</h3>
+<p>by <a href="https://twitter.com/marquisdegeek">Steven Goodwin</a></p>
+
+<p>
+  Steven talked us through the very first computer program by Ada Lovelace, the
+  very first 24 instructions that were written to calculate
+  <em>Bernoulli Numbers</em> on the Babbage Analytical Engine.
+</p>
+<p>
+  We discovered that the first program had <em>comments</em> that explained each
+  instruction and there were <em>"tests"</em> included in the program (i.e. the
+  values expected after each instruction). Though there were only 24
+  instructions there was some <em>copy and paste</em> where Ada tells us to copy
+  previous instructions to do some iteration.
+</p>
+<p>
+  It was fun to also find out that there was a bug in the program, however, this
+  looks to be a bug in the comments. Remember folks, keep your comments up to
+  date ;-)
+</p>
+
+<p>Here are my sketchnotes:</p>
+<div>
+  <a
+    href="/assets/images/sketchnotes/2019/dddea/the-very-first-computer-program.tif"
+    target="_blank"
+  >
+    <img
+      class="sketchnote_centred_image"
+      src="/assets/images/sketchnotes/2019/dddea/the-very-first-computer-program-small.tif"
+      alt="Sketchnotes from the talk 'The very first computer program' by Steven Goodwin"
+    />
+  </a>
+</div>
+
+<h3>Clouds, microservices and brittleness</h3>
+<p>by <a href="https://twitter.com/david_whitney">David Whitney</a></p>
+
+<p>
+  David presented us with a lot of his experiences in working with the cloud and
+  working with microservices.
+</p>
+<p>
+  What I took away from this was that there is a huge amount to think about when
+  you are working with <em>microservices</em>. These can range from how you
+  communicate between the services? How do you handle a service going down? How
+  to you monitor those services?
+</p>
+<p>
+  One of the key things that stuck in my mind was
+  <strong>what changes together, stays together!</strong> This means that each
+  microservice has its own database, it owns its own data and is deployed with
+  its own data. It also means that services are not a uniform size, they contain
+  a whole <em>bounded context</em> rather than the Netflix "one microservice per
+  table".
+</p>
+<p>
+  Remember, it is OK to have a <em>monolith</em>. As I argued in the
+  <a href="./2019-05-02-A-Monolith-Of-Microservices.html"
+    >Monolith of Microservices</a
+  >
+  we can design a well-structured <em>monolith</em> and it is perfectly fine to
+  use it and scale it until there is a specific need to extract services.
+</p>
+<p>Here are my sketchnotes:</p>
+<div>
+  <a
+    href="/assets/images/sketchnotes/2019/dddea/clouds-microservices-and-brittleness.tif"
+    target="_blank"
+  >
+    <img
+      class="sketchnote_centred_image"
+      src="/assets/images/sketchnotes/2019/dddea/clouds-microservices-and-brittleness-small.tif"
+      alt="Sketchnotes from the talk 'Clouds, microservices and brittleness' by David Whitney"
+    />
+  </a>
+</div>
+<h3>How to hack an election</h3>
+<p>by <a href="https://twitter.com/garyshort">Gary Short</a></p>
+<p>
+  Gary talked about the tricks <em>"black hat data scientists"</em> use to
+  influence how people vote.
+</p>
+<p>
+  In the UK's electoral system, it is possible to target relatively few people
+  in the most marginal seats to dramatically affect the results of the election.
+  They can influence people to vote for quite extreme change by a range of
+  techniques from convincing them that the current political situation is
+  already broken (the <em>"broken window effect"</em>) to persuading them that
+  their own lives suck so change can only make things better (the
+  <em>"compensation effect"</em>)).
+</p>
+<p>Here are my sketchnotes:</p>
+<div>
+  <a
+    href="/assets/images/sketchnotes/2019/dddea/how to hack an election.tif"
+    target="_blank"
+  >
+    <img
+      class="sketchnote_centred_image"
+      src="/assets/images/sketchnotes/2019/dddea/how-to-hack-an-election-small.tif"
+      alt="Sketchnotes from the talk 'How to hack an election' by Gary Short"
+    />
+  </a>
+</div>
+<h3>In retrospect</h3>
+<p>by <a href="https://twitter.com/samhogy">Sam Hogarth</a></p>
+<p>Sam believes, quite rightly, that <em>Agile</em> is not a solved problem!</p>
+<p>
+  The problem with a very prescriptive form of <em>Agile</em> is that we are
+  losing out on a central pillar of agility, the fact that we should actually
+  iterate to solve the specific problems that we face. There is no
+  "one-size-fits-all" solution and we should not be trusting anyone who sells us
+  a "silver bullet" but rather the people who coach us to solve our own
+  problems.
+</p>
+<p>
+  Sam believes that they key to true agility is in
+  <em>do-measure-review-retrospect</em> cycle, which appears in many variations
+  in different environments, e.g. the
+  <em>Observe-Orient-Decide-Act (O.O.D.A.)</em> method of the military. When
+  explaining in military terms, Sam explained if you move through the
+  <em>O.O.D.A</em> loop faster than the competition, you adapt faster to change,
+  gain an advantage and you disrupt the competition going through their own
+  loop.
+</p>
+<p>
+  So, the Retrospective is where we look back at what we have done, or rather
+  how we have done it. We gather the information, we dig into the root causes
+  (e.g. the "5 why's" technique) and decide how to improve.
+</p>
+<p>
+  Another key point is to keep changing the format of your retrospective,
+  otherwise they become stale, the same issues keep arising and everyone is
+  disengaged.
+</p>
+
+<p>Here are my sketchnotes:</p>
+<div>
+  <a
+    href="/assets/images/sketchnotes/2019/dddea/in-retrospect.tif"
+    target="_blank"
+  >
+    <img
+      class="sketchnote_centred_image"
+      src="/assets/images/sketchnotes/2019/dddea/in-retrospect-small.tif"
+      alt="Sketchnotes from the talk 'In retrospect...' by Sam Hogarth"
+    />
+  </a>
+</div>
+
+<h3>Conclusion</h3>
+
+<p>
+  Thanks to all of the organisers who volunteer their time and effort to make
+  these events happen. Massive thanks to all of the speakers who give their time
+  and effort to come here and present their talks for free to benefit the
+  community. One last thanks goes out to the sponsors, you provide the money to
+  make the event happen, so thank you for supporting the community.
+</p>
