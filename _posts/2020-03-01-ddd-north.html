@@ -1,0 +1,159 @@
+---
+layout: default
+title: DDD North 2020
+summary: My notes from the DDD North 2020 conference
+categories:
+  - Conferences
+  - DeveloperDeveloperDeveloper
+  - Talk
+  - Slides
+  - Sketchnotes
+---
+
+Once again, I had a great time at DDD North, thank you to all of the organisers
+and sponsors who made the event happen.
+
+<h3>Friday/Saturday night</h3>
+
+<p>
+  One of the things I love about the <em>DDD community</em> is getting to meet
+  up with old friends and making new ones. I always travel to one of the events
+  on a Friday afternoon and return home on a Sunday, partly because it can be a
+  long way to travel, but mostly because it gives me a chance to attend the
+  social events.
+</p>
+<p>
+  Friday night, a group of us got together and decided to head out for a curry.
+  Saturday night,
+  <a href="https://twitter.com/philpursglove">Phil Pursglove</a> created an
+  eventbrite sign-up and booked a table at Pizza Express, sadly, he could not
+  make it but I want to thank him for organising it and to say that we had a
+  good time in his absence.
+</p>
+<p>
+  I met some new people and talked to friends I've known for years through the
+  community. We chatted on topics from Blazor to public speaking to anything
+  else that popped into our heads. I can learn as much from evenings like this
+  as I can from the conference, I can get to talk to the speakers, and the other
+  delegates. I learned that the translation of the Japanese for Sunday is "sun
+  day", we talked about how language works, or doesn't, we talked about coding,
+  we just laughed and had fun.
+</p>
+<p>
+  I want to make sure that people know these events are happening, that we are
+  not just a cliquey group, we will welcome newcomers to our fold (we're not
+  that scary).
+</p>
+
+<h3>A Monolith of Microservices</h3>
+
+<p>
+  I was lucky enough to be selected to speak and give my talk
+  <em>A Monolith of Microservices</em>. I was surprised at how many people
+  turned up, with people sitting on the stairs and standing at the back, though
+  I've given it before I was a bit nervous so finished a bit earlier than I had
+  planned but that gave space for some really good questions.
+</p>
+<p>
+  You can find
+  <a
+    href="/assets/presentations/2020/dddnorth/20200229-monolith-of-microservices.pptx"
+    >my slides from the talk here</a
+  >.
+</p>
+<p>
+  One of the questions that arose was "Can you really deploy a monolith as fast
+  as microservices? Especially when you are promoting them through different
+  environments." This suggested to me that:
+</p>
+<ul>
+  <li>There was not continuous delivery (though maybe automated deployment)</li>
+  <li>
+    Humans were involved in making the decision to promote to a new environment
+  </li>
+</ul>
+<p>
+  My belief is that such an organisation is not ready for a microservice
+  approach, they have a monolithic mindset where changes have to be batched
+  together, deployed to an environment and approved by a human. As organisations
+  mature and adapt to the new world, they have to codify and automate their
+  policies; the continuous delivery pipeline (not a human) is making the
+  judgements about what can and cannot deploy and that humans control this by
+  changing the policies.
+</p>
+
+<p>
+  I still believe that the <em>Monolith of Microservices</em> is a good
+  architectural pattern for them, as they mature it will allow them greater
+  flexibility.
+</p>
+
+<h3>.NET configuration is easy... right?</h3>
+<p class="additional-link">by <a href="https://twitter.com/stevetalkscode">Steve Collins</a></p>
+
+<div>
+    <img
+      class="sketchnote_centred_image"
+      src="/assets/images/sketchnotes/2020/dddnorth/dotnet-configuration-is-easy-small.jpg"
+      alt="Sketchnotes from the talk '.NET configuration is easy... right?' by Steve Collins"
+    />
+  <p class="additional-link"><a
+    href="/assets/images/sketchnotes/2020/dddnorth/dotnet-configuration-is-easy.jpg"
+    target="_blank"
+  >click here to download a higher-resolution image</p>
+</div>
+<p>
+  Steve talked us through the different options that exist for configuring .NET
+  applications, starting from the deep history of <em>.ini</em> files moving
+  through to the modern era of secret vaults.
+</p>
+<p>
+  In the early days of .NET, there was only one way to configure an application
+  and this was accessed through a static singleton object (untestable and not
+  extensible). Steve showed how we can combine multiple different sources to
+  configure an application and how the new frameworks have become more testable.
+</p>
+
+<h3>An introduction to domain-driven design</h3>
+<p class="additional-link">by <a href="https://twitter.com/craigtptech">Craig Phillips</a></p>
+
+<div>
+    <img
+      class="sketchnote_centred_image"
+      src="/assets/images/sketchnotes/2020/dddnorth/introduction-to-domain-driven-design- small.jpg"
+      alt="Sketchnotes from the talk 'An introduction to Domain-Driven Design?' by Craig Phillips"
+    />
+  <p class="additional-link"><a
+    href="/assets/images/sketchnotes/2020/dddnorth/introduction-to-domain-driven-design.jpg"
+    target="_blank"
+  >click here to download a higher-resolution image</p>
+</div>
+
+<p>
+    Craig introduces us to the core concepts of <em>Domain-Driven Design</em>, how modelling the real world and aligning our code to that model will help minimise the friction between the developers and the business. 
+</p>
+<p>
+    I liked how Craig introduced the concept that the modelling exercise is not a one-off task at the start, it is a continuous discussion between the stakeholders and the development team, the <em>ubiquitous language</em> that is developed can be constantly evolving and this means that the code will constantly change to reflect this. This is not "big up front design".
+</p>
+
+<h3>Kubernetes on Raspberry Pi</h3>
+<p class="additional-link">by <a href="https://twitter.com/jacksonps4">Chris Wraith</a></p>
+
+<div>
+    <img
+      class="sketchnote_centred_image"
+      src="/assets/images/sketchnotes/2020/dddnorth/introduction-to-domain-driven-design- small.jpg"
+      alt="Sketchnotes from the talk 'An introduction to Domain-Driven Design?' by Craig Phillips"
+    />
+  <p class="additional-link"><a
+    href="/assets/images/sketchnotes/2020/dddnorth/introduction-to-domain-driven-design.jpg"
+    target="_blank"
+  >click here to download a higher-resolution image</p>
+</div>
+
+<p>
+    Chris gave us a brief introduction to the history of the Raspberry Pi, and of Kubernetes. He had brought with him a network of Raspberry Pis, one master and three nodes, and showed us how he could deploy images quickly. He showed us how we could quickly we could scale a solution with a few commands. 
+</p>
+<p>
+    I haven't played much with either a Raspberry Pi or Kubernetes but I can see how this can be an interesting way to provide developers with a small, affordable Kubernetes cluster for testing. 
+</p> 

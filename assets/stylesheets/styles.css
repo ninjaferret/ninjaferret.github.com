@@ -1,49 +1,54 @@
 .sub-heading {
-	font-size: 1.75em;
-	font-weight: bold;
-	text-align: center;
+  font-size: 1.75em;
+  font-weight: bold;
+  text-align: center;
 }
 
 a,
 a:visited,
 a:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 h1 {
-	display: inline-block;
+  display: inline-block;
 }
 
 h2,
-h2 a{
-	color: #f8e5b2;
-	background-color: #702417;
-	line-height: 1.75em;
+h2 a {
+  color: #f8e5b2;
+  background-color: #702417;
+  line-height: 1.75em;
 }
 
-h2 a:hover ,
+h2 a:hover,
 h2 a:visited {
-	color: #f8e5b2;
-	text-decoration: underline;
+  color: #f8e5b2;
+  text-decoration: underline;
 }
 
 h2 {
-	text-align: center;
+  text-align: center;
 }
 
 em {
-	color: #cd493b;
+  color: #cd493b;
 }
 
 blockquote {
-	border-left-color: #f8e5b2;
-	font-size: 1.1em;
-	font-style: italic;
+  border-left-color: #f8e5b2;
+  font-size: 1.1em;
+  font-style: italic;
 }
 
 .sketchnote_centred_image {
-	display: block;
-	margin: 0 auto;
-	width: 100%;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
 }
 
+.additional-link {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.8em;
+}
