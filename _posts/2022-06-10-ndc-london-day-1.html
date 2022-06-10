@@ -1,0 +1,188 @@
+---
+layout: default
+title: NDC London 2022 - Day 1
+summary: My notes from the NDC London conference
+categories:
+  - Conferences
+  - NDC
+  - NDC London
+  - Sketchnotes
+---
+
+After a long break due to the pandemic, I finally returned to in-person conferences, I've missed the energy and excitement of the community over the past few years, of meeting friends both old and new.
+
+Being around other passionate people who are in one place to learn, to grow, to teach, or just to share experiences inspires me and shows me what is possible. 
+
+For me it was back to sketchnoting...
+
+<h3>Keynote: The last 20 years of software development</h3>
+<p class="additional-link">
+  by <a href="https://twitter.com/richcampbell">Richard Campbell</a>
+</p>
+
+<div>
+  <img
+    class="sketchnote_centred_image"
+    src="/assets/images/sketchnotes/2022/ndclondon/day1/keynote-last-20-years-software-dev-small.jpg"
+    alt="Sketchnotes from the talk 'The Last 20 Years of Software Development' by Richard Collins at NDC London 2022"
+  />
+  <p class="additional-link">
+    <a
+      href="/assets/images/sketchnotes/2022/ndclondon/day1/keynote-last-20-years-software-dev.jpg"
+      target="_blank"
+      >click here to download a higher-resolution image</a
+    >
+  </p>
+</div>
+
+This was a whistlestop tour of some of the most significant events over the last 20 years, mostly focusing on what was happening around the .NET stack and the growth of the internet.
+
+It was an interesting reminder of where we came from, of how far we have come during the time of my professional career, and it is a real reminder that the world will not stop changing, so we can expect more change over the next 20 years, or perhaps even more. 
+
+<h3>A 101 in Time Series Data</h3>
+<p class="additional-link">
+  by Jay Clifford
+</p>
+
+<div>
+  <img
+    class="sketchnote_centred_image"
+    src="/assets/images/sketchnotes/2022/ndclondon/day1/101-time-series-data-small.jpg"
+    alt="Sketchnotes from the talk 'A 101 in Time Series Data' by Jay Clifford at NDC London 2022"
+  />
+  <p class="additional-link">
+    <a
+      href="/assets/images/sketchnotes/2022/ndclondon/day1/101-time-series-data.jpg"
+      target="_blank"
+      >click here to download a higher-resolution image</a
+    >
+  </p>
+</div>
+
+Jay gave us an introduction to what Time Series data is... <em>"Data with a timestamp"</em>. In reality, this kind of data comes from things like:
+
+- Application instrumentation
+- Sensors
+- Stocks and shares
+
+This data can be <em>regular</em>, i.e. a constant stream of data, or could be <em>event-based</em> where the data comes in when an action occurs so is more sporadic. It is possible to convert event-based to regular continuous data using various aggregation operations available in time series data.
+
+We use time-series data to generate insights into the data using three basic stages:
+
+- **Ingest**: getting the data into the System
+- **Analyze**: Time-series databases allow you to query, filter, and then transform the data.
+- **Act**: Once we have insights that are gained from the data we need to act, either via alerting engines, visualisation, or even taking specific actions.
+
+It is something that I will have to take a deeper look into when I have the time.
+
+<h3>An introduction to Elasticsearch for .NET developers</h3>
+<p class="additional-link">
+    by <a href="https://twitter.com/stevejgordon">Steve Gordon</a>
+</p>
+
+<div>
+    <img
+      class="sketchnote_centred_image"
+      src="/assets/images/sketchnotes/2022/ndclondon/day1/introduction-to-elasticsearch-small.jpg"
+      alt="Sketchnotes from the talk 'An introduction to Elasticsearch for .NET developers' by Steve Gordon at NDC London 2022"
+    />
+    <p class="additional-link">
+      <a
+        href="/assets/images/sketchnotes/2022/ndclondon/day1/introduction-to-elasticsearch.jpg"
+        target="_blank"
+        >click here to download a higher-resolution image</a
+      >
+    </p>
+  </div>
+
+Elasticsearch is something that I've played with briefly before but I wanted to learn more about it. Steve talked us through the basic terminology for Elasticsearch:
+
+- **Document**: The basic unit of information
+  - It is in JSON format but has no set schema
+  - Mappings: either implicit or explicit, there is a mapping between each field in the document and an underlying type (e.g. number, date/time,...)
+- **Index**: A collection of documents that share a similar characteristic
+- **Node**: An instance of Elasticsearch that can respond to queries
+- **Cluster**: A collection of nodes
+  - Clusters give fault tolerance
+  - Clusters give scalability
+- **Shard**: A part of an index that can be split across one or more nodes, including replicated across nodes, to give fault tolerance.
+
+What I've learned is that if we want to be series about using Elasticsearch in production, I should be deploying a cluster for fault tolerance.
+
+One of the issues with the current (or old depending on when you read this) nuget package for ElasticSearch is that it doesn't have all of the features of their web API, and it falls behind as changes are made to the web API. Steve pointed out the work that they are doing at the moment to build the new nuget package for .NET to call into Elasticsearch, they are moving to programmatically generating the assembly from their web API so that it will always be up to date and always be up-to-date. 
+
+I think that we should all be considering the automation of tasks like building a library from a web API, this frees up the developers and it cannot fall behind if it is part of the build process.
+
+<h3>Wearable "live captioning"</h3>
+<p class="additional-link">
+    by <a href="https://twitter.com/thisisjofrank">Jo Franchetti</a>
+</p>
+
+<div>
+  <img
+    class="sketchnote_centred_image"
+    src="/assets/images/sketchnotes/2022/ndclondon/day1/wearable-live-captioning-small.jpg"
+    alt="Sketchnotes from the talk 'Wearable live captioning' by Jo Franchetti at NDC London 2022"
+  />
+  <p class="additional-link">
+    <a
+      href="/assets/images/sketchnotes/2022/ndclondon/day1/wearable-live-captioning.jpg"
+      target="_blank"
+      >click here to download a higher-resolution image</a
+    >
+  </p>
+</div>
+
+Jo started out with a personal story of her mother being hard of hearing and how the pandemic, especially the need to wear masks, made communication difficult. She came up with an ingenious solution, to make use of wearable technology and produce a face mask that had embedded into it the technology to display what she was speaking. 
+
+With the help of a phone, the Ably API, and Microsoft's Azure Cognitive Services to connect the mask to the internet and provide a scrolling display that shows what she is saying in real time. This even included working on her own pixel font for the LED display. 
+
+Debugging hardware is hard, I think I already knew that, but Jo definitely reinforced this so testing becomes a really important part of building this system. 
+
+I think we, as a society, don't take issues of accessibility as seriously as we should and that technology can be a massive enabler. 
+
+
+<h3>The visible developer</h3>
+<p class="additional-link">
+    by <a href="https://twitter.com/quorralyne">Heather Downing</a>
+</p>
+
+<div>
+  <img
+    class="sketchnote_centred_image"
+    src="/assets/images/sketchnotes/2022/ndclondon/day1/the-visible-developer-small.jpg"
+    alt="Sketchnotes from the talk 'The visible developer' by Heather Downing at NDC London 2022"
+  />
+  <p class="additional-link">
+    <a
+      href="/assets/images/sketchnotes/2022/ndclondon/day1/the-visible-developer.jpg"
+      target="_blank"
+      >click here to download a higher-resolution image</a
+    >
+  </p>
+</div>
+
+Heather made it clear from the start that **we all have a personal brand**, we all project things that those around us pick up on, we have our own behaviours and quirks. What Heather wanted us to understand is that we can curate and cultivate that image, we can influence how others perceive us, and by changing some of our behaviours we can become more visible when it comes to finding new jobs, to promotions or performance evaluations.
+
+Some of my takeaways:
+- Managers are often too busy to notice the good work you do, you have to **"Do things and tell people that you've done it"**
+- Keep your CVs/resumes clear and concise, the people looking at them will not spend long evaluating them
+- Find out what others perceive of as "your brand", if you like it, work on it but if not figure out how to change it
+- Find out what your peers and managers value, it can help you to connect with them 
+- Be comfortable being uncomfortable, you grow the most where you are uncomfortable
+
+<h3>DANGER: BOMB THREAT</h3>
+
+Then there was a fire alarm... the talk was almost over, but we had to evacuate the building. It turned out that there was a suspicious vehicle near Parliament (which is next to the venue) so the police evacuated the whole area. 
+
+Credit to the NDC London team for being able to re-schedule the talks that were missed for later in the week.
+
+Eventually, we were let back into the venue for the final talk...
+
+<h3>Roslyn Source Generators - Never send a human to do a machine's job</h3>
+<p class="additional-link">by Stfan Pölz</p>
+
+I've heard about Roslyn Source Generators and was intrigured to see them at work. Stefan gave us look at what they have the potential to do and I was reminded of TypeProviders in F#. This was a very code-heavy talk which is why I didn't produce a sketchnote. 
+
+I do need to now have a play with source generators, I can see them as a way of avoiding reflection, of building more performant, type-safe code.
+
